@@ -75,7 +75,7 @@ async function sendMagicLink(env, entry, magicLink) {
     method: 'POST',
     headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      from: 'Brian Kuzdas Portfolio <onboarding@resend.dev>',
+      from: 'Brian Kuzdas Portfolio <portfolio@brianboruma.com>',
       to: [entry.email],
       subject: 'Your access link — Brian Kuzdas Portfolio',
       html: `
@@ -114,7 +114,7 @@ async function notifyBrian(env, entry) {
     method: 'POST',
     headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
     body: JSON.stringify({
-      from: 'Portfolio Access <onboarding@resend.dev>',
+      from: 'Portfolio Access <portfolio@brianboruma.com>',
       to: ['brian.kuzdas@gmail.com'],
       subject: `Portfolio Access Request — ${firstName} ${lastName}`,
       html: `
