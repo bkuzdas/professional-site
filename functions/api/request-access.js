@@ -36,9 +36,9 @@ export async function onRequestPost(context) {
   const timestamp = new Date().toISOString();
   const entry = { firstName, lastName, phone, email, requestedAt: timestamp };
 
-  // 1 — Add email to Cloudflare Access policy
+  // 1 — Add email to ALL Cloudflare Access policies (one per protected path)
   try {
-    await addEmailToAccessPolicy(env, email);
+    await addEmailToAllPolicies(env, email);
   } catch (err) {
     console.error('CF Access error:', err);
   }
@@ -57,17 +57,40 @@ export async function onRequestPost(context) {
     console.error('Email notify error:', err);
   }
 
-  // 3 — Redirect to success page
-  return Response.redirect(new URL('/request-access-success', request.url).toString(), 303);
+  // 4 — Redirect straight to the Cloudflare Access login screen
+  //     CF Access will challenge them for OTP, then land them on /experience
+  const loginUrl = `https://brianboru.cloudflareaccess.com/cdn-cgi/access/login/professional.brianboruma.com?redirect_url=/experience`;
+  return Response.redirect(loginUrl, 303);
 }
 
-async function addEmailToAccessPolicy(env, newEmail) {
-  const { CF_ACCESS_TOKEN, CF_ACCOUNT_ID, CF_APP_ID, CF_POLICY_ID } = env;
+async function addEmailToAllPolicies(env, newEmail) {
+  const {
+    CF_ACCESS_TOKEN, CF_ACCOUNT_ID,
+    CF_APP_ID_EXPERIENCE,    CF_POLICY_ID_EXPERIENCE,
+    CF_APP_ID_PROJECTS,      CF_POLICY_ID_PROJECTS,
+    CF_APP_ID_ACHIEVEMENTS,  CF_POLICY_ID_ACHIEVEMENTS,
+    CF_APP_ID_RESUMES,       CF_POLICY_ID_RESUMES,
+    CF_APP_ID_RESUME,        CF_POLICY_ID_RESUME,
+  } = env;
 
+  const apps = [
+    { appId: CF_APP_ID_EXPERIENCE,   policyId: CF_POLICY_ID_EXPERIENCE },
+    { appId: CF_APP_ID_PROJECTS,     policyId: CF_POLICY_ID_PROJECTS },
+    { appId: CF_APP_ID_ACHIEVEMENTS, policyId: CF_POLICY_ID_ACHIEVEMENTS },
+    { appId: CF_APP_ID_RESUMES,      policyId: CF_POLICY_ID_RESUMES },
+    { appId: CF_APP_ID_RESUME,       policyId: CF_POLICY_ID_RESUME },
+  ];
+
+  await Promise.all(apps.map(({ appId, policyId }) =>
+    addEmailToPolicy(CF_ACCESS_TOKEN, CF_ACCOUNT_ID, appId, policyId, newEmail)
+  ));
+}
+
+async function addEmailToPolicy(token, accountId, appId, policyId, newEmail) {
   // Fetch current policy
   const getRes = await fetch(
-    `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/access/apps/${CF_APP_ID}/policies/${CF_POLICY_ID}`,
-    { headers: { 'Authorization': `Bearer ${CF_ACCESS_TOKEN}` } }
+    `https://api.cloudflare.com/client/v4/accounts/${accountId}/access/apps/${appId}/policies/${policyId}`,
+    { headers: { 'Authorization': `Bearer ${token}` } }
   );
   const getData = await getRes.json();
   if (!getData.success) throw new Error(JSON.stringify(getData.errors));
@@ -82,11 +105,11 @@ async function addEmailToAccessPolicy(env, newEmail) {
   include.push({ email: { email: newEmail } });
 
   const putRes = await fetch(
-    `https://api.cloudflare.com/client/v4/accounts/${CF_ACCOUNT_ID}/access/apps/${CF_APP_ID}/policies/${CF_POLICY_ID}`,
+    `https://api.cloudflare.com/client/v4/accounts/${accountId}/access/apps/${appId}/policies/${policyId}`,
     {
       method: 'PUT',
       headers: {
-        'Authorization': `Bearer ${CF_ACCESS_TOKEN}`,
+        'Authorization': `Bearer ${token}`,
         'Content-Type': 'application/json',
       },
       body: JSON.stringify({ ...policy, include }),
