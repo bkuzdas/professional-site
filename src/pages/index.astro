@@ -1,543 +1,312 @@
 ---
-import Layout from '../layouts/Layout.astro';
+import DoorLayout from '../layouts/DoorLayout.astro';
 ---
-<Layout title="Brian Kuzdas — IT Infrastructure Leader & Technology Executive" page="home">
+<DoorLayout title="Brian Kuzdas — Professional Portfolio">
 
-<!-- ══ HERO ══════════════════════════════════════════════════ -->
-<section class="hero">
-  <div class="hero-bg" aria-hidden="true"></div>
-  <div class="container hero-inner">
-    <div class="hero-content">
-      <p class="section-label">Madison, WI · Open to Opportunities</p>
-      <h1 class="hero-headline">
-        Brian Kuzdas
-        <span class="hero-title-line">Senior IT Infrastructure Leader</span>
-      </h1>
-      <p class="hero-tagline">
-        Building audit-ready, high-performance infrastructure for organizations
-        where <strong>downtime is not an option</strong> and compliance is not a suggestion.
-        25+ years across biopharmaceutical, financial services, and enterprise IT.
-      </p>
-      <div class="hero-badges">
-        <span class="badge">FDA 21 CFR Part 11</span>
-        <span class="badge">cGMP Compliance</span>
-        <span class="badge">Azure Certified</span>
-        <span class="badge">AWS Certified</span>
-        <span class="badge">Zero Trust</span>
-        <span class="badge">ITIL 4</span>
+<div class="door">
+
+  <!-- Background grid -->
+  <div class="door-grid" aria-hidden="true"></div>
+
+  <!-- Top bar -->
+  <header class="door-header">
+    <div class="door-logo">
+      <span class="logo-mark">BK</span>
+      <span class="logo-name">Brian Kuzdas</span>
+    </div>
+    <a href="https://brianboruma.com" class="door-ext" target="_blank" rel="noopener">
+      brianboruma.com ↗
+    </a>
+  </header>
+
+  <!-- Main content -->
+  <main class="door-main">
+
+    <div class="door-eyebrow">
+      <span class="door-dot"></span>
+      Senior IT Infrastructure · Network Security · Technology Leadership
+    </div>
+
+    <h1 class="door-headline">
+      Welcome.<br/>
+      <span class="door-headline-sub">This is a private portfolio.</span>
+    </h1>
+
+    <p class="door-desc">
+      25+ years of enterprise IT experience across biopharmaceutical manufacturing,
+      financial services, and technology leadership — available to qualified opportunities.
+      Request access to view full career history, projects, and resumes.
+    </p>
+
+    <!-- Teaser stats -->
+    <div class="door-stats">
+      <div class="ds-item">
+        <span class="ds-val">25+</span>
+        <span class="ds-lbl">Years Experience</span>
       </div>
-      <div class="hero-actions">
-        <a href="/resumes" class="btn btn-gold">View Resumes</a>
-        <a href="/experience" class="btn btn-outline-white">My Experience</a>
-        <a href="mailto:brian.kuzdas@gmail.com" class="btn btn-outline-white">Get In Touch</a>
+      <div class="ds-div"></div>
+      <div class="ds-item">
+        <span class="ds-val">99.99%</span>
+        <span class="ds-lbl">Uptime Track Record</span>
+      </div>
+      <div class="ds-div"></div>
+      <div class="ds-item">
+        <span class="ds-val">60K+</span>
+        <span class="ds-lbl">Users Migrated</span>
+      </div>
+      <div class="ds-div"></div>
+      <div class="ds-item">
+        <span class="ds-val">FDA</span>
+        <span class="ds-lbl">21 CFR Part 11 Expert</span>
       </div>
     </div>
-    <div class="hero-card" aria-hidden="true">
-      <div class="hc-header">
-        <span class="hc-dot hc-dot--on"></span>
-        <span class="hc-dot hc-dot--dim"></span>
-        <span class="hc-dot hc-dot--dim"></span>
-        <span class="hc-label">SYSTEM STATUS — PRODUCTION</span>
-      </div>
-      <ul class="hc-items">
-        <li><span class="hc-check">✔</span>cGMP Infrastructure<span class="hc-ok">VALIDATED</span></li>
-        <li><span class="hc-check">✔</span>DR Architecture<span class="hc-ok">TESTED</span></li>
-        <li><span class="hc-check">✔</span>FDA Audit Readiness<span class="hc-ok">READY</span></li>
-        <li><span class="hc-check">✔</span>Identity / Zero Trust<span class="hc-ok">HARDENED</span></li>
-        <li><span class="hc-check">✔</span>Uptime SLA<span class="hc-ok">99.99%</span></li>
-        <li><span class="hc-check">✔</span>Cloud Migration<span class="hc-ok">COMPLETE</span></li>
-      </ul>
-      <div class="hc-footer">
-        <span class="hc-pulse"></span> All systems operational
+
+    <!-- What's inside -->
+    <div class="door-vault">
+      <div class="vault-label">Inside the Portfolio</div>
+      <div class="vault-items">
+        <div class="vault-item"><span class="vi-icon">📋</span> Full Career History</div>
+        <div class="vault-item"><span class="vi-icon">🚀</span> 8 Flagship Projects</div>
+        <div class="vault-item"><span class="vi-icon">🏆</span> Key Achievements & Metrics</div>
+        <div class="vault-item"><span class="vi-icon">📄</span> 3 Tailored Resumes (PDF/Web)</div>
+        <div class="vault-item"><span class="vi-icon">🎓</span> Certifications & Credentials</div>
+        <div class="vault-item"><span class="vi-icon">🔒</span> Access-Controlled & Private</div>
       </div>
     </div>
-  </div>
-</section>
 
-<!-- ══ METRICS STRIP ═══════════════════════════════════════ -->
-<section class="section--white">
-  <div class="container">
-    <div class="metrics-strip">
-      <div class="metric-cell">
-        <span class="metric-val">25+</span>
-        <span class="metric-lbl">Years Experience</span>
-      </div>
-      <div class="metric-cell">
-        <span class="metric-val gold">99.99%</span>
-        <span class="metric-lbl">Uptime Track Record</span>
-      </div>
-      <div class="metric-cell">
-        <span class="metric-val">60K+</span>
-        <span class="metric-lbl">Users Migrated</span>
-      </div>
-      <div class="metric-cell">
-        <span class="metric-val gold">30%</span>
-        <span class="metric-lbl">Data Retrieval Improvement</span>
-      </div>
-      <div class="metric-cell">
-        <span class="metric-val">3</span>
-        <span class="metric-lbl">Cloud Certifications</span>
-      </div>
-      <div class="metric-cell">
-        <span class="metric-val gold">FDA</span>
-        <span class="metric-lbl">21 CFR Part 11 Expert</span>
-      </div>
+    <!-- Actions -->
+    <div class="door-actions">
+      <a href="mailto:brian.kuzdas@gmail.com?subject=Portfolio%20Access%20Request&body=Hi%20Brian%2C%0A%0AI%27d%20like%20to%20request%20access%20to%20your%20professional%20portfolio.%0A%0AName%3A%20%0AOrganization%3A%20%0APurpose%3A%20" class="btn-door-primary">
+        🔑 Request Access
+      </a>
+      <a href="https://www.linkedin.com/in/brian-kuzdas-a176b945/" target="_blank" rel="noopener" class="btn-door-secondary">
+        LinkedIn Profile ↗
+      </a>
     </div>
-  </div>
-</section>
 
-<!-- ══ ABOUT ═══════════════════════════════════════════════ -->
-<section class="section">
-  <div class="container about-grid">
-    <div>
-      <p class="section-label">About Me</p>
-      <h2 class="section-title">Enterprise IT Leader Who<br/>Delivers Under Pressure</h2>
-      <div class="section-divider"></div>
-      <p class="section-sub" style="margin-bottom:1.5rem;">
-        With over 25 years in enterprise technical support, infrastructure design, and IT leadership,
-        I've built and managed complex technology environments in some of the most demanding industries —
-        FDA-regulated biopharmaceutical manufacturing and financial services.
-      </p>
-      <p class="section-sub" style="margin-bottom:2rem;">
-        I've built IT departments from the ground up at FUJIFILM Cellular Dynamics,
-        led a 60,000+ user cloud migration, and founded my own Managed Service Provider.
-        I'm equally effective on the tools and in the boardroom — a rare combination of
-        deep technical expertise and business-level communication.
-      </p>
-      <div class="about-chips">
-        <span class="chip">🏭 Biopharmaceutical IT</span>
-        <span class="chip">🏦 Financial Services</span>
-        <span class="chip">☁️ Hybrid Cloud</span>
-        <span class="chip">🔒 Security Architecture</span>
-        <span class="chip">📋 FDA / cGMP Compliance</span>
-        <span class="chip">🤖 AI Infrastructure</span>
-        <span class="chip">🚀 Entrepreneurship</span>
-      </div>
-      <div style="margin-top:2rem;">
-        <a href="/experience" class="btn btn-primary">View Full Experience →</a>
-      </div>
-    </div>
-    <div class="about-sidebar">
-      <div class="sidebar-card">
-        <div class="sc-icon">🎓</div>
-        <div class="sc-title">Education</div>
-        <p>BA Political Science &amp; History<br/><em>University of Wisconsin – Platteville</em></p>
-        <p style="margin-top:0.75rem;">Computer Systems Networking<br/><em>Madison Area Technical College</em></p>
-      </div>
-      <div class="sidebar-card">
-        <div class="sc-icon">📍</div>
-        <div class="sc-title">Location</div>
-        <p>Madison, Wisconsin</p>
-        <p style="margin-top:0.5rem; font-size:0.85rem; color:var(--muted);">Open to remote, hybrid, or on-site roles in the Greater Madison / Milwaukee area</p>
-      </div>
-      <div class="sidebar-card">
-        <div class="sc-icon">🔗</div>
-        <div class="sc-title">Connect</div>
-        <p><a href="https://www.linkedin.com/in/brian-kuzdas-a176b945/" target="_blank" style="color:var(--navy);font-weight:600;">LinkedIn Profile ↗</a></p>
-        <p style="margin-top:0.5rem;"><a href="mailto:brian.kuzdas@gmail.com" style="color:var(--navy);font-weight:600;">brian.kuzdas@gmail.com</a></p>
-        <p style="margin-top:0.5rem;"><a href="https://brianboruma.com" target="_blank" style="color:var(--navy);font-weight:600;">brianboruma.com ↗</a></p>
-      </div>
-    </div>
-  </div>
-</section>
+    <p class="door-note">
+      Already have access?
+      <a href="/experience" class="door-enter-link">Enter the portfolio →</a>
+    </p>
 
-<!-- ══ RECENT ROLES ════════════════════════════════════════ -->
-<section class="section section--alt">
-  <div class="container">
-    <p class="section-label">Career Highlights</p>
-    <h2 class="section-title">Recent Roles</h2>
-    <div class="section-divider"></div>
-    <div class="roles-grid">
+  </main>
 
-      <div class="role-card">
-        <div class="rc-top">
-          <div class="rc-logo">🏦</div>
-          <div>
-            <div class="rc-company">Bankers Bank</div>
-            <div class="rc-dates">Dec 2025 – Present</div>
-          </div>
-          <span class="rc-badge current">Current</span>
-        </div>
-        <div class="rc-title">Senior Network Operations &amp; Security Specialist</div>
-        <p class="rc-desc">Leading security modernization — on-premise AI strategy, UEM transition, identity hardening, and regulatory compliance in a financial sector environment.</p>
-        <div class="rc-tags">
-          <span class="tag">Zero Trust</span>
-          <span class="tag">AI Infrastructure</span>
-          <span class="tag">UEM</span>
-          <span class="tag">Financial Compliance</span>
-        </div>
-      </div>
+  <!-- Footer -->
+  <footer class="door-footer">
+    <span>📍 Madison, WI</span>
+    <span class="door-footer-sep">·</span>
+    <a href="mailto:brian.kuzdas@gmail.com">brian.kuzdas@gmail.com</a>
+    <span class="door-footer-sep">·</span>
+    <span>(608) 576-0655</span>
+    <span class="door-footer-sep">·</span>
+    <a href="https://www.linkedin.com/in/brian-kuzdas-a176b945/" target="_blank" rel="noopener">LinkedIn</a>
+  </footer>
 
-      <div class="role-card">
-        <div class="rc-top">
-          <div class="rc-logo">🔬</div>
-          <div>
-            <div class="rc-company">FUJIFILM Cellular Dynamics</div>
-            <div class="rc-dates">May 2022 – Dec 2025</div>
-          </div>
-        </div>
-        <div class="rc-title">Manager, Tech Ops &amp; IT / Sr. Infrastructure Specialist</div>
-        <p class="rc-desc">Built and managed mission-critical cGMP IT infrastructure from greenfield. Owned OPEX/CAPEX budgets, achieved 99.99% uptime, and ensured full FDA compliance for iPSC cell therapy manufacturing.</p>
-        <div class="rc-tags">
-          <span class="tag">cGMP / FDA</span>
-          <span class="tag">Budget Management</span>
-          <span class="tag">99.99% Uptime</span>
-          <span class="tag">Hybrid Cloud</span>
-        </div>
-      </div>
+</div>
 
-      <div class="role-card">
-        <div class="rc-top">
-          <div class="rc-logo">🌐</div>
-          <div>
-            <div class="rc-company">FUJIFILM Holdings America</div>
-            <div class="rc-dates">Aug 2017 – May 2022</div>
-          </div>
-        </div>
-        <div class="rc-title">IT System Administrator II</div>
-        <p class="rc-desc">Orchestrated 60,000+ user migration from Google Workspace to Microsoft 365. Managed enterprise data center architecture, DR frameworks, and virtualized environment hardening.</p>
-        <div class="rc-tags">
-          <span class="tag">M365 Migration</span>
-          <span class="tag">60K+ Users</span>
-          <span class="tag">Data Center</span>
-          <span class="tag">Disaster Recovery</span>
-        </div>
-      </div>
-
-    </div>
-    <div style="text-align:center; margin-top:2.5rem;">
-      <a href="/experience" class="btn btn-primary">View Full Career History →</a>
-    </div>
-  </div>
-</section>
-
-<!-- ══ SKILLS ══════════════════════════════════════════════ -->
-<section class="section">
-  <div class="container">
-    <p class="section-label">Core Competencies</p>
-    <h2 class="section-title">Technical &amp; Leadership Skills</h2>
-    <div class="section-divider"></div>
-    <div class="skills-grid">
-      <div class="skill-group">
-        <h3>🌐 Networking</h3>
-        <div class="skill-tags">
-          <span class="tag">LAN / WAN Design</span><span class="tag">Firewall Config</span>
-          <span class="tag">VPN (WireGuard / IPSec)</span><span class="tag">SD-WAN</span>
-          <span class="tag">VLAN Segmentation</span><span class="tag">BGP / OSPF</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>☁️ Cloud &amp; Virtualization</h3>
-        <div class="skill-tags">
-          <span class="tag">Microsoft Azure</span><span class="tag">AWS</span>
-          <span class="tag">Hybrid Cloud Architecture</span><span class="tag">VMware vSphere</span>
-          <span class="tag">Azure AD / Entra ID</span><span class="tag">Hyper-V</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>🔒 Security</h3>
-        <div class="skill-tags">
-          <span class="tag">Zero Trust</span><span class="tag">Endpoint Hardening</span>
-          <span class="tag">Okta / MFA / IAM</span><span class="tag">CISSP Domain 1</span>
-          <span class="tag">Intrusion Detection</span><span class="tag">WireGuard</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>🖥️ Systems &amp; Storage</h3>
-        <div class="skill-tags">
-          <span class="tag">Windows Server 2016–2022</span><span class="tag">Active Directory</span>
-          <span class="tag">Dell EMC Unity</span><span class="tag">SAN / NAS</span>
-          <span class="tag">Block &amp; Object Storage</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>⚙️ Automation</h3>
-        <div class="skill-tags">
-          <span class="tag">PowerShell</span><span class="tag">Python</span>
-          <span class="tag">Bash</span><span class="tag">Infrastructure as Code</span>
-          <span class="tag">HL7 / FHIR R4</span>
-        </div>
-      </div>
-      <div class="skill-group">
-        <h3>📋 Compliance &amp; Leadership</h3>
-        <div class="skill-tags">
-          <span class="tag">FDA 21 CFR Part 11</span><span class="tag">cGMP</span>
-          <span class="tag">Computer System Validation</span><span class="tag">ITIL 4</span>
-          <span class="tag">OPEX / CAPEX Budgets</span><span class="tag">vCIO Advisory</span>
-        </div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ CERTIFICATIONS STRIP ═══════════════════════════════ -->
-<section class="section section--alt">
-  <div class="container">
-    <p class="section-label">Credentials</p>
-    <h2 class="section-title">Certifications</h2>
-    <div class="section-divider"></div>
-    <div class="certs-grid">
-      <div class="cert-card">
-        <div class="cert-icon">☁️</div>
-        <div class="cert-name">AWS Certified Cloud Practitioner</div>
-        <div class="cert-issuer">Amazon Web Services</div>
-        <div class="cert-date">Sep 2025 – Sep 2028</div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">🪟</div>
-        <div class="cert-name">Azure Fundamentals (AZ-900)</div>
-        <div class="cert-issuer">Microsoft</div>
-        <div class="cert-date">Feb 2026</div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">🔒</div>
-        <div class="cert-name">CISSP Domain 1: Security &amp; Risk</div>
-        <div class="cert-issuer">LinkedIn Learning</div>
-        <div class="cert-date">Active</div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">📊</div>
-        <div class="cert-name">ITIL 4: Foundations &amp; Framework</div>
-        <div class="cert-issuer">LinkedIn Learning</div>
-        <div class="cert-date">Active</div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">🧪</div>
-        <div class="cert-name">Computer System Validation Boot Camp</div>
-        <div class="cert-issuer">ProPharma Validation Center</div>
-        <div class="cert-date">2023</div>
-      </div>
-      <div class="cert-card">
-        <div class="cert-icon">💾</div>
-        <div class="cert-name">Dell EMC Unity Implementation</div>
-        <div class="cert-issuer">DELL</div>
-        <div class="cert-date">2020</div>
-      </div>
-    </div>
-  </div>
-</section>
-
-<!-- ══ CTA ════════════════════════════════════════════════ -->
-<section class="cta-section">
-  <div class="container cta-inner">
-    <div>
-      <h2 class="cta-title">Ready to work together?</h2>
-      <p class="cta-sub">I'm currently open to new opportunities in IT Infrastructure, IT Management, and Technology Leadership roles.</p>
-    </div>
-    <div class="cta-actions">
-      <a href="/resumes" class="btn btn-gold">View Resumes</a>
-      <a href="mailto:brian.kuzdas@gmail.com" class="btn btn-outline-white">Email Me Directly</a>
-      <a href="https://www.linkedin.com/in/brian-kuzdas-a176b945/" target="_blank" class="btn btn-outline-white">LinkedIn ↗</a>
-    </div>
-  </div>
-</section>
-
-</Layout>
+</DoorLayout>
 
 <style>
-/* ── HERO ── */
-.hero {
-  position: relative;
+/* ── DOOR SHELL ── */
+.door {
   min-height: 100dvh;
-  display: flex; align-items: center;
-  padding-top: var(--nav-height);
-  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 55%, #1e4a8a 100%);
-  overflow: hidden;
+  display: flex; flex-direction: column;
+  position: relative; overflow: hidden;
+}
+
+.door-grid {
+  position: fixed; inset: 0; z-index: 0;
+  background-image:
+    linear-gradient(rgba(200,150,30,.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(200,150,30,.05) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: radial-gradient(ellipse 90% 90% at 50% 40%, black 20%, transparent 100%);
+  pointer-events: none;
+}
+
+/* ── HEADER ── */
+.door-header {
+  position: relative; z-index: 10;
+  display: flex; align-items: center; justify-content: space-between;
+  padding: 1.5rem 2.5rem;
+  border-bottom: 1px solid rgba(255,255,255,.07);
+}
+.door-logo { display: flex; align-items: center; gap: 0.75rem; }
+.logo-mark {
+  width: 38px; height: 38px; border-radius: 8px;
+  background: linear-gradient(135deg, #c8961e, #e8b840);
+  color: #071a3e; font-weight: 900; font-size: 0.8rem;
+  display: flex; align-items: center; justify-content: center;
+  letter-spacing: 0.05em; flex-shrink: 0;
+}
+.logo-name { font-weight: 700; font-size: 1rem; color: rgba(255,255,255,.9); }
+.door-ext { font-size: 0.8rem; color: rgba(255,255,255,.35); transition: color 200ms; }
+.door-ext:hover { color: rgba(255,255,255,.7); }
+
+/* ── MAIN ── */
+.door-main {
+  flex: 1; display: flex; flex-direction: column;
+  align-items: center; justify-content: center;
+  text-align: center;
+  padding: 4rem 2rem;
+  position: relative; z-index: 10;
+  max-width: 780px; margin-inline: auto; width: 100%;
+}
+
+.door-eyebrow {
+  display: flex; align-items: center; gap: 0.6rem;
+  font-size: 0.75rem; font-weight: 600; letter-spacing: 0.12em;
+  text-transform: uppercase; color: rgba(255,255,255,.4);
+  margin-bottom: 2rem;
+}
+.door-dot {
+  width: 8px; height: 8px; border-radius: 50%;
+  background: #c8961e;
+  box-shadow: 0 0 8px rgba(200,150,30,.6);
+  animation: glow 2s ease-in-out infinite;
+  flex-shrink: 0;
+}
+@keyframes glow {
+  0%, 100% { opacity: 1; }
+  50% { opacity: 0.4; }
+}
+
+.door-headline {
+  font-size: clamp(2.4rem, 6vw, 4rem);
+  font-weight: 900; line-height: 1.1;
+  letter-spacing: -0.04em;
+  margin-bottom: 1.5rem;
   color: var(--white);
 }
-.hero-bg {
-  position: absolute; inset: 0;
-  background-image:
-    linear-gradient(rgba(200,150,30,.04) 1px, transparent 1px),
-    linear-gradient(90deg, rgba(200,150,30,.04) 1px, transparent 1px);
-  background-size: 64px 64px;
-  mask-image: radial-gradient(ellipse 80% 80% at 50% 50%, black 40%, transparent 100%);
-}
-.hero-inner {
-  display: grid; grid-template-columns: 1fr 380px;
-  gap: var(--sp-4xl); align-items: center;
-  padding-block: var(--sp-4xl);
-  position: relative; z-index: 1;
-}
-.hero-headline {
-  font-size: clamp(2rem, 4.5vw, 3.2rem);
-  font-weight: 800; line-height: 1.1;
-  letter-spacing: -0.03em;
-  margin-bottom: var(--sp-lg);
-}
-.hero-title-line {
+.door-headline-sub {
   display: block;
   font-size: 0.55em;
   font-weight: 600;
-  color: var(--gold-light);
-  letter-spacing: 0.02em;
+  color: rgba(255,255,255,.45);
+  letter-spacing: 0.01em;
   margin-top: 0.3em;
 }
-.hero-tagline {
-  font-size: 1.05rem; color: rgba(255,255,255,.8);
+
+.door-desc {
+  font-size: 1.05rem;
+  color: rgba(255,255,255,.6);
   max-width: 52ch; line-height: 1.8;
-  margin-bottom: var(--sp-xl);
+  margin-bottom: 2.5rem;
 }
-.hero-tagline strong { color: var(--white); }
-.hero-badges {
-  display: flex; flex-wrap: wrap; gap: 8px;
-  margin-bottom: var(--sp-2xl);
-}
-.badge {
-  font-size: 0.72rem; font-weight: 600;
-  padding: 4px 12px; border-radius: 20px;
-  background: rgba(255,255,255,.1);
-  border: 1px solid rgba(255,255,255,.2);
-  color: rgba(255,255,255,.9);
-  letter-spacing: 0.03em;
-}
-.hero-actions { display: flex; flex-wrap: wrap; gap: var(--sp-md); }
 
-/* Hero card */
-.hero-card {
-  background: rgba(255,255,255,.07);
-  backdrop-filter: blur(12px);
-  border: 1px solid rgba(255,255,255,.15);
-  border-radius: var(--r-lg);
-  padding: var(--sp-xl);
-  position: relative;
+/* ── STATS ── */
+.door-stats {
+  display: flex; align-items: center; gap: 0;
+  background: rgba(255,255,255,.04);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; overflow: hidden;
+  margin-bottom: 2.5rem; width: 100%;
 }
-.hero-card::before {
-  content: '';
-  position: absolute; top: 0; left: 0; right: 0; height: 3px;
-  background: linear-gradient(90deg, var(--gold), var(--gold-light));
-  border-radius: var(--r-lg) var(--r-lg) 0 0;
+.ds-item {
+  flex: 1; padding: 1.25rem 1rem; text-align: center;
 }
-.hc-header {
-  display: flex; align-items: center; gap: 6px;
-  margin-bottom: var(--sp-lg);
+.ds-val {
+  display: block;
+  font-size: 1.5rem; font-weight: 900; color: #c8961e;
+  letter-spacing: -0.03em; line-height: 1; margin-bottom: 4px;
 }
-.hc-dot { width: 10px; height: 10px; border-radius: 50%; }
-.hc-dot--on  { background: var(--gold); }
-.hc-dot--dim { background: rgba(255,255,255,.2); }
-.hc-label {
-  margin-left: auto; font-size: 0.6rem; font-weight: 700;
-  letter-spacing: 0.15em; color: rgba(255,255,255,.4); text-transform: uppercase;
+.ds-lbl {
+  font-size: 0.65rem; font-weight: 600; text-transform: uppercase;
+  letter-spacing: 0.1em; color: rgba(255,255,255,.35);
 }
-.hc-items {
-  list-style: none; display: flex; flex-direction: column; gap: 0.85rem;
-  margin-bottom: var(--sp-lg);
+.ds-div {
+  width: 1px; background: rgba(255,255,255,.1);
+  align-self: stretch;
 }
-.hc-items li {
+
+/* ── VAULT PREVIEW ── */
+.door-vault {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: 1.5rem 2rem;
+  margin-bottom: 2.5rem; width: 100%;
+  text-align: left;
+}
+.vault-label {
+  font-size: 0.65rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.15em; color: #c8961e; margin-bottom: 1rem;
+}
+.vault-items {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 0.6rem;
+}
+.vault-item {
   display: flex; align-items: center; gap: 0.6rem;
-  font-size: 0.875rem; color: rgba(255,255,255,.8);
-  font-family: var(--font-mono, monospace);
+  font-size: 0.875rem; color: rgba(255,255,255,.6);
+  padding: 0.5rem 0.75rem;
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.07);
+  border-radius: 8px;
 }
-.hc-check { color: var(--gold); font-size: 0.75rem; flex-shrink: 0; }
-.hc-ok {
-  margin-left: auto; font-size: 0.62rem; font-weight: 700;
-  letter-spacing: 0.08em; padding: 2px 8px; border-radius: 20px;
-  color: #4ade80; background: rgba(74,222,128,.1);
-  border: 1px solid rgba(74,222,128,.25);
+.vi-icon { font-size: 1rem; flex-shrink: 0; }
+
+/* ── ACTIONS ── */
+.door-actions {
+  display: flex; flex-wrap: wrap; gap: 1rem;
+  justify-content: center; margin-bottom: 1.5rem;
 }
-.hc-footer {
-  display: flex; align-items: center; gap: var(--sp-sm);
-  font-size: 0.78rem; color: rgba(255,255,255,.5);
-  padding-top: var(--sp-md);
-  border-top: 1px solid rgba(255,255,255,.1);
+.btn-door-primary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: linear-gradient(135deg, #c8961e, #e8b840);
+  color: #071a3e; font-weight: 800; font-size: 0.95rem;
+  border-radius: 10px; border: none;
+  box-shadow: 0 4px 20px rgba(200,150,30,.3);
+  transition: all 200ms; cursor: pointer;
+  text-decoration: none;
 }
-.hc-pulse {
-  width: 8px; height: 8px; border-radius: 50%; background: #4ade80;
-  display: inline-block; animation: pulse 2s ease-in-out infinite;
+.btn-door-primary:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 28px rgba(200,150,30,.5);
 }
-@keyframes pulse {
-  0%, 100% { opacity: 1; transform: scale(1); }
-  50% { opacity: 0.5; transform: scale(0.8); }
+.btn-door-secondary {
+  display: inline-flex; align-items: center; gap: 0.5rem;
+  padding: 0.85rem 2rem;
+  background: transparent; color: rgba(255,255,255,.75);
+  font-weight: 600; font-size: 0.95rem;
+  border-radius: 10px; border: 1px solid rgba(255,255,255,.2);
+  transition: all 200ms; text-decoration: none;
+}
+.btn-door-secondary:hover {
+  background: rgba(255,255,255,.07);
+  border-color: rgba(255,255,255,.4);
+  color: var(--white);
 }
 
-/* ── SECTION WHITE ── */
-.section--white { background: var(--white); padding-block: var(--sp-xl); }
+.door-note {
+  font-size: 0.85rem; color: rgba(255,255,255,.3);
+}
+.door-enter-link {
+  color: rgba(255,255,255,.5);
+  text-decoration: underline; text-underline-offset: 3px;
+  transition: color 200ms;
+}
+.door-enter-link:hover { color: rgba(255,255,255,.85); }
 
-/* ── ABOUT ── */
-.about-grid {
-  display: grid; grid-template-columns: 1fr 280px; gap: var(--sp-4xl);
-  align-items: start;
+/* ── FOOTER ── */
+.door-footer {
+  position: relative; z-index: 10;
+  display: flex; flex-wrap: wrap; align-items: center; justify-content: center;
+  gap: 0.4rem 0.75rem;
+  padding: 1.25rem 2rem;
+  border-top: 1px solid rgba(255,255,255,.07);
+  font-size: 0.8rem; color: rgba(255,255,255,.25);
 }
-.about-chips { display: flex; flex-wrap: wrap; gap: 8px; }
-.chip {
-  font-size: 0.82rem; padding: 5px 13px;
-  border-radius: 20px; background: var(--light);
-  border: 1px solid var(--border); color: var(--sub);
-}
-.about-sidebar { display: flex; flex-direction: column; gap: var(--sp-lg); }
-.sidebar-card {
-  background: var(--white); border: 1px solid var(--border-soft);
-  border-radius: var(--r-md); padding: var(--sp-lg);
-  box-shadow: var(--shadow-sm);
-}
-.sc-icon { font-size: 1.5rem; margin-bottom: var(--sp-sm); }
-.sc-title { font-size: 0.72rem; font-weight: 700; letter-spacing: 0.12em;
-  text-transform: uppercase; color: var(--gold); margin-bottom: var(--sp-sm); }
-.sidebar-card p { font-size: 0.9rem; color: var(--sub); line-height: 1.55; }
-
-/* ── ROLES ── */
-.roles-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--sp-xl); }
-.role-card {
-  background: var(--white); border: 1px solid var(--border-soft);
-  border-radius: var(--r-lg); padding: var(--sp-xl);
-  box-shadow: var(--shadow-sm);
-  transition: box-shadow var(--transition), transform var(--transition);
-}
-.role-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
-.rc-top { display: flex; align-items: flex-start; gap: var(--sp-md); margin-bottom: var(--sp-sm); }
-.rc-logo { font-size: 2rem; flex-shrink: 0; }
-.rc-company { font-weight: 700; font-size: 1rem; color: var(--navy); }
-.rc-dates { font-size: 0.8rem; color: var(--muted); }
-.rc-badge {
-  margin-left: auto; font-size: 0.65rem; font-weight: 700;
-  padding: 2px 10px; border-radius: 20px; flex-shrink: 0;
-}
-.rc-badge.current { background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0; }
-.rc-title { font-size: 0.9rem; font-weight: 600; color: var(--sub); margin-bottom: var(--sp-sm); font-style: italic; }
-.rc-desc { font-size: 0.875rem; color: var(--muted); line-height: 1.6; margin-bottom: var(--sp-md); }
-.rc-tags { display: flex; flex-wrap: wrap; gap: 6px; }
-
-/* ── SKILLS GRID ── */
-.skills-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--sp-xl); }
-.skill-group h3 { font-size: 0.95rem; color: var(--navy); margin-bottom: var(--sp-md); font-weight: 700; }
-.skill-tags { display: flex; flex-wrap: wrap; gap: 7px; }
-
-/* ── CERTS ── */
-.certs-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(220px, 1fr)); gap: var(--sp-lg); }
-.cert-card {
-  background: var(--white); border: 1px solid var(--border-soft);
-  border-radius: var(--r-md); padding: var(--sp-lg);
-  box-shadow: var(--shadow-sm);
-}
-.cert-icon { font-size: 1.75rem; margin-bottom: var(--sp-sm); }
-.cert-name { font-weight: 700; font-size: 0.9rem; color: var(--navy); margin-bottom: 4px; line-height: 1.4; }
-.cert-issuer { font-size: 0.8rem; color: var(--muted); }
-.cert-date { font-size: 0.75rem; color: var(--gold); font-weight: 600; margin-top: 4px; }
-
-/* ── CTA ── */
-.cta-section {
-  background: linear-gradient(135deg, var(--navy-dark), var(--navy));
-  padding-block: var(--sp-4xl);
-}
-.cta-inner {
-  display: flex; align-items: center; justify-content: space-between;
-  flex-wrap: wrap; gap: var(--sp-2xl);
-}
-.cta-title { font-size: 1.8rem; font-weight: 800; color: var(--white); margin-bottom: var(--sp-sm); }
-.cta-sub { font-size: 1rem; color: rgba(255,255,255,.7); max-width: 50ch; }
-.cta-actions { display: flex; flex-wrap: wrap; gap: var(--sp-md); }
+.door-footer a { color: rgba(255,255,255,.3); }
+.door-footer a:hover { color: rgba(255,255,255,.6); }
+.door-footer-sep { color: rgba(255,255,255,.15); }
 
 /* ── RESPONSIVE ── */
-@media (max-width: 960px) {
-  .hero-inner { grid-template-columns: 1fr; text-align: center; padding-block: var(--sp-3xl); }
-  .hero-tagline { margin-inline: auto; }
-  .hero-badges { justify-content: center; }
-  .hero-actions { justify-content: center; }
-  .hero-card { display: none; }
-  .about-grid { grid-template-columns: 1fr; }
-  .about-sidebar { flex-direction: row; flex-wrap: wrap; }
-  .sidebar-card { flex: 1 1 200px; }
-  .cta-inner { flex-direction: column; text-align: center; }
-  .cta-actions { justify-content: center; }
+@media (max-width: 600px) {
+  .door-header { padding: 1.25rem 1.5rem; }
+  .door-main { padding: 3rem 1.5rem; }
+  .door-stats { flex-direction: column; }
+  .ds-div { width: 100%; height: 1px; }
+  .vault-items { grid-template-columns: 1fr; }
 }
 </style>
