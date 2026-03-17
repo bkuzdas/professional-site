@@ -1,0 +1,41 @@
+---
+import DoorLayout from '../layouts/DoorLayout.astro';
+const reason = Astro.url.searchParams.get('reason') || 'invalid';
+const message = reason === 'expired'
+  ? 'Your access link has expired (links are valid for 15 minutes).'
+  : 'This access link is invalid or has already been used.';
+---
+<DoorLayout title="Link Expired — Brian Kuzdas">
+  <style>
+    .error-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background: #0a0f1e;
+      text-align: center;
+    }
+    .error-card { max-width: 400px; }
+    .error-icon { font-size: 3rem; margin-bottom: 1.5rem; }
+    h1 { font-size: 1.6rem; font-weight: 700; color: #fff; margin: 0 0 1rem; }
+    p { color: rgba(255,255,255,0.55); line-height: 1.6; margin: 0 0 2rem; }
+    .btn {
+      display: inline-block;
+      background: #d4af37;
+      color: #0a0f1e;
+      padding: 0.75rem 2rem;
+      border-radius: 6px;
+      font-weight: 700;
+      text-decoration: none;
+    }
+  </style>
+  <div class="error-wrap">
+    <div class="error-card">
+      <div class="error-icon">⏱️</div>
+      <h1>Link Expired</h1>
+      <p>{message} Please request a new access link.</p>
+      <a href="/request-access" class="btn">Request New Link</a>
+    </div>
+  </div>
+</DoorLayout>
