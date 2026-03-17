@@ -1,0 +1,347 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const projects = [
+  {
+    num: '01',
+    emoji: '🏭',
+    title: 'Greenfield cGMP IT Infrastructure',
+    company: 'FUJIFILM Cellular Dynamics',
+    year: '2022–2025',
+    category: 'Infrastructure Build',
+    status: 'Delivered',
+    summary: 'Built and validated the entire IT environment from zero for an FDA-regulated iPSC biopharmaceutical manufacturer. Architected all server, storage, network, and cloud systems supporting cGMP manufacturing operations.',
+    outcomes: [
+      '99.99% uptime across all manufacturing-critical systems',
+      'Zero FDA audit findings across all inspections',
+      'Full FDA 21 CFR Part 11 & cGMP CSV compliance achieved',
+      'OPEX/CAPEX budget delivered without overruns',
+    ],
+    tags: ['cGMP', 'FDA 21 CFR Part 11', 'Azure', 'AWS', 'Dell EMC', 'Greenfield'],
+    color: '#0d3b6e',
+  },
+  {
+    num: '02',
+    emoji: '☁️',
+    title: '60,000-User Google Workspace → Microsoft 365 Migration',
+    company: 'FUJIFILM Holdings America',
+    year: '2020–2022',
+    category: 'Cloud Migration',
+    status: 'Delivered',
+    summary: 'Led the enterprise-wide platform migration for a globally distributed organization of 60,000+ users. Coordinated data migration, identity provisioning, application dependencies, and user training across multiple business units.',
+    outcomes: [
+      '60,000+ users migrated with zero data loss',
+      'Project delivered on schedule across global teams',
+      'Minimal end-user disruption during cutover',
+      'Full rollback procedures tested and documented',
+    ],
+    tags: ['Microsoft 365', 'Google Workspace', 'Enterprise Scale', 'Identity Management', 'Change Management'],
+    color: '#0d3b6e',
+  },
+  {
+    num: '03',
+    emoji: '🔬',
+    title: 'HL7 FHIR R4 Laboratory Data Ingestor',
+    company: 'FUJIFILM Cellular Dynamics',
+    year: '2023',
+    category: 'Systems Integration',
+    status: 'Delivered',
+    summary: 'Architected a laboratory data integration platform connecting scientific instrumentation to enterprise systems. Enabled real-time data capture, retrieval, and reporting for cGMP manufacturing operations — with full FDA audit trail compliance.',
+    outcomes: [
+      '30% improvement in laboratory data retrieval speed',
+      'Real-time instrument data available to scientific teams',
+      'Full FDA 21 CFR Part 11 audit trail compliance',
+      'Replaced error-prone manual file-based workflows',
+    ],
+    tags: ['HL7 FHIR R4', 'Lab Integration', 'REST APIs', 'FDA Compliance', 'Data Architecture'],
+    color: '#1a5c38',
+  },
+  {
+    num: '04',
+    emoji: '🔐',
+    title: 'WireGuard Zero Trust Remote Access',
+    company: 'FUJIFILM Cellular Dynamics',
+    year: '2023',
+    category: 'Security Architecture',
+    status: 'Delivered',
+    summary: 'Designed and deployed a Zero Trust network access solution to replace legacy VPN infrastructure. Implemented identity-aware, least-privilege connectivity eliminating broad network access — deployed without impacting cGMP manufacturing availability.',
+    outcomes: [
+      'Eliminated broad network access model (legacy VPN)',
+      'Identity-aware, least-privilege connectivity enforced',
+      'Significant reduction in network attack surface',
+      'Zero production downtime during cutover',
+    ],
+    tags: ['WireGuard', 'Zero Trust', 'Network Security', 'Remote Access', 'Identity'],
+    color: '#1a5c38',
+  },
+  {
+    num: '05',
+    emoji: '🤖',
+    title: 'On-Premise AI Infrastructure Strategy',
+    company: 'Bankers Bank',
+    year: '2025–Present',
+    category: 'AI Infrastructure',
+    status: 'In Progress',
+    summary: 'Architecting an on-premise AI strategy for a Federal Reserve member bank, enabling AI-assisted internal operations while maintaining strict regulatory compliance and data sovereignty requirements of the financial sector.',
+    outcomes: [
+      'On-premise AI deployment keeps sensitive data sovereign',
+      'Regulatory alignment with federal banking standards',
+      'Scalable GPU/compute architecture design',
+      'AI governance and usage policy framework',
+    ],
+    tags: ['AI Infrastructure', 'On-Premise', 'Financial Compliance', 'GPU Compute', 'Data Sovereignty'],
+    color: '#c8961e',
+  },
+  {
+    num: '06',
+    emoji: '🖥️',
+    title: 'Unified Endpoint Management (UEM) Transition',
+    company: 'Bankers Bank',
+    year: '2026–Present',
+    category: 'Endpoint Management',
+    status: 'In Progress',
+    summary: 'Leading full transition from legacy endpoint management tools to a modern Unified Endpoint Management (UEM) platform across the organization. Includes vendor evaluation, phased rollout planning, and policy enforcement hardening.',
+    outcomes: [
+      'Vendor evaluation & selection completed',
+      'Phased rollout plan across all device classes',
+      'Unified policy enforcement for all endpoints',
+      'Improved visibility into fleet health and compliance',
+    ],
+    tags: ['UEM', 'Endpoint Management', 'MDM', 'Policy Enforcement', 'Device Management'],
+    color: '#c8961e',
+  },
+  {
+    num: '07',
+    emoji: '⚙️',
+    title: 'Windows Firewall Security Profiler',
+    company: 'FUJIFILM Cellular Dynamics',
+    year: '2023',
+    category: 'Security Automation',
+    status: 'Delivered',
+    summary: 'Developed a PowerShell-based automated tool to audit Windows Firewall policy compliance across the managed endpoint fleet. Generates remediation reports and integrates with monitoring infrastructure to flag policy drift in real time.',
+    outcomes: [
+      'Automated detection of firewall policy drift',
+      'Remediation reports generated for IT and security teams',
+      'Reduced manual audit effort significantly',
+      'Consistent policy enforcement across all endpoints',
+    ],
+    tags: ['PowerShell', 'Windows Firewall', 'Security Automation', 'Compliance', 'Endpoint Hardening'],
+    color: '#0d3b6e',
+  },
+  {
+    num: '08',
+    emoji: '🚀',
+    title: 'TBC Consulting LLC — MSP Build & Scale',
+    company: 'TBC Consulting (Founder)',
+    year: '2012–2016',
+    category: 'Entrepreneurship',
+    status: 'Delivered',
+    summary: 'Founded a Managed Service Provider from zero, built a client base of 25+ organizations, and operated successfully for 4 years across multiple industries in Greater Madison, WI. Full P&L responsibility with vCIO advisory as a core service offering.',
+    outcomes: [
+      'Grew from 0 to 25+ active client organizations',
+      'Profitable within first year of operation',
+      'Delivered managed IT services across healthcare, legal, and professional services',
+      'Built trusted vCIO relationships with business owners',
+    ],
+    tags: ['Entrepreneurship', 'MSP', 'vCIO', 'Business Development', 'Managed Services'],
+    color: '#5a1a00',
+  },
+];
+---
+<Layout title="Projects — Brian Kuzdas" page="projects">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="section-label">Selected Work</p>
+    <h1 class="page-hero-title">Projects</h1>
+    <p class="page-hero-sub">
+      Flagship infrastructure builds, platform migrations, security initiatives,
+      and automation projects across 25+ years of enterprise IT leadership.
+    </p>
+  </div>
+</section>
+
+<!-- ══ FILTER STRIP ══════════════════════════════════════ -->
+<div class="filter-bar">
+  <div class="container filter-inner">
+    <button class="filter-btn active" data-filter="all">All Projects</button>
+    <button class="filter-btn" data-filter="Infrastructure Build">Infrastructure</button>
+    <button class="filter-btn" data-filter="Cloud Migration">Cloud</button>
+    <button class="filter-btn" data-filter="Security Architecture">Security</button>
+    <button class="filter-btn" data-filter="AI Infrastructure">AI</button>
+    <button class="filter-btn" data-filter="Entrepreneurship">Entrepreneurship</button>
+  </div>
+</div>
+
+<!-- ══ PROJECTS GRID ══════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="projects-grid" id="projectsGrid">
+      {projects.map(p => (
+        <div class="project-card" data-category={p.category} style={`--pc: ${p.color};`}>
+          <div class="pc-top-bar"></div>
+          <div class="pc-body">
+            <div class="pc-head">
+              <span class="pc-num">{p.num}</span>
+              <div class="pc-meta">
+                <span class="pc-category">{p.category}</span>
+                <span class={`pc-status ${p.status === 'In Progress' ? 'status--active' : 'status--done'}`}>
+                  {p.status === 'In Progress' ? '● In Progress' : '✔ Delivered'}
+                </span>
+              </div>
+            </div>
+            <div class="pc-emoji">{p.emoji}</div>
+            <h2 class="pc-title">{p.title}</h2>
+            <div class="pc-company">{p.company} · {p.year}</div>
+            <p class="pc-summary">{p.summary}</p>
+            <div class="pc-outcomes">
+              <div class="pc-outcomes-label">Key Outcomes</div>
+              <ul>
+                {p.outcomes.map(o => <li>{o}</li>)}
+              </ul>
+            </div>
+            <div class="pc-tags">
+              {p.tags.map(t => <span class="tag">{t}</span>)}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ═════════════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="container cta-inner">
+    <div>
+      <h2 class="cta-title">Want to see the full story?</h2>
+      <p class="cta-sub">View my complete career history or download a tailored resume.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="/achievements" class="btn btn-gold">Achievements</a>
+      <a href="/resumes" class="btn btn-outline-white">Resumes</a>
+      <a href="/experience" class="btn btn-outline-white">Experience</a>
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<style>
+/* ── FILTER BAR ── */
+.filter-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border-soft);
+  position: sticky; top: var(--nav-height); z-index: 50;
+  box-shadow: var(--shadow-sm);
+}
+.filter-inner {
+  display: flex; gap: 8px; padding-block: var(--sp-md);
+  overflow-x: auto; scrollbar-width: none;
+}
+.filter-inner::-webkit-scrollbar { display: none; }
+.filter-btn {
+  font-size: 0.8rem; font-weight: 600;
+  padding: 6px 16px; border-radius: 20px;
+  border: 1px solid var(--border);
+  background: transparent; color: var(--sub);
+  cursor: pointer; white-space: nowrap;
+  transition: all var(--transition);
+}
+.filter-btn:hover { border-color: var(--navy); color: var(--navy); }
+.filter-btn.active {
+  background: var(--navy); color: var(--white); border-color: var(--navy);
+}
+
+/* ── PROJECTS GRID ── */
+.projects-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(360px, 1fr));
+  gap: var(--sp-xl);
+}
+.project-card {
+  background: var(--white);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg);
+  overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition), opacity var(--transition);
+}
+.project-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.project-card.hidden { display: none; }
+.pc-top-bar { height: 4px; background: var(--pc, var(--navy)); }
+.pc-body { padding: var(--sp-xl); }
+.pc-head {
+  display: flex; align-items: center;
+  justify-content: space-between; margin-bottom: var(--sp-md);
+}
+.pc-num {
+  font-size: 1.75rem; font-weight: 900;
+  color: var(--border); line-height: 1; letter-spacing: -0.05em;
+}
+.pc-meta { display: flex; flex-direction: column; align-items: flex-end; gap: 4px; }
+.pc-category {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.12em;
+  text-transform: uppercase; color: var(--pc, var(--navy));
+}
+.pc-status {
+  font-size: 0.7rem; font-weight: 600; padding: 2px 9px;
+  border-radius: 20px;
+}
+.status--done { background: #d1fae5; color: #065f46; }
+.status--active { background: #fef3c7; color: #92400e; }
+.pc-emoji { font-size: 2.25rem; margin-bottom: var(--sp-sm); }
+.pc-title {
+  font-size: 1.05rem; font-weight: 800; color: var(--navy);
+  line-height: 1.3; margin-bottom: 6px;
+}
+.pc-company { font-size: 0.8rem; color: var(--gold); font-weight: 600; margin-bottom: var(--sp-md); }
+.pc-summary {
+  font-size: 0.875rem; color: var(--sub); line-height: 1.7;
+  margin-bottom: var(--sp-lg);
+}
+.pc-outcomes { margin-bottom: var(--sp-lg); }
+.pc-outcomes-label {
+  font-size: 0.68rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: var(--muted); margin-bottom: var(--sp-sm);
+}
+.pc-outcomes ul { padding-left: 1.1rem; }
+.pc-outcomes li {
+  font-size: 0.82rem; color: var(--muted); line-height: 1.6;
+  margin-bottom: 0.3rem;
+}
+.pc-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+
+/* ── CTA ── */
+.cta-section { background: linear-gradient(135deg, var(--navy-dark), var(--navy)); padding-block: var(--sp-4xl); }
+.cta-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-2xl); }
+.cta-title { font-size: 1.8rem; font-weight: 800; color: var(--white); margin-bottom: var(--sp-sm); }
+.cta-sub { font-size: 1rem; color: rgba(255,255,255,.7); max-width: 50ch; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: var(--sp-md); }
+
+@media (max-width: 760px) {
+  .projects-grid { grid-template-columns: 1fr; }
+  .cta-inner { flex-direction: column; text-align: center; }
+  .cta-actions { justify-content: center; }
+}
+</style>
+
+<script>
+  const btns = document.querySelectorAll('.filter-btn');
+  const cards = document.querySelectorAll('.project-card');
+
+  btns.forEach(btn => {
+    btn.addEventListener('click', () => {
+      btns.forEach(b => b.classList.remove('active'));
+      btn.classList.add('active');
+      const filter = btn.dataset.filter;
+      cards.forEach(card => {
+        if (filter === 'all' || card.dataset.category === filter) {
+          card.classList.remove('hidden');
+        } else {
+          card.classList.add('hidden');
+        }
+      });
+    });
+  });
+</script>
