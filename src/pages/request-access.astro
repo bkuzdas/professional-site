@@ -1,0 +1,143 @@
+---
+import DoorLayout from '../layouts/DoorLayout.astro';
+---
+<DoorLayout title="Request Portfolio Access — Brian Kuzdas">
+  <style>
+    .request-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background: #0a0f1e;
+    }
+    .request-card {
+      width: 100%;
+      max-width: 480px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.85rem;
+      text-decoration: none;
+      margin-bottom: 1.5rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: #d4af37; }
+    .card-title {
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 0.5rem;
+    }
+    .card-sub {
+      font-size: 0.9rem;
+      color: rgba(255,255,255,0.5);
+      margin: 0 0 2rem;
+      line-height: 1.5;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.4rem;
+      margin-bottom: 1.2rem;
+    }
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    input {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      padding: 0.65rem 0.85rem;
+      color: #fff;
+      font-size: 0.95rem;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+      outline: none;
+    }
+    input::placeholder { color: rgba(255,255,255,0.25); }
+    input:focus { border-color: #d4af37; }
+    .btn-submit {
+      width: 100%;
+      background: #d4af37;
+      color: #0a0f1e;
+      border: none;
+      border-radius: 6px;
+      padding: 0.85rem;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 0.5rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-submit:hover { background: #e8c84a; transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+    .privacy-note {
+      margin-top: 1.2rem;
+      font-size: 0.78rem;
+      color: rgba(255,255,255,0.3);
+      text-align: center;
+      line-height: 1.5;
+    }
+    @media (max-width: 480px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <div class="request-wrap">
+    <div class="request-card">
+      <a href="/" class="back-link">← Back</a>
+      <h1 class="card-title">Request Portfolio Access</h1>
+      <p class="card-sub">
+        Fill in your details below. You'll receive a secure one-time code at your email address to access the portfolio.
+      </p>
+
+      <form method="POST" action="/api/request-access">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" placeholder="Jane" required autocomplete="given-name" />
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Smith" required autocomplete="family-name" />
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="phone">Business Phone</label>
+          <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel" />
+        </div>
+
+        <div class="form-group">
+          <label for="email">Work Email *</label>
+          <input type="email" id="email" name="email" placeholder="jane@company.com" required autocomplete="email" />
+        </div>
+
+        <button type="submit" class="btn-submit">🔑 Send My Access Code</button>
+      </form>
+
+      <p class="privacy-note">
+        Your information is used solely to grant and log access to this private portfolio.
+        It is never shared or sold.
+      </p>
+    </div>
+  </div>
+</DoorLayout>

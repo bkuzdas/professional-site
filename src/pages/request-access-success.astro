@@ -1,0 +1,110 @@
+---
+import DoorLayout from '../layouts/DoorLayout.astro';
+---
+<DoorLayout title="Access Granted — Brian Kuzdas">
+  <style>
+    .success-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background: #0a0f1e;
+      text-align: center;
+    }
+    .success-card {
+      max-width: 420px;
+    }
+    .success-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+      animation: pop 0.4s ease;
+    }
+    @keyframes pop {
+      0% { transform: scale(0.5); opacity: 0; }
+      70% { transform: scale(1.15); }
+      100% { transform: scale(1); opacity: 1; }
+    }
+    h1 {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 1rem;
+    }
+    .steps {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      margin: 1.5rem 0;
+      text-align: left;
+    }
+    .step {
+      display: flex;
+      gap: 0.75rem;
+      align-items: flex-start;
+      margin-bottom: 1rem;
+      color: rgba(255,255,255,0.75);
+      font-size: 0.92rem;
+      line-height: 1.4;
+    }
+    .step:last-child { margin-bottom: 0; }
+    .step-num {
+      background: #d4af37;
+      color: #0a0f1e;
+      font-weight: 800;
+      font-size: 0.75rem;
+      width: 1.5rem;
+      height: 1.5rem;
+      border-radius: 50%;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      flex-shrink: 0;
+      margin-top: 0.1rem;
+    }
+    .note {
+      font-size: 0.82rem;
+      color: rgba(255,255,255,0.3);
+      line-height: 1.5;
+    }
+    .btn-back {
+      display: inline-block;
+      margin-top: 1.5rem;
+      color: rgba(255,255,255,0.4);
+      text-decoration: none;
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .btn-back:hover { color: #d4af37; }
+  </style>
+
+  <div class="success-wrap">
+    <div class="success-card">
+      <div class="success-icon">✉️</div>
+      <h1>Check Your Inbox</h1>
+
+      <div class="steps">
+        <div class="step">
+          <div class="step-num">1</div>
+          <div>Look for an email from <strong>no-reply@notify.cloudflare.com</strong></div>
+        </div>
+        <div class="step">
+          <div class="step-num">2</div>
+          <div>Open it and copy the <strong>6-digit access code</strong></div>
+        </div>
+        <div class="step">
+          <div class="step-num">3</div>
+          <div>Return to the portfolio login screen and enter the code</div>
+        </div>
+      </div>
+
+      <p class="note">
+        The code expires in 10 minutes. Check your spam folder if you don't see it.
+        Your access session lasts 24 hours.
+      </p>
+
+      <a href="/experience" class="btn-back">Go to portfolio →</a>
+    </div>
+  </div>
+</DoorLayout>
