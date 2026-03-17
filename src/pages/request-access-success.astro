@@ -81,30 +81,35 @@ import DoorLayout from '../layouts/DoorLayout.astro';
 
   <div class="success-wrap">
     <div class="success-card">
-      <div class="success-icon">✉️</div>
-      <h1>Check Your Inbox</h1>
+      <div class="success-icon">✅</div>
+      <h1>You're Approved!</h1>
 
       <div class="steps">
         <div class="step">
           <div class="step-num">1</div>
-          <div>Look for an email from <strong>no-reply@notify.cloudflare.com</strong></div>
+          <div>Click <strong>"Enter Portfolio"</strong> below to go to the login screen</div>
         </div>
         <div class="step">
           <div class="step-num">2</div>
-          <div>Open it and copy the <strong>6-digit access code</strong></div>
+          <div>Enter <strong>your email address</strong> on the Cloudflare login screen</div>
         </div>
         <div class="step">
           <div class="step-num">3</div>
-          <div>Return to the portfolio login screen and enter the code</div>
+          <div>Check your inbox for a <strong>6-digit code</strong> from no-reply@notify.cloudflare.com</div>
+        </div>
+        <div class="step">
+          <div class="step-num">4</div>
+          <div>Enter the code → you're in for <strong>24 hours</strong></div>
         </div>
       </div>
 
       <p class="note">
-        The code expires in 10 minutes. Check your spam folder if you don't see it.
-        Your access session lasts 24 hours.
+        Check spam if you don't see the code within 1 minute.
       </p>
 
-      <a href="/experience" class="btn-back">Go to portfolio →</a>
+      <a href="/experience" class="btn-back" style="background:#d4af37;color:#0a0f1e;padding:0.75rem 2rem;border-radius:6px;font-weight:700;text-decoration:none;display:inline-block;margin-top:1rem;">
+        Enter Portfolio →
+      </a>
     </div>
   </div>
 </DoorLayout>
