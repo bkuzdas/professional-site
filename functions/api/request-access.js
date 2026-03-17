@@ -57,10 +57,8 @@ export async function onRequestPost(context) {
     console.error('Email notify error:', err);
   }
 
-  // 4 — Redirect straight to the Cloudflare Access login screen
-  //     CF Access will challenge them for OTP, then land them on /experience
-  const loginUrl = `https://brianboru.cloudflareaccess.com/cdn-cgi/access/login/professional.brianboruma.com?redirect_url=/experience`;
-  return Response.redirect(loginUrl, 303);
+  // 4 — Redirect to /experience — CF Access intercepts and sends OTP automatically
+  return Response.redirect(new URL('/experience', request.url).toString(), 303);
 }
 
 async function addEmailToAllPolicies(env, newEmail) {
