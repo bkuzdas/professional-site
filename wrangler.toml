@@ -1,0 +1,7 @@
+# Cloudflare Pages configuration
+[build]
+  command = "npm run build"
+  output_directory = "dist"
+
+[build.environment]
+  NODE_VERSION = "22"

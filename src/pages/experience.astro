@@ -1,0 +1,308 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const roles = [
+  {
+    emoji: '🏦',
+    company: 'Bankers Bank',
+    location: 'Madison, WI',
+    period: 'December 2025 – Present',
+    title: 'Senior Network Operations & Security Specialist',
+    type: 'current',
+    summary: 'Leading security modernization and network operations for a Federal Reserve member bank. Responsible for on-premise AI strategy, Unified Endpoint Management (UEM) transition, identity hardening, and regulatory compliance in a highly regulated financial sector environment.',
+    bullets: [
+      'Architecting on-premise AI infrastructure to support internal banking operations while maintaining regulatory compliance',
+      'Leading Unified Endpoint Management (UEM) transition to modernize device management across the organization',
+      'Hardening identity and access management (IAM) infrastructure using Zero Trust principles',
+      'Ensuring network security posture meets federal banking regulatory standards',
+      'Collaborating with leadership to align IT strategy with organizational risk tolerance',
+    ],
+    tags: ['Zero Trust', 'AI Infrastructure', 'UEM', 'IAM', 'Financial Compliance', 'Network Security'],
+  },
+  {
+    emoji: '🔬',
+    company: 'FUJIFILM Cellular Dynamics, Inc.',
+    location: 'Madison, WI',
+    period: 'October 2022 – December 2025',
+    title: 'Senior Infrastructure Specialist → Manager, Technology Operations & IT',
+    type: 'past',
+    summary: 'Promoted through two roles at FCDI, ultimately managing the full technology operations and IT function for a global biopharmaceutical company manufacturing FDA-regulated iPSC cell therapy products.',
+    bullets: [
+      'Owned and managed OPEX and CAPEX technology budgets, aligning IT investment with manufacturing priorities and FDA requirements',
+      'Maintained 99.99% infrastructure uptime across a cGMP manufacturing environment with zero-tolerance for system failure',
+      'Built and validated IT systems in accordance with FDA 21 CFR Part 11 and cGMP Computer System Validation (CSV) protocols',
+      'Deployed and managed hybrid cloud infrastructure across Azure, AWS, and on-premise data center',
+      'Architected HL7 FHIR R4 data ingestor platform connecting laboratory instrumentation to enterprise systems',
+      'Led all IT operations including helpdesk, server infrastructure, networking, storage (Dell EMC Unity), and endpoint management',
+      'Managed vendor relationships, IT contracts, and technology roadmap planning',
+      'Implemented WireGuard Zero Trust tunnel solution for secure remote access',
+      'Served as primary IT liaison during FDA inspections and internal audits',
+    ],
+    tags: ['cGMP / FDA', 'IT Management', 'Hybrid Cloud', 'HL7 FHIR', 'Dell EMC', 'CSV', 'Budget Ownership', 'Azure', 'AWS', '99.99% Uptime'],
+  },
+  {
+    emoji: '🌐',
+    company: 'FUJIFILM Holdings America Corporation',
+    location: 'Madison, WI',
+    period: 'August 2017 – May 2022',
+    title: 'IT System Administrator II',
+    type: 'past',
+    summary: 'Enterprise systems administration for a global corporation with tens of thousands of employees. Orchestrated a massive cross-platform cloud migration and managed complex data center and virtualization environments.',
+    bullets: [
+      'Led the enterprise-wide migration of 60,000+ users from Google Workspace to Microsoft 365, including data migration, training, and cutover coordination',
+      'Managed and maintained multi-site data center infrastructure including physical and virtual servers, storage, and networking',
+      'Designed and implemented Active Directory architecture, Group Policy, and identity management across the enterprise',
+      'Built and maintained disaster recovery frameworks with documented RTO/RPO targets and tested failover procedures',
+      'Managed VMware vSphere environment including capacity planning, patching, and performance optimization',
+      'Supported Dell EMC storage infrastructure (SAN and NAS) with snapshot management and replication',
+      'Developed PowerShell and Python automation scripts to reduce repetitive administration tasks',
+      'Provided tier-3 escalation support for critical infrastructure issues',
+    ],
+    tags: ['M365 Migration', '60K+ Users', 'Active Directory', 'VMware', 'Data Center', 'Disaster Recovery', 'PowerShell', 'Dell EMC'],
+  },
+  {
+    emoji: '🏢',
+    company: 'Madison Computer Works, Inc.',
+    location: 'Madison, WI',
+    period: 'March 2016 – August 2017',
+    title: 'Senior Network Infrastructure Specialist',
+    type: 'past',
+    summary: 'Senior technical resource for a regional IT services company, delivering network infrastructure and systems solutions to small and mid-market clients across Wisconsin.',
+    bullets: [
+      'Designed, implemented, and managed LAN/WAN, firewall, and wireless infrastructure for commercial clients',
+      'Deployed and maintained Microsoft Server environments including Active Directory, Exchange, and SQL Server',
+      'Managed Cisco and Dell networking equipment including switches, routers, and wireless access points',
+      'Led client-facing infrastructure projects from assessment through implementation and handoff',
+      'Provided vCIO advisory services to SMB clients on technology planning and budgeting',
+      'Mentored junior technicians and developed internal technical documentation',
+    ],
+    tags: ['LAN / WAN', 'Cisco', 'Windows Server', 'vCIO', 'Client Services', 'Wireless Design'],
+  },
+  {
+    emoji: '🚀',
+    company: 'TBC Consulting LLC',
+    location: 'Mount Horeb, WI',
+    period: 'April 2012 – March 2016',
+    title: 'CEO / Founder — Managed Service Provider',
+    type: 'past',
+    summary: 'Founded and operated a boutique Managed Service Provider serving small to mid-size businesses in the Greater Madison area. Responsible for all aspects of the business including technical delivery, sales, client management, and operations.',
+    bullets: [
+      'Founded MSP from scratch; grew to serve 25+ client organizations across multiple industries',
+      'Delivered managed IT services including helpdesk, network management, server administration, and backup/DR',
+      'Developed and managed client contracts, SLAs, and recurring service agreements',
+      'Responsible for all business operations: finance, HR, vendor relationships, and strategic planning',
+      'Provided on-site and remote support for Windows, Mac, and Linux environments',
+      'Built trusted advisor relationships with business owners as their virtual CIO',
+    ],
+    tags: ['Entrepreneurship', 'MSP', 'vCIO', 'Business Operations', 'Client Management', 'Managed Services'],
+  },
+];
+---
+<Layout title="Experience — Brian Kuzdas" page="experience">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="section-label">Career History</p>
+    <h1 class="page-hero-title">Professional Experience</h1>
+    <p class="page-hero-sub">
+      25+ years of progressive IT experience spanning biopharmaceutical manufacturing,
+      financial services, enterprise IT, and entrepreneurship.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="timeline">
+      {roles.map((role, i) => (
+        <div class={`tl-item ${role.type === 'current' ? 'tl-item--current' : ''}`}>
+          <div class="tl-marker">
+            <span class="tl-dot"></span>
+            {i < roles.length - 1 && <span class="tl-line"></span>}
+          </div>
+          <div class="tl-card">
+            <div class="tl-header">
+              <div class="tl-emoji">{role.emoji}</div>
+              <div class="tl-meta">
+                <div class="tl-company">{role.company}</div>
+                <div class="tl-location">{role.location}</div>
+              </div>
+              {role.type === 'current' && <span class="tl-badge">Current</span>}
+            </div>
+            <div class="tl-title">{role.title}</div>
+            <div class="tl-period">{role.period}</div>
+            <p class="tl-summary">{role.summary}</p>
+            <ul class="tl-bullets">
+              {role.bullets.map(b => <li>{b}</li>)}
+            </ul>
+            <div class="tl-tags">
+              {role.tags.map(t => <span class="tag">{t}</span>)}
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+
+    <!-- Early Career Note -->
+    <div class="early-career">
+      <p class="ec-label">Prior Experience</p>
+      <p class="ec-text">
+        Prior to 2012, Brian held progressively senior technical roles in IT support, systems administration,
+        and network engineering across multiple industries in the Midwest — building the deep technical
+        foundation that underpins his enterprise leadership career.
+      </p>
+    </div>
+  </div>
+</section>
+
+<!-- Education + Certs -->
+<section class="section section--alt">
+  <div class="container">
+    <p class="section-label">Education &amp; Training</p>
+    <h2 class="section-title">Credentials</h2>
+    <div class="section-divider"></div>
+    <div class="edu-grid">
+      <div class="edu-card">
+        <div class="edu-icon">🎓</div>
+        <div class="edu-body">
+          <div class="edu-school">University of Wisconsin – Platteville</div>
+          <div class="edu-degree">Bachelor of Arts — Political Science &amp; History</div>
+          <div class="edu-note">Foundation in systems thinking, policy analysis, and strategic communication.</div>
+        </div>
+      </div>
+      <div class="edu-card">
+        <div class="edu-icon">💻</div>
+        <div class="edu-body">
+          <div class="edu-school">Madison Area Technical College</div>
+          <div class="edu-degree">Computer Systems Networking</div>
+          <div class="edu-note">Applied networking, systems design, and infrastructure operations.</div>
+        </div>
+      </div>
+    </div>
+
+    <div class="certs-table">
+      <h3 class="certs-table-title">Certifications &amp; Professional Development</h3>
+      <div class="cert-rows">
+        <div class="cert-row"><span class="cr-cert">AWS Certified Cloud Practitioner</span><span class="cr-org">Amazon Web Services</span><span class="cr-date">Sep 2025 – Sep 2028</span></div>
+        <div class="cert-row"><span class="cr-cert">Microsoft Azure Fundamentals (AZ-900)</span><span class="cr-org">Microsoft</span><span class="cr-date">Feb 2026</span></div>
+        <div class="cert-row"><span class="cr-cert">CISSP Domain 1: Security &amp; Risk Management</span><span class="cr-org">LinkedIn Learning</span><span class="cr-date">Active</span></div>
+        <div class="cert-row"><span class="cr-cert">ITIL 4: Foundations, Framework, and Key Concepts</span><span class="cr-org">LinkedIn Learning</span><span class="cr-date">Active</span></div>
+        <div class="cert-row"><span class="cr-cert">Google Project Management Specialization</span><span class="cr-org">Google / Coursera</span><span class="cr-date">Active</span></div>
+        <div class="cert-row"><span class="cr-cert">Computer System Validation Boot Camp</span><span class="cr-org">ProPharma Validation Center</span><span class="cr-date">2023</span></div>
+        <div class="cert-row"><span class="cr-cert">Dell EMC Unity Implementation &amp; Management</span><span class="cr-org">DELL Technologies</span><span class="cr-date">2020</span></div>
+        <div class="cert-row"><span class="cr-cert">Okta Identity Platform</span><span class="cr-org">Okta</span><span class="cr-date">Active</span></div>
+        <div class="cert-row"><span class="cr-cert">Siemens PLC / TIA Portal (Industrial Automation)</span><span class="cr-org">Siemens</span><span class="cr-date">Active</span></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container cta-inner">
+    <div>
+      <h2 class="cta-title">Interested in working together?</h2>
+      <p class="cta-sub">View my tailored resumes or reach out directly.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="/resumes" class="btn btn-gold">View Resumes</a>
+      <a href="/achievements" class="btn btn-outline-white">Key Achievements →</a>
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<style>
+/* ── TIMELINE ── */
+.timeline { display: flex; flex-direction: column; gap: 0; }
+.tl-item {
+  display: grid; grid-template-columns: 40px 1fr;
+  gap: 0 var(--sp-xl);
+  padding-bottom: var(--sp-3xl);
+}
+.tl-item:last-child { padding-bottom: 0; }
+.tl-marker { display: flex; flex-direction: column; align-items: center; padding-top: 6px; }
+.tl-dot {
+  width: 14px; height: 14px; border-radius: 50%;
+  background: var(--border); border: 2px solid var(--border);
+  flex-shrink: 0; z-index: 1;
+}
+.tl-item--current .tl-dot { background: var(--gold); border-color: var(--gold); box-shadow: 0 0 0 4px rgba(200,150,30,.2); }
+.tl-line { width: 2px; flex: 1; background: var(--border-soft); margin-top: 4px; }
+.tl-card {
+  background: var(--white); border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg); padding: var(--sp-xl) var(--sp-2xl);
+  box-shadow: var(--shadow-sm);
+}
+.tl-item--current .tl-card { border-color: var(--gold); border-top-width: 3px; }
+.tl-header { display: flex; align-items: flex-start; gap: var(--sp-md); margin-bottom: var(--sp-sm); }
+.tl-emoji { font-size: 1.75rem; flex-shrink: 0; }
+.tl-meta { flex: 1; }
+.tl-company { font-size: 1.05rem; font-weight: 800; color: var(--navy); }
+.tl-location { font-size: 0.8rem; color: var(--muted); }
+.tl-badge {
+  font-size: 0.65rem; font-weight: 700; padding: 2px 10px;
+  border-radius: 20px; background: #d1fae5; color: #065f46; border: 1px solid #a7f3d0;
+}
+.tl-title { font-size: 0.95rem; font-weight: 600; color: var(--sub); font-style: italic; margin-bottom: 4px; }
+.tl-period { font-size: 0.8rem; color: var(--gold); font-weight: 600; margin-bottom: var(--sp-md); }
+.tl-summary { font-size: 0.9rem; color: var(--sub); line-height: 1.7; margin-bottom: var(--sp-md); }
+.tl-bullets { padding-left: 1.25rem; margin-bottom: var(--sp-lg); }
+.tl-bullets li { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 0.5rem; }
+.tl-tags { display: flex; flex-wrap: wrap; gap: 6px; }
+
+/* ── EARLY CAREER ── */
+.early-career {
+  background: var(--light); border-left: 4px solid var(--gold);
+  border-radius: 0 var(--r-md) var(--r-md) 0;
+  padding: var(--sp-xl) var(--sp-2xl); margin-top: var(--sp-2xl);
+}
+.ec-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.12em; color: var(--gold); margin-bottom: var(--sp-sm); }
+.ec-text { font-size: 0.9rem; color: var(--sub); line-height: 1.7; }
+
+/* ── EDU ── */
+.edu-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); gap: var(--sp-xl); margin-bottom: var(--sp-3xl); }
+.edu-card {
+  display: flex; gap: var(--sp-lg); align-items: flex-start;
+  background: var(--white); border: 1px solid var(--border-soft);
+  border-radius: var(--r-md); padding: var(--sp-xl); box-shadow: var(--shadow-sm);
+}
+.edu-icon { font-size: 2rem; flex-shrink: 0; }
+.edu-school { font-weight: 700; color: var(--navy); margin-bottom: 4px; }
+.edu-degree { font-size: 0.9rem; color: var(--sub); margin-bottom: 6px; font-style: italic; }
+.edu-note { font-size: 0.8rem; color: var(--muted); line-height: 1.5; }
+
+/* ── CERTS TABLE ── */
+.certs-table { margin-top: var(--sp-2xl); }
+.certs-table-title { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: var(--sp-lg); }
+.cert-rows { border: 1px solid var(--border-soft); border-radius: var(--r-md); overflow: hidden; }
+.cert-row {
+  display: grid; grid-template-columns: 1fr 200px 140px;
+  gap: var(--sp-md); padding: var(--sp-md) var(--sp-lg);
+  border-bottom: 1px solid var(--border-soft);
+  font-size: 0.875rem;
+}
+.cert-row:last-child { border-bottom: none; }
+.cert-row:nth-child(even) { background: var(--light); }
+.cr-cert { font-weight: 600; color: var(--navy-mid); }
+.cr-org { color: var(--muted); }
+.cr-date { color: var(--gold); font-weight: 600; text-align: right; }
+
+/* ── CTA ── */
+.cta-section { background: linear-gradient(135deg, var(--navy-dark), var(--navy)); padding-block: var(--sp-4xl); }
+.cta-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-2xl); }
+.cta-title { font-size: 1.8rem; font-weight: 800; color: var(--white); margin-bottom: var(--sp-sm); }
+.cta-sub { font-size: 1rem; color: rgba(255,255,255,.7); max-width: 50ch; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: var(--sp-md); }
+
+@media (max-width: 760px) {
+  .tl-item { grid-template-columns: 28px 1fr; gap: 0 var(--sp-md); }
+  .tl-card { padding: var(--sp-lg); }
+  .cert-row { grid-template-columns: 1fr; gap: 2px; }
+  .cr-org, .cr-date { color: var(--muted); }
+  .cr-date { text-align: left; }
+  .cta-inner { flex-direction: column; text-align: center; }
+  .cta-actions { justify-content: center; }
+}
+</style>

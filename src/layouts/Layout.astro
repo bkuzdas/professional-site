@@ -1,0 +1,234 @@
+---
+export interface Props {
+  title?: string;
+  description?: string;
+  page?: string;
+}
+
+import '../styles/global.css';
+
+const {
+  title = 'Brian Kuzdas — Professional Profile',
+  description = 'Senior IT Infrastructure leader with 25+ years in enterprise networking, cGMP compliance, and technology strategy.',
+  page = '',
+} = Astro.props;
+
+const nav = [
+  { href: '/',              label: 'Home'         },
+  { href: '/experience',    label: 'Experience'    },
+  { href: '/achievements',  label: 'Achievements'  },
+  { href: '/resumes',       label: 'Resumes'       },
+];
+---
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta name="description" content={description} />
+  <meta name="theme-color" content="#0d2b5e" />
+  <link rel="icon" href="/favicon.svg" type="image/svg+xml" />
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet" />
+  <title>{title}</title>
+</head>
+<body>
+
+<!-- ── NAVIGATION ─────────────────────────────────────────── -->
+<header class="site-header" id="site-header">
+  <nav class="container nav-inner">
+    <a href="/" class="nav-logo" aria-label="Brian Kuzdas Home">
+      <span class="logo-mark">BK</span>
+      <span class="logo-text">Brian Kuzdas</span>
+    </a>
+
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle navigation" aria-expanded="false">
+      <span></span><span></span><span></span>
+    </button>
+
+    <ul class="nav-links" id="navLinks" role="list">
+      {nav.map(link => (
+        <li>
+          <a href={link.href} class={page === link.label.toLowerCase() ? 'active' : ''}>
+            {link.label}
+          </a>
+        </li>
+      ))}
+      <li>
+        <a href="mailto:brian.kuzdas@gmail.com" class="btn btn-primary nav-cta">
+          Contact Me
+        </a>
+      </li>
+    </ul>
+  </nav>
+</header>
+
+<!-- ── CONTENT ── -->
+<main>
+  <slot />
+</main>
+
+<!-- ── FOOTER ─────────────────────────────────────────────── -->
+<footer class="site-footer">
+  <div class="container footer-inner">
+    <div class="footer-brand">
+      <a href="/" class="nav-logo" style="margin-bottom:0.5rem;">
+        <span class="logo-mark">BK</span>
+        <span class="logo-text" style="color:#fff;">Brian Kuzdas</span>
+      </a>
+      <p class="footer-tagline">
+        Senior Network Operations &amp; Security · IT Infrastructure Leader · Technology Executive
+      </p>
+    </div>
+    <div class="footer-cols">
+      <div>
+        <p class="footer-col-head">Navigation</p>
+        <ul>
+          {nav.map(link => <li><a href={link.href}>{link.label}</a></li>)}
+        </ul>
+      </div>
+      <div>
+        <p class="footer-col-head">Contact</p>
+        <ul>
+          <li><a href="mailto:brian.kuzdas@gmail.com">brian.kuzdas@gmail.com</a></li>
+          <li><a href="tel:6085760655">(608) 576-0655</a></li>
+          <li>Madison, WI</li>
+          <li><a href="https://www.linkedin.com/in/brian-kuzdas-a176b945/" target="_blank" rel="noopener">LinkedIn ↗</a></li>
+          <li><a href="https://brianboruma.com" target="_blank" rel="noopener">brianboruma.com ↗</a></li>
+        </ul>
+      </div>
+    </div>
+  </div>
+  <div class="footer-copy">
+    <div class="container">
+      &copy; {new Date().getFullYear()} Brian Kuzdas · Madison, WI ·
+      <a href="https://brianboruma.com">brianboruma.com</a>
+    </div>
+  </div>
+</footer>
+
+</body>
+</html>
+
+<style>
+/* ── HEADER ── */
+.site-header {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 100;
+  background: rgba(255,255,255,0.95);
+  backdrop-filter: blur(12px);
+  border-bottom: 1px solid var(--border-soft);
+  box-shadow: var(--shadow-nav);
+  transition: box-shadow var(--transition);
+}
+.nav-inner {
+  display: flex; align-items: center;
+  justify-content: space-between;
+  height: var(--nav-height);
+}
+.nav-logo {
+  display: flex; align-items: center; gap: 0.6rem;
+}
+.logo-mark {
+  width: 36px; height: 36px;
+  background: var(--navy); color: var(--white);
+  font-weight: 800; font-size: 0.75rem; letter-spacing: 0.05em;
+  border-radius: var(--r-sm);
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.logo-text {
+  font-weight: 700; font-size: 1rem; color: var(--navy);
+  letter-spacing: -0.01em;
+}
+.nav-links {
+  display: flex; align-items: center; gap: 2rem;
+}
+.nav-links a {
+  font-size: 0.9rem; font-weight: 500; color: var(--sub);
+  transition: color var(--transition); padding-bottom: 2px;
+  border-bottom: 2px solid transparent;
+}
+.nav-links a:hover, .nav-links a.active {
+  color: var(--navy); border-bottom-color: var(--gold);
+}
+.nav-cta {
+  padding: 0.5rem 1.2rem !important;
+  border-bottom: none !important;
+  font-size: 0.85rem !important;
+  color: var(--white) !important;
+}
+.nav-toggle {
+  display: none; flex-direction: column; gap: 5px;
+  background: none; border: none; cursor: pointer; padding: 4px;
+}
+.nav-toggle span {
+  display: block; width: 22px; height: 2px;
+  background: var(--navy); border-radius: 2px;
+  transition: all var(--transition);
+}
+
+/* ── FOOTER ── */
+.site-footer {
+  background: var(--navy-dark);
+  color: rgba(255,255,255,.7);
+  padding-top: var(--sp-3xl);
+}
+.footer-inner {
+  display: grid; grid-template-columns: 1fr auto;
+  gap: var(--sp-2xl) var(--sp-4xl);
+  padding-bottom: var(--sp-3xl);
+  border-bottom: 1px solid rgba(255,255,255,.1);
+}
+.footer-tagline {
+  font-size: 0.875rem; color: rgba(255,255,255,.5);
+  max-width: 40ch; margin-top: var(--sp-sm); line-height: 1.6;
+}
+.footer-cols { display: flex; gap: var(--sp-3xl); }
+.footer-col-head {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; color: var(--gold);
+  margin-bottom: var(--sp-md);
+}
+.footer-cols ul li { margin-bottom: 0.4rem; }
+.footer-cols a { font-size: 0.875rem; color: rgba(255,255,255,.6); }
+.footer-cols a:hover { color: var(--white); }
+.footer-cols li:not(:has(a)) { font-size: 0.875rem; }
+.footer-copy {
+  padding: var(--sp-lg) 0;
+  font-size: 0.8rem; color: rgba(255,255,255,.35);
+}
+.footer-copy a { color: rgba(255,255,255,.4); }
+.footer-copy a:hover { color: rgba(255,255,255,.7); }
+
+/* ── MOBILE ── */
+@media (max-width: 760px) {
+  .logo-text { display: none; }
+  .nav-toggle { display: flex; }
+  .nav-links {
+    display: none; position: absolute;
+    top: var(--nav-height); left: 0; right: 0;
+    flex-direction: column; align-items: flex-start; gap: 0;
+    background: var(--white);
+    border-bottom: 2px solid var(--border);
+    padding: var(--sp-md) var(--sp-xl);
+  }
+  .nav-links.open { display: flex; }
+  .nav-links li { width: 100%; padding: 0.6rem 0; border-bottom: 1px solid var(--border-soft); }
+  .nav-links li:last-child { border: none; padding-top: var(--sp-md); }
+  .footer-inner { grid-template-columns: 1fr; }
+  .footer-cols { flex-direction: column; gap: var(--sp-xl); }
+}
+</style>
+
+<script>
+  const toggle = document.getElementById('navToggle');
+  const links  = document.getElementById('navLinks');
+  toggle?.addEventListener('click', () => {
+    const open = links?.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', String(open));
+  });
+  links?.querySelectorAll('a').forEach(a =>
+    a.addEventListener('click', () => links.classList.remove('open'))
+  );
+</script>

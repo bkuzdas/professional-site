@@ -1,0 +1,235 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const resumes = [
+  {
+    id: 'engineer',
+    emoji: '⚙️',
+    title: 'IT Infrastructure Engineer',
+    color: '#0d3b6e',
+    colorName: 'Deep Navy',
+    focus: 'Technical depth, systems architecture, hands-on network and security engineering',
+    bullets: [
+      'Emphasizes technical skills, tools, and certifications',
+      'Highlights hands-on infrastructure projects',
+      'Best for: Senior Engineer, Principal Engineer, Staff Engineer roles',
+      'Tone: Precise, technical, results-driven',
+    ],
+    href: '/resume/engineer',
+    docx: '/docs/Brian_Kuzdas_IT_Infrastructure_Engineer.docx',
+  },
+  {
+    id: 'manager',
+    emoji: '🧭',
+    title: 'IT Infrastructure Manager',
+    color: '#1a5c38',
+    colorName: 'Forest Green',
+    focus: 'Team leadership, project delivery, budget ownership, operational excellence',
+    bullets: [
+      'Emphasizes team management and cross-functional leadership',
+      'Highlights budget ownership and vendor management',
+      'Best for: IT Manager, IT Director, Infrastructure Manager',
+      'Tone: Leadership-forward, process-oriented, stakeholder-aware',
+    ],
+    href: '/resume/manager',
+    docx: '/docs/Brian_Kuzdas_IT_Infrastructure_Manager.docx',
+  },
+  {
+    id: 'executive',
+    emoji: '🏛️',
+    title: 'Head of IT / Executive',
+    color: '#5a1a00',
+    colorName: 'Dark Burgundy',
+    focus: 'Strategic vision, technology investment, organizational transformation',
+    bullets: [
+      'Emphasizes strategic leadership and business alignment',
+      'Highlights C-suite communication and board-level advisory',
+      'Best for: VP of IT, CTO, CIO, Head of Technology',
+      'Tone: Executive, strategic, transformation-focused',
+    ],
+    href: '/resume/executive',
+    docx: '/docs/Brian_Kuzdas_Head_of_IT.docx',
+  },
+];
+---
+<Layout title="Resumes — Brian Kuzdas" page="resumes">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="section-label">Ready to Download</p>
+    <h1 class="page-hero-title">Three Tailored Resumes</h1>
+    <p class="page-hero-sub">
+      Each resume is purpose-built for a specific role level and audience.
+      Choose the version that best fits the opportunity you're evaluating.
+    </p>
+  </div>
+</section>
+
+<!-- ══ RESUME CARDS ════════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <div class="resume-cards">
+      {resumes.map(r => (
+        <div class="resume-card" style={`--rc-color: ${r.color};`}>
+          <div class="rc-accent-bar"></div>
+          <div class="rc-body">
+            <div class="rc-top">
+              <span class="rc-emoji">{r.emoji}</span>
+              <div>
+                <div class="rc-role-title">{r.title}</div>
+              </div>
+            </div>
+            <p class="rc-focus">{r.focus}</p>
+            <ul class="rc-list">
+              {r.bullets.map(b => <li>{b}</li>)}
+            </ul>
+            <div class="rc-actions">
+              <a href={r.href} class="btn btn-primary">View Resume</a>
+            </div>
+          </div>
+        </div>
+      ))}
+    </div>
+  </div>
+</section>
+
+<!-- ══ WHICH ONE TO USE ════════════════════════════════ -->
+<section class="section section--alt">
+  <div class="container">
+    <p class="section-label">Resume Guide</p>
+    <h2 class="section-title">Which Resume Should You Use?</h2>
+    <div class="section-divider"></div>
+    <div class="guide-grid">
+      <div class="guide-card">
+        <div class="guide-icon">⚙️</div>
+        <h3>IT Infrastructure Engineer</h3>
+        <p class="guide-desc">Choose this version if you're looking for a hands-on technical leader who can architect and build infrastructure directly — someone who is equally at home designing a Zero Trust network and presenting to leadership.</p>
+        <div class="guide-roles">
+          <strong>Ideal for:</strong>
+          <ul>
+            <li>Senior Network Engineer</li>
+            <li>Senior Infrastructure Engineer</li>
+            <li>Principal Systems Engineer</li>
+            <li>Lead Network Architect</li>
+            <li>Security Infrastructure Specialist</li>
+          </ul>
+        </div>
+        <a href="/resume/engineer" class="btn btn-sm">View →</a>
+      </div>
+      <div class="guide-card">
+        <div class="guide-icon">🧭</div>
+        <h3>IT Infrastructure Manager</h3>
+        <p class="guide-desc">Choose this version if you need someone who can run a team, own a budget, manage vendors, and deliver complex infrastructure projects while keeping the business aligned and operational.</p>
+        <div class="guide-roles">
+          <strong>Ideal for:</strong>
+          <ul>
+            <li>IT Infrastructure Manager</li>
+            <li>IT Operations Manager</li>
+            <li>Technology Operations Manager</li>
+            <li>IT Director (mid-market)</li>
+            <li>Network Operations Manager</li>
+          </ul>
+        </div>
+        <a href="/resume/manager" class="btn btn-sm">View →</a>
+      </div>
+      <div class="guide-card">
+        <div class="guide-icon">🏛️</div>
+        <h3>Head of IT / Executive</h3>
+        <p class="guide-desc">Choose this version if you're looking for a technology executive who can set strategic direction, align IT investment with business objectives, and lead organizational transformation at the department or enterprise level.</p>
+        <div class="guide-roles">
+          <strong>Ideal for:</strong>
+          <ul>
+            <li>VP of Information Technology</li>
+            <li>Head of IT / Technology</li>
+            <li>Chief Technology Officer</li>
+            <li>Chief Information Officer</li>
+            <li>Director of Technology Strategy</li>
+          </ul>
+        </div>
+        <a href="/resume/executive" class="btn btn-sm">View →</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CONTACT ══════════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="container cta-inner">
+    <div>
+      <h2 class="cta-title">Have questions before reaching out?</h2>
+      <p class="cta-sub">I'm happy to jump on a call, answer questions by email, or provide references. Let's connect.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="mailto:brian.kuzdas@gmail.com" class="btn btn-gold">Email Brian</a>
+      <a href="https://www.linkedin.com/in/brian-kuzdas-a176b945/" target="_blank" class="btn btn-outline-white">LinkedIn ↗</a>
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<style>
+/* ── RESUME CARDS ── */
+.resume-cards {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(320px, 1fr));
+  gap: var(--sp-xl);
+}
+.resume-card {
+  background: var(--white); border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg); overflow: hidden;
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.resume-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
+.rc-accent-bar {
+  height: 5px; background: var(--rc-color, var(--navy));
+}
+.rc-body { padding: var(--sp-xl) var(--sp-2xl); }
+.rc-top {
+  display: flex; align-items: flex-start; gap: var(--sp-lg);
+  margin-bottom: var(--sp-md);
+}
+.rc-emoji { font-size: 2.5rem; flex-shrink: 0; }
+.rc-role-title {
+  font-size: 1.15rem; font-weight: 800; color: var(--rc-color, var(--navy));
+  line-height: 1.2;
+}
+.rc-focus { font-size: 0.875rem; color: var(--sub); font-style: italic; margin-bottom: var(--sp-lg); line-height: 1.6; }
+.rc-list { padding-left: 1.2rem; margin-bottom: var(--sp-xl); }
+.rc-list li { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.45rem; line-height: 1.5; }
+.rc-actions { display: flex; flex-wrap: wrap; gap: var(--sp-md); }
+
+/* ── GUIDE ── */
+.guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--sp-xl); }
+.guide-card {
+  background: var(--white); border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg); padding: var(--sp-xl) var(--sp-2xl);
+  box-shadow: var(--shadow-sm);
+}
+.guide-icon { font-size: 2rem; margin-bottom: var(--sp-md); }
+.guide-card h3 { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: var(--sp-sm); }
+.guide-desc { font-size: 0.875rem; color: var(--sub); line-height: 1.7; margin-bottom: var(--sp-lg); }
+.guide-roles strong { font-size: 0.8rem; color: var(--muted); display: block; margin-bottom: 0.4rem; }
+.guide-roles ul { padding-left: 1.2rem; margin-bottom: var(--sp-lg); }
+.guide-roles li { font-size: 0.85rem; color: var(--sub); margin-bottom: 0.3rem; }
+.btn-sm {
+  display: inline-flex; align-items: center; gap: 0.4rem;
+  font-size: 0.8rem; font-weight: 600; padding: 0.4rem 1rem;
+  background: var(--navy); color: var(--white); border-radius: var(--r-sm);
+  border: 2px solid var(--navy);
+  transition: background var(--transition), color var(--transition);
+}
+.btn-sm:hover { background: transparent; color: var(--navy); }
+
+/* ── CTA ── */
+.cta-section { background: linear-gradient(135deg, var(--navy-dark), var(--navy)); padding-block: var(--sp-4xl); }
+.cta-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-2xl); }
+.cta-title { font-size: 1.8rem; font-weight: 800; color: var(--white); margin-bottom: var(--sp-sm); }
+.cta-sub { font-size: 1rem; color: rgba(255,255,255,.7); max-width: 50ch; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: var(--sp-md); }
+
+@media (max-width: 760px) {
+  .cta-inner { flex-direction: column; text-align: center; }
+  .cta-actions { justify-content: center; }
+}
+</style>

@@ -1,0 +1,271 @@
+---
+import Layout from '../../layouts/Layout.astro';
+const accent = '#0d3b6e';
+---
+<Layout title="IT Infrastructure Engineer Resume — Brian Kuzdas" page="resumes">
+
+<section class="page-hero" style={`--hero-accent: ${accent};`}>
+  <div class="container">
+    <div class="resume-nav-bar">
+      <a href="/resumes" class="back-link">← All Resumes</a>
+      <div class="resume-switcher">
+        <a href="/resume/engineer" class="rs-btn active">⚙️ Engineer</a>
+        <a href="/resume/manager" class="rs-btn">🧭 Manager</a>
+        <a href="/resume/executive" class="rs-btn">🏛️ Executive</a>
+      </div>
+    </div>
+    <p class="section-label">IT Infrastructure Engineer</p>
+    <h1 class="page-hero-title">Brian Kuzdas</h1>
+    <p class="page-hero-sub">
+      Senior Network Operations &amp; Security Specialist · Infrastructure Architect · Cloud &amp; Security Engineer
+    </p>
+    <p class="page-hero-sub" style="margin-top:0.5rem; font-size:0.9rem;">
+      📍 Madison, WI &nbsp;·&nbsp; 📧 brian.kuzdas@gmail.com &nbsp;·&nbsp; 📞 (608) 576-0655 &nbsp;·&nbsp;
+      <a href="https://www.linkedin.com/in/brian-kuzdas-a176b945/" target="_blank" style="color:rgba(255,255,255,.8)">LinkedIn ↗</a>
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container resume-body">
+
+    <!-- Summary -->
+    <div class="resume-section">
+      <h2 class="rs-heading">Professional Summary</h2>
+      <p class="rs-summary">
+        Senior IT infrastructure and network security professional with 25+ years of hands-on experience designing,
+        building, and maintaining high-availability enterprise environments. Proven track record in cGMP-regulated
+        biopharmaceutical manufacturing (FDA 21 CFR Part 11), financial services, and enterprise IT. Deep expertise
+        in hybrid cloud architecture (Azure, AWS), Zero Trust networking, endpoint security, and storage systems.
+        AWS and Azure certified. Equally effective as a technical individual contributor and as a technical leader.
+      </p>
+    </div>
+
+    <!-- Core Skills -->
+    <div class="resume-section">
+      <h2 class="rs-heading">Core Technical Skills</h2>
+      <div class="skills-cols">
+        <div class="skill-col">
+          <div class="skill-group-title">Networking</div>
+          <div class="skill-tags">
+            <span class="tag">LAN / WAN Design</span><span class="tag">Firewall (Cisco/Palo Alto)</span>
+            <span class="tag">VPN (WireGuard / IPSec)</span><span class="tag">SD-WAN</span>
+            <span class="tag">VLAN Segmentation</span><span class="tag">BGP / OSPF / EIGRP</span>
+            <span class="tag">TCP/IP / DNS / DHCP</span>
+          </div>
+        </div>
+        <div class="skill-col">
+          <div class="skill-group-title">Cloud &amp; Virtualization</div>
+          <div class="skill-tags">
+            <span class="tag">Microsoft Azure</span><span class="tag">AWS</span>
+            <span class="tag">Hybrid Cloud</span><span class="tag">VMware vSphere</span>
+            <span class="tag">Azure AD / Entra ID</span><span class="tag">Hyper-V</span>
+          </div>
+        </div>
+        <div class="skill-col">
+          <div class="skill-group-title">Security</div>
+          <div class="skill-tags">
+            <span class="tag">Zero Trust Architecture</span><span class="tag">Endpoint Hardening</span>
+            <span class="tag">Okta / IAM / MFA</span><span class="tag">CISSP Domain 1</span>
+            <span class="tag">SIEM / Monitoring</span>
+          </div>
+        </div>
+        <div class="skill-col">
+          <div class="skill-group-title">Systems &amp; Storage</div>
+          <div class="skill-tags">
+            <span class="tag">Windows Server 2016–2022</span><span class="tag">Active Directory / GPO</span>
+            <span class="tag">Dell EMC Unity SAN/NAS</span><span class="tag">Backup &amp; DR</span>
+          </div>
+        </div>
+        <div class="skill-col">
+          <div class="skill-group-title">Automation &amp; Integration</div>
+          <div class="skill-tags">
+            <span class="tag">PowerShell</span><span class="tag">Python</span>
+            <span class="tag">Bash</span><span class="tag">HL7 FHIR R4</span>
+            <span class="tag">REST APIs</span>
+          </div>
+        </div>
+        <div class="skill-col">
+          <div class="skill-group-title">Compliance</div>
+          <div class="skill-tags">
+            <span class="tag">FDA 21 CFR Part 11</span><span class="tag">cGMP</span>
+            <span class="tag">Computer System Validation (CSV)</span><span class="tag">ITIL 4</span>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Experience -->
+    <div class="resume-section">
+      <h2 class="rs-heading">Professional Experience</h2>
+
+      <div class="exp-block">
+        <div class="exp-header">
+          <div><span class="exp-company">Bankers Bank</span> <span class="exp-loc">— Madison, WI</span></div>
+          <span class="exp-date">Dec 2025 – Present</span>
+        </div>
+        <div class="exp-title">Senior Network Operations &amp; Security Specialist</div>
+        <ul class="exp-bullets">
+          <li>Architecting on-premise AI infrastructure strategy while ensuring alignment with federal banking regulatory requirements</li>
+          <li>Leading Unified Endpoint Management (UEM) transition to modernize device management across the organization</li>
+          <li>Hardening identity and access management infrastructure using Zero Trust principles and least-privilege access</li>
+          <li>Managing network security posture and maintaining compliance with banking regulatory standards</li>
+        </ul>
+      </div>
+
+      <div class="exp-block">
+        <div class="exp-header">
+          <div><span class="exp-company">FUJIFILM Cellular Dynamics, Inc.</span> <span class="exp-loc">— Madison, WI</span></div>
+          <span class="exp-date">Oct 2022 – Dec 2025</span>
+        </div>
+        <div class="exp-title">Senior Infrastructure Specialist → Manager, Technology Operations &amp; IT</div>
+        <ul class="exp-bullets">
+          <li>Designed and built entire cGMP IT infrastructure from greenfield for an FDA-regulated iPSC biopharmaceutical manufacturer</li>
+          <li>Achieved and maintained <strong>99.99% uptime</strong> across all manufacturing-critical systems</li>
+          <li>Validated all IT systems to <strong>FDA 21 CFR Part 11</strong> and cGMP CSV requirements; zero audit findings</li>
+          <li>Architected HL7 FHIR R4 data ingestor platform, achieving <strong>30% improvement</strong> in laboratory data retrieval</li>
+          <li>Deployed WireGuard Zero Trust tunnel solution replacing legacy VPN infrastructure</li>
+          <li>Managed hybrid cloud environment across Azure, AWS, and on-premise data center (Dell EMC Unity SAN/NAS)</li>
+          <li>Developed PowerShell Windows Firewall Security Profiler tool for automated policy compliance enforcement</li>
+          <li>Owned OPEX and CAPEX technology budgets with full financial accountability</li>
+        </ul>
+      </div>
+
+      <div class="exp-block">
+        <div class="exp-header">
+          <div><span class="exp-company">FUJIFILM Holdings America Corporation</span> <span class="exp-loc">— Madison, WI</span></div>
+          <span class="exp-date">Aug 2017 – Oct 2022</span>
+        </div>
+        <div class="exp-title">IT System Administrator II</div>
+        <ul class="exp-bullets">
+          <li>Led enterprise migration of <strong>60,000+ users</strong> from Google Workspace to Microsoft 365 with zero data loss</li>
+          <li>Managed multi-site data center infrastructure: physical/virtual servers, storage, and networking</li>
+          <li>Maintained VMware vSphere environment, Active Directory, Group Policy, and identity management</li>
+          <li>Designed and tested disaster recovery frameworks with defined RTO/RPO targets</li>
+          <li>Developed PowerShell and Python automation scripts to reduce administrative overhead</li>
+        </ul>
+      </div>
+
+      <div class="exp-block">
+        <div class="exp-header">
+          <div><span class="exp-company">Madison Computer Works, Inc.</span> <span class="exp-loc">— Madison, WI</span></div>
+          <span class="exp-date">Mar 2016 – Aug 2017</span>
+        </div>
+        <div class="exp-title">Senior Network Infrastructure Specialist</div>
+        <ul class="exp-bullets">
+          <li>Designed and implemented LAN/WAN, firewall, and wireless infrastructure for commercial clients</li>
+          <li>Managed Cisco and Dell switching, routing, and wireless infrastructure</li>
+          <li>Deployed and maintained Microsoft Server environments (AD, Exchange, SQL Server)</li>
+        </ul>
+      </div>
+
+      <div class="exp-block">
+        <div class="exp-header">
+          <div><span class="exp-company">TBC Consulting LLC</span> <span class="exp-loc">— Mount Horeb, WI</span></div>
+          <span class="exp-date">Apr 2012 – Mar 2016</span>
+        </div>
+        <div class="exp-title">CEO / Founder — Managed Service Provider</div>
+        <ul class="exp-bullets">
+          <li>Founded and operated a boutique MSP serving 25+ client organizations in Greater Madison</li>
+          <li>Delivered managed networking, server administration, backup/DR, and helpdesk services</li>
+          <li>Designed and implemented infrastructure for clients across healthcare, legal, and professional services</li>
+        </ul>
+      </div>
+    </div>
+
+    <!-- Certifications -->
+    <div class="resume-section">
+      <h2 class="rs-heading">Certifications</h2>
+      <div class="cert-list">
+        <div class="cert-item"><span class="ci-name">AWS Certified Cloud Practitioner</span><span class="ci-date">Sep 2025 – Sep 2028</span></div>
+        <div class="cert-item"><span class="ci-name">Microsoft Azure Fundamentals (AZ-900)</span><span class="ci-date">Feb 2026</span></div>
+        <div class="cert-item"><span class="ci-name">CISSP Domain 1: Security &amp; Risk Management</span><span class="ci-date">Active</span></div>
+        <div class="cert-item"><span class="ci-name">ITIL 4: Foundations</span><span class="ci-date">Active</span></div>
+        <div class="cert-item"><span class="ci-name">Computer System Validation Boot Camp — ProPharma</span><span class="ci-date">2023</span></div>
+        <div class="cert-item"><span class="ci-name">Dell EMC Unity Implementation &amp; Management</span><span class="ci-date">2020</span></div>
+        <div class="cert-item"><span class="ci-name">Okta Identity Platform</span><span class="ci-date">Active</span></div>
+      </div>
+    </div>
+
+    <!-- Education -->
+    <div class="resume-section">
+      <h2 class="rs-heading">Education</h2>
+      <div class="cert-list">
+        <div class="cert-item"><span class="ci-name">BA — Political Science &amp; History, University of Wisconsin – Platteville</span></div>
+        <div class="cert-item"><span class="ci-name">Computer Systems Networking, Madison Area Technical College</span></div>
+      </div>
+    </div>
+
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container cta-inner">
+    <div>
+      <h2 class="cta-title">Questions or want to talk?</h2>
+      <p class="cta-sub">Reach out via email or LinkedIn — I respond quickly.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="mailto:brian.kuzdas@gmail.com" class="btn btn-gold">Email Brian</a>
+      <a href="https://www.linkedin.com/in/brian-kuzdas-a176b945/" target="_blank" class="btn btn-outline-white">LinkedIn ↗</a>
+      <a href="/resume/manager" class="btn btn-outline-white">Manager Resume →</a>
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<style>
+.resume-nav-bar {
+  display: flex; align-items: center; justify-content: space-between;
+  margin-bottom: var(--sp-2xl); flex-wrap: wrap; gap: var(--sp-md);
+}
+.back-link { color: rgba(255,255,255,.7); font-size: 0.875rem; font-weight: 500; }
+.back-link:hover { color: var(--white); }
+.resume-switcher { display: flex; gap: 6px; }
+.rs-btn {
+  font-size: 0.8rem; font-weight: 600; padding: 5px 14px;
+  border-radius: 20px; border: 1px solid rgba(255,255,255,.3);
+  color: rgba(255,255,255,.7); background: transparent;
+  transition: all var(--transition);
+}
+.rs-btn:hover, .rs-btn.active { background: rgba(255,255,255,.15); color: var(--white); border-color: rgba(255,255,255,.6); }
+.resume-body { max-width: 860px; margin-inline: auto; }
+.resume-section { margin-bottom: var(--sp-3xl); padding-bottom: var(--sp-3xl); border-bottom: 1px solid var(--border-soft); }
+.resume-section:last-child { border: none; }
+.rs-heading {
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em; text-transform: uppercase;
+  color: #0d3b6e; margin-bottom: var(--sp-lg);
+  padding-bottom: var(--sp-sm); border-bottom: 2px solid #0d3b6e;
+}
+.rs-summary { font-size: 0.95rem; color: var(--sub); line-height: 1.8; max-width: 80ch; }
+.skills-cols { display: grid; grid-template-columns: repeat(auto-fit, minmax(240px, 1fr)); gap: var(--sp-lg); }
+.skill-group-title { font-size: 0.78rem; font-weight: 700; color: var(--navy); margin-bottom: 8px; }
+.skill-tags { display: flex; flex-wrap: wrap; gap: 5px; }
+.exp-block { margin-bottom: var(--sp-2xl); }
+.exp-header { display: flex; justify-content: space-between; align-items: flex-start; gap: var(--sp-md); margin-bottom: 4px; }
+.exp-company { font-weight: 800; color: var(--navy); font-size: 1rem; }
+.exp-loc { font-size: 0.85rem; color: var(--muted); }
+.exp-date { font-size: 0.82rem; color: var(--gold); font-weight: 600; flex-shrink: 0; }
+.exp-title { font-size: 0.9rem; color: var(--sub); font-style: italic; font-weight: 600; margin-bottom: var(--sp-md); }
+.exp-bullets { padding-left: 1.25rem; }
+.exp-bullets li { font-size: 0.875rem; color: var(--muted); line-height: 1.65; margin-bottom: 0.4rem; }
+.exp-bullets strong { color: var(--navy); }
+.cert-list { display: flex; flex-direction: column; gap: 0; border: 1px solid var(--border-soft); border-radius: var(--r-md); overflow: hidden; }
+.cert-item { display: flex; justify-content: space-between; gap: var(--sp-md);
+  padding: 10px var(--sp-lg); border-bottom: 1px solid var(--border-soft); font-size: 0.875rem; }
+.cert-item:last-child { border-bottom: none; }
+.cert-item:nth-child(even) { background: var(--light); }
+.ci-name { color: var(--sub); }
+.ci-date { color: var(--gold); font-weight: 600; flex-shrink: 0; }
+.cta-section { background: linear-gradient(135deg, var(--navy-dark), var(--navy)); padding-block: var(--sp-3xl); }
+.cta-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-2xl); }
+.cta-title { font-size: 1.5rem; font-weight: 800; color: var(--white); margin-bottom: var(--sp-sm); }
+.cta-sub { font-size: 0.9rem; color: rgba(255,255,255,.7); }
+.cta-actions { display: flex; flex-wrap: wrap; gap: var(--sp-md); }
+@media (max-width: 760px) {
+  .exp-header { flex-direction: column; }
+  .cta-inner { flex-direction: column; text-align: center; }
+  .cta-actions { justify-content: center; }
+}
+</style>
