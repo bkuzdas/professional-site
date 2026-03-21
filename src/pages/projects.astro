@@ -19,6 +19,8 @@ const projects = [
     ],
     tags: ['cGMP', 'FDA 21 CFR Part 11', 'Azure', 'AWS', 'Dell EMC', 'Greenfield'],
     color: '#0d3b6e',
+    image: '/images/server-room-fcdi.jpg',
+    imageAlt: 'Server room built for FUJIFILM Cellular Dynamics cGMP manufacturing facility',
   },
   {
     num: '02',
@@ -180,6 +182,11 @@ const projects = [
       {projects.map(p => (
         <div class="project-card" data-category={p.category} style={`--pc: ${p.color};`}>
           <div class="pc-top-bar"></div>
+          {p.image && (
+            <div class="pc-img-wrap">
+              <img src={p.image} alt={p.imageAlt} class="pc-img" loading="lazy" />
+            </div>
+          )}
           <div class="pc-body">
             <div class="pc-head">
               <span class="pc-num">{p.num}</span>
@@ -270,6 +277,9 @@ const projects = [
 .project-card:hover { box-shadow: var(--shadow-md); transform: translateY(-3px); }
 .project-card.hidden { display: none; }
 .pc-top-bar { height: 4px; background: var(--pc, var(--navy)); }
+.pc-img-wrap { overflow: hidden; max-height: 220px; }
+.pc-img { width: 100%; height: 220px; object-fit: cover; object-position: center; display: block; transition: transform 0.4s ease; }
+.project-card:hover .pc-img { transform: scale(1.03); }
 .pc-body { padding: var(--sp-xl); }
 .pc-head {
   display: flex; align-items: center;
