@@ -61,6 +61,68 @@ import DoorLayout from '../layouts/DoorLayout.astro';
       </div>
     </div>
 
+    <!-- Skills strip -->
+    <div class="door-skills">
+      <div class="vault-label">Core Skills</div>
+      <div class="skills-groups">
+
+        <div class="skill-group">
+          <div class="sg-label">🌐 Networking</div>
+          <div class="sg-tags">
+            <span>LAN / WAN Design</span><span>Firewall & VPN</span>
+            <span>SD-WAN</span><span>BGP / OSPF</span>
+            <span>VLAN Segmentation</span><span>TCP/IP · DNS · DHCP</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="sg-label">☁️ Cloud & Virtualization</div>
+          <div class="sg-tags">
+            <span>Microsoft Azure</span><span>AWS</span>
+            <span>Hybrid Cloud</span><span>VMware vSphere</span>
+            <span>Azure AD / Entra ID</span><span>Hyper-V</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="sg-label">🔒 Security</div>
+          <div class="sg-tags">
+            <span>Zero Trust Architecture</span><span>Endpoint Hardening</span>
+            <span>Identity & Access Management</span><span>SIEM & Monitoring</span>
+            <span>Palo Alto / Cisco ASA</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="sg-label">🖥️ Systems & Infrastructure</div>
+          <div class="sg-tags">
+            <span>Active Directory</span><span>Windows Server</span>
+            <span>Linux</span><span>Storage & SAN</span>
+            <span>Backup & Disaster Recovery</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="sg-label">⚙️ Automation & Integration</div>
+          <div class="sg-tags">
+            <span>PowerShell</span><span>Python</span>
+            <span>REST APIs</span><span>Ansible</span>
+            <span>Docker</span>
+          </div>
+        </div>
+
+        <div class="skill-group">
+          <div class="sg-label">📋 Compliance & Frameworks</div>
+          <div class="sg-tags">
+            <span>ITIL 4</span><span>FDA 21 CFR Part 11</span>
+            <span>HIPAA</span><span>cGMP</span>
+            <span>SOC 2</span>
+          </div>
+        </div>
+
+      </div>
+    </div>
+
     <!-- What's inside -->
     <div class="door-vault">
       <div class="vault-label">Inside the Portfolio</div>
@@ -217,6 +279,36 @@ import DoorLayout from '../layouts/DoorLayout.astro';
 .ds-div {
   width: 1px; background: rgba(255,255,255,.1);
   align-self: stretch;
+}
+
+/* ── SKILLS ── */
+.door-skills {
+  background: rgba(255,255,255,.03);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 14px; padding: 1.5rem 2rem;
+  margin-bottom: 2.5rem; width: 100%;
+  text-align: left;
+}
+.skills-groups {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 1.25rem;
+}
+.skill-group { display: flex; flex-direction: column; gap: 0.5rem; }
+.sg-label {
+  font-size: 0.7rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.1em; color: #c8961e;
+}
+.sg-tags {
+  display: flex; flex-wrap: wrap; gap: 0.35rem;
+}
+.sg-tags span {
+  font-size: 0.75rem; font-weight: 500;
+  padding: 0.2rem 0.6rem;
+  background: rgba(255,255,255,.06);
+  border: 1px solid rgba(255,255,255,.1);
+  border-radius: 999px;
+  color: rgba(255,255,255,.6);
 }
 
 /* ── VAULT PREVIEW ── */
