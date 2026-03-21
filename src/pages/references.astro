@@ -67,41 +67,6 @@ const references = [
     email: "andrew.wenborn@fujifilm.com",
   },
 ];
-
-const strategy = [
-  {
-    icon: "🥇",
-    label: "Direct Supervisors",
-    badge: "Gold Standard",
-    badgeColor: "#c8961e",
-    desc: "Hiring managers almost always prefer someone who managed you directly — they can speak to your reliability, how you handle feedback, and your day-to-day performance.",
-    tips: ["Former managers are the most common and safe choice", "Current managers if they know you are looking", "Project managers in matrixed environments are equally valuable"],
-  },
-  {
-    icon: "🤝",
-    label: "Peers & Colleagues",
-    badge: "Soft Skills",
-    badgeColor: "#1a5c38",
-    desc: "Coworkers offer a different perspective — excellent for highlighting teamwork, communication, and how you handle stress in the trenches.",
-    tips: ["Senior peers carry more weight than junior ones", "Cross-functional partners show you collaborate across silos"],
-  },
-  {
-    icon: "👥",
-    label: "Direct Reports",
-    badge: "Leadership Roles",
-    badgeColor: "#0d3b6e",
-    desc: "If applying for a leadership role, a former subordinate is powerful — they can vouch for your leadership style, mentoring ability, and the culture you build.",
-    tips: ["Best when interviewing for management or director-level roles"],
-  },
-  {
-    icon: "🌐",
-    label: "External Stakeholders",
-    badge: "Often Overlooked",
-    badgeColor: "#5a1a00",
-    desc: "Clients, customers, and vendors can be highly impressive, especially for client-facing or high-level roles.",
-    tips: ["Clients prove you deliver value and maintain professional relationships", "Vendors speak to negotiation skills and professional integrity"],
-  },
-];
 ---
 <Layout title="Professional References — Brian Kuzdas" page="references">
 
@@ -158,61 +123,6 @@ const strategy = [
               </td>
             </tr>
           ))}
-        </tbody>
-      </table>
-    </div>
-  </div>
-</section>
-
-<!-- ══ REFERENCE STRATEGY ══════════════════════════════ -->
-<section class="section section--alt">
-  <div class="container">
-    <p class="section-label">Strategy Guide</p>
-    <h2 class="section-title">Choosing the Right References</h2>
-    <div class="section-divider"></div>
-    <p class="strategy-intro">
-      Don't just pick the people who like you the most — pick the ones who can tell the best stories.
-      Select references based on the role you're targeting.
-    </p>
-
-    <div class="strategy-grid">
-      {strategy.map(s => (
-        <div class="strategy-card">
-          <div class="sc-top">
-            <span class="sc-icon">{s.icon}</span>
-            <div>
-              <div class="sc-label">{s.label}</div>
-              <span class="sc-badge" style={`background:${s.badgeColor}`}>{s.badge}</span>
-            </div>
-          </div>
-          <p class="sc-desc">{s.desc}</p>
-          <ul class="sc-tips">
-            {s.tips.map(t => <li>{t}</li>)}
-          </ul>
-        </div>
-      ))}
-    </div>
-
-    <!-- Selection matrix -->
-    <div class="matrix-wrap">
-      <h3 class="matrix-title">Reference Selection Matrix</h3>
-      <table class="matrix-table">
-        <thead>
-          <tr><th>Reference Type</th><th>Best Used When…</th></tr>
-        </thead>
-        <tbody>
-          <tr>
-            <td><strong>The Advocate</strong></td>
-            <td>You need someone to sell your potential and drive</td>
-          </tr>
-          <tr>
-            <td><strong>The Technical Expert</strong></td>
-            <td>The job requires niche skills and you need someone to verify your technical competency</td>
-          </tr>
-          <tr>
-            <td><strong>The Problem Solver</strong></td>
-            <td>You helped navigate a crisis or major project — this person speaks to your resilience</td>
-          </tr>
         </tbody>
       </table>
     </div>
