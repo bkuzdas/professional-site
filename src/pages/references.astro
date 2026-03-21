@@ -1,0 +1,329 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const references = [
+  {
+    name: "Leonardo Salado",
+    title: "Head of Info Technologies",
+    company: "FCDI Admin",
+    relationship: "Manager",
+    phone: "",
+    email: "",
+  },
+  {
+    name: "Scott Zwicky",
+    title: "Manager, Infrastructure Services",
+    company: "FUJIFILM HLUS",
+    relationship: "Former Manager",
+    phone: "608-807-9506",
+    email: "s.zwicky@gmail.com",
+  },
+  {
+    name: "Coby Carlson",
+    title: "Sr. Director, Commercial Applications",
+    company: "FUJIFILM Cellular Dynamics",
+    relationship: "Co-Worker / Internal Customer",
+    phone: "608-217-4755",
+    email: "coby.carlson@fujifilm.com",
+  },
+  {
+    name: "Eugenia Jones",
+    title: "VP External Dev & Partnerships",
+    company: "FUJIFILM Cellular Dynamics",
+    relationship: "Internal Customer",
+    phone: "608-239-2580",
+    email: "emcjones1@gmail.com",
+  },
+  {
+    name: "Bernard Laymon",
+    title: "Network Administrator III",
+    company: "FUJIFILM HLUS",
+    relationship: "Co-Worker",
+    phone: "864-396-0890",
+    email: "dominic.laymon@gmail.com",
+  },
+  {
+    name: "Benjamin Seffrood",
+    title: "Director, Finance & Accounting",
+    company: "FCDI Admin",
+    relationship: "Co-Worker",
+    phone: "608-215-3067",
+    email: "seffroodb@yahoo.com",
+  },
+  {
+    name: "Rick Gadzinski",
+    title: "Manager, Instrumentation & Validation",
+    company: "FUJIFILM FCDI",
+    relationship: "Co-Worker / Internal Customer",
+    phone: "920-202-2299",
+    email: "",
+  },
+  {
+    name: "Andrew Wenborn",
+    title: "",
+    company: "",
+    relationship: "",
+    phone: "",
+    email: "",
+  },
+];
+
+const strategy = [
+  {
+    icon: "🥇",
+    label: "Direct Supervisors",
+    badge: "Gold Standard",
+    badgeColor: "#c8961e",
+    desc: "Hiring managers almost always prefer someone who managed you directly — they can speak to your reliability, how you handle feedback, and your day-to-day performance.",
+    tips: ["Former managers are the most common and safe choice", "Current managers if they know you are looking", "Project managers in matrixed environments are equally valuable"],
+  },
+  {
+    icon: "🤝",
+    label: "Peers & Colleagues",
+    badge: "Soft Skills",
+    badgeColor: "#1a5c38",
+    desc: "Coworkers offer a different perspective — excellent for highlighting teamwork, communication, and how you handle stress in the trenches.",
+    tips: ["Senior peers carry more weight than junior ones", "Cross-functional partners show you collaborate across silos"],
+  },
+  {
+    icon: "👥",
+    label: "Direct Reports",
+    badge: "Leadership Roles",
+    badgeColor: "#0d3b6e",
+    desc: "If applying for a leadership role, a former subordinate is powerful — they can vouch for your leadership style, mentoring ability, and the culture you build.",
+    tips: ["Best when interviewing for management or director-level roles"],
+  },
+  {
+    icon: "🌐",
+    label: "External Stakeholders",
+    badge: "Often Overlooked",
+    badgeColor: "#5a1a00",
+    desc: "Clients, customers, and vendors can be highly impressive, especially for client-facing or high-level roles.",
+    tips: ["Clients prove you deliver value and maintain professional relationships", "Vendors speak to negotiation skills and professional integrity"],
+  },
+];
+---
+<Layout title="Professional References — Brian Kuzdas" page="references">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="section-label">Confidential</p>
+    <h1 class="page-hero-title">Professional References</h1>
+    <p class="page-hero-sub">
+      Colleagues, managers, and partners who can speak to my work, leadership, and character.
+      Please contact references only after mutual interest has been established.
+    </p>
+  </div>
+</section>
+
+<!-- ══ REFERENCES TABLE ════════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <p class="section-label">Contact List</p>
+    <h2 class="section-title">References</h2>
+    <div class="section-divider"></div>
+
+    <div class="ref-table-wrap">
+      <table class="ref-table">
+        <thead>
+          <tr>
+            <th>Name</th>
+            <th>Title</th>
+            <th>Company</th>
+            <th>Relationship</th>
+            <th>Phone</th>
+            <th>Email</th>
+          </tr>
+        </thead>
+        <tbody>
+          {references.map(r => (
+            <tr>
+              <td class="ref-name">{r.name}</td>
+              <td>{r.title || <span class="empty">—</span>}</td>
+              <td>{r.company || <span class="empty">—</span>}</td>
+              <td>
+                {r.relationship
+                  ? <span class="rel-badge">{r.relationship}</span>
+                  : <span class="empty">—</span>}
+              </td>
+              <td>
+                {r.phone
+                  ? <a href={`tel:${r.phone.replace(/[^0-9]/g,'')}`} class="contact-link">📞 {r.phone}</a>
+                  : <span class="empty">—</span>}
+              </td>
+              <td>
+                {r.email
+                  ? <a href={`mailto:${r.email}`} class="contact-link">✉ {r.email}</a>
+                  : <span class="empty">—</span>}
+              </td>
+            </tr>
+          ))}
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ REFERENCE STRATEGY ══════════════════════════════ -->
+<section class="section section--alt">
+  <div class="container">
+    <p class="section-label">Strategy Guide</p>
+    <h2 class="section-title">Choosing the Right References</h2>
+    <div class="section-divider"></div>
+    <p class="strategy-intro">
+      Don't just pick the people who like you the most — pick the ones who can tell the best stories.
+      Select references based on the role you're targeting.
+    </p>
+
+    <div class="strategy-grid">
+      {strategy.map(s => (
+        <div class="strategy-card">
+          <div class="sc-top">
+            <span class="sc-icon">{s.icon}</span>
+            <div>
+              <div class="sc-label">{s.label}</div>
+              <span class="sc-badge" style={`background:${s.badgeColor}`}>{s.badge}</span>
+            </div>
+          </div>
+          <p class="sc-desc">{s.desc}</p>
+          <ul class="sc-tips">
+            {s.tips.map(t => <li>{t}</li>)}
+          </ul>
+        </div>
+      ))}
+    </div>
+
+    <!-- Selection matrix -->
+    <div class="matrix-wrap">
+      <h3 class="matrix-title">Reference Selection Matrix</h3>
+      <table class="matrix-table">
+        <thead>
+          <tr><th>Reference Type</th><th>Best Used When…</th></tr>
+        </thead>
+        <tbody>
+          <tr>
+            <td><strong>The Advocate</strong></td>
+            <td>You need someone to sell your potential and drive</td>
+          </tr>
+          <tr>
+            <td><strong>The Technical Expert</strong></td>
+            <td>The job requires niche skills and you need someone to verify your technical competency</td>
+          </tr>
+          <tr>
+            <td><strong>The Problem Solver</strong></td>
+            <td>You helped navigate a crisis or major project — this person speaks to your resilience</td>
+          </tr>
+        </tbody>
+      </table>
+    </div>
+  </div>
+</section>
+
+<!-- ══ CTA ══════════════════════════════════════════════ -->
+<section class="cta-section">
+  <div class="container cta-inner">
+    <div>
+      <h2 class="cta-title">Ready to connect?</h2>
+      <p class="cta-sub">References available upon request. I'm happy to coordinate introductions.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="mailto:brian.kuzdas@gmail.com" class="btn btn-gold">Email Brian</a>
+      <a href="/resumes" class="btn btn-outline-white">View Resumes ↗</a>
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<style>
+/* ── TABLE ── */
+.ref-table-wrap {
+  overflow-x: auto;
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-soft);
+}
+.ref-table {
+  width: 100%; border-collapse: collapse; background: var(--white);
+  font-size: 0.875rem;
+}
+.ref-table thead tr {
+  background: var(--navy, #0d2b5e); color: #fff;
+}
+.ref-table th {
+  padding: 0.75rem 1rem; text-align: left; font-size: 0.8rem;
+  font-weight: 700; text-transform: uppercase; letter-spacing: 0.04em;
+}
+.ref-table tbody tr { border-bottom: 1px solid var(--border-soft); transition: background 0.15s; }
+.ref-table tbody tr:last-child { border-bottom: none; }
+.ref-table tbody tr:hover { background: var(--light, #e8eef7); }
+.ref-table td { padding: 0.85rem 1rem; vertical-align: middle; color: var(--sub); }
+.ref-name { font-weight: 700; color: var(--navy); white-space: nowrap; }
+.empty { color: var(--muted, #aaa); font-style: italic; }
+.rel-badge {
+  display: inline-block; font-size: 0.72rem; font-weight: 600;
+  padding: 0.2rem 0.65rem; border-radius: 999px;
+  background: var(--light, #e8eef7); color: var(--navy);
+}
+.contact-link {
+  color: var(--navy); text-decoration: none; font-size: 0.82rem;
+  white-space: nowrap;
+}
+.contact-link:hover { text-decoration: underline; color: var(--gold, #c8961e); }
+
+/* ── STRATEGY ── */
+.strategy-intro {
+  font-size: 1rem; color: var(--sub); margin-bottom: var(--sp-2xl);
+  max-width: 65ch; font-style: italic;
+}
+.strategy-grid {
+  display: grid; grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+  gap: var(--sp-xl); margin-bottom: var(--sp-3xl);
+}
+.strategy-card {
+  background: var(--white); border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg); padding: var(--sp-xl);
+  box-shadow: var(--shadow-sm);
+}
+.sc-top { display: flex; align-items: flex-start; gap: var(--sp-md); margin-bottom: var(--sp-md); }
+.sc-icon { font-size: 2rem; flex-shrink: 0; }
+.sc-label { font-size: 1rem; font-weight: 800; color: var(--navy); }
+.sc-badge {
+  display: inline-block; font-size: 0.7rem; font-weight: 700;
+  color: #fff; padding: 0.15rem 0.55rem; border-radius: 999px; margin-top: 4px;
+}
+.sc-desc { font-size: 0.875rem; color: var(--sub); line-height: 1.65; margin-bottom: var(--sp-md); }
+.sc-tips { padding-left: 1.2rem; }
+.sc-tips li { font-size: 0.82rem; color: var(--muted); margin-bottom: 0.35rem; }
+
+/* ── MATRIX ── */
+.matrix-wrap {
+  background: var(--white); border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg); overflow: hidden; box-shadow: var(--shadow-sm);
+}
+.matrix-title {
+  background: var(--navy); color: #fff; font-size: 0.9rem; font-weight: 700;
+  padding: 0.75rem 1rem; margin: 0;
+}
+.matrix-table { width: 100%; border-collapse: collapse; font-size: 0.875rem; }
+.matrix-table th {
+  background: var(--light, #e8eef7); color: var(--navy);
+  font-size: 0.8rem; font-weight: 700; text-transform: uppercase;
+  letter-spacing: 0.04em; padding: 0.65rem 1rem; text-align: left;
+}
+.matrix-table td { padding: 0.8rem 1rem; color: var(--sub); border-bottom: 1px solid var(--border-soft); }
+.matrix-table tr:last-child td { border-bottom: none; }
+.matrix-table strong { color: var(--navy); }
+
+/* ── CTA ── */
+.cta-section { background: linear-gradient(135deg, var(--navy-dark), var(--navy)); padding-block: var(--sp-4xl); }
+.cta-inner { display: flex; align-items: center; justify-content: space-between; flex-wrap: wrap; gap: var(--sp-2xl); }
+.cta-title { font-size: 1.8rem; font-weight: 800; color: var(--white); margin-bottom: var(--sp-sm); }
+.cta-sub { font-size: 1rem; color: rgba(255,255,255,.7); max-width: 50ch; }
+.cta-actions { display: flex; flex-wrap: wrap; gap: var(--sp-md); }
+
+@media (max-width: 760px) {
+  .cta-inner { flex-direction: column; text-align: center; }
+  .cta-actions { justify-content: center; }
+}
+</style>

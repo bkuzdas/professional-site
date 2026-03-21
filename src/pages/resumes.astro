@@ -93,6 +93,42 @@ const resumes = [
   </div>
 </section>
 
+<!-- ══ SUPPORTING DOCUMENTS ════════════════════════════ -->
+<section class="section">
+  <div class="container">
+    <p class="section-label">Additional Downloads</p>
+    <h2 class="section-title">Supporting Documents</h2>
+    <div class="section-divider"></div>
+    <div class="doc-cards">
+
+      <div class="doc-card">
+        <div class="doc-icon">🎓</div>
+        <div class="doc-body">
+          <div class="doc-title">Licenses &amp; Certifications</div>
+          <p class="doc-desc">
+            A consolidated reference of all active and verified credentials —
+            grouped by category: Cloud &amp; Infrastructure, Cybersecurity &amp; Identity,
+            IT Service Management, Specialized Industry, and Sustainability.
+            Includes credential IDs and expiry dates where applicable.
+          </p>
+          <div class="doc-tags">
+            <span class="tag">AWS</span>
+            <span class="tag">Azure AZ-900</span>
+            <span class="tag">CISSP Domain 1</span>
+            <span class="tag">ITIL 4</span>
+            <span class="tag">Okta</span>
+            <span class="tag">+5 more</span>
+          </div>
+        </div>
+        <a href="/docs/Brian_Kuzdas_Credentials.pdf" download class="btn btn-gold doc-dl-btn">
+          ⬇ Download PDF
+        </a>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <!-- ══ WHICH ONE TO USE ════════════════════════════════ -->
 <section class="section section--alt">
   <div class="container">
@@ -198,6 +234,32 @@ const resumes = [
 .rc-list { padding-left: 1.2rem; margin-bottom: var(--sp-xl); }
 .rc-list li { font-size: 0.875rem; color: var(--muted); margin-bottom: 0.45rem; line-height: 1.5; }
 .rc-actions { display: flex; flex-wrap: wrap; gap: var(--sp-md); }
+
+/* ── SUPPORTING DOCS ── */
+.doc-cards { display: flex; flex-direction: column; gap: var(--sp-lg); }
+.doc-card {
+  display: flex; align-items: flex-start; gap: var(--sp-2xl);
+  background: var(--white); border: 1px solid var(--border-soft);
+  border-left: 5px solid var(--gold, #c8961e);
+  border-radius: var(--r-lg); padding: var(--sp-xl) var(--sp-2xl);
+  box-shadow: var(--shadow-sm);
+  transition: box-shadow var(--transition), transform var(--transition);
+}
+.doc-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.doc-icon { font-size: 2.5rem; flex-shrink: 0; }
+.doc-body { flex: 1; }
+.doc-title { font-size: 1.1rem; font-weight: 800; color: var(--navy); margin-bottom: var(--sp-sm); }
+.doc-desc { font-size: 0.875rem; color: var(--sub); line-height: 1.7; margin-bottom: var(--sp-md); }
+.doc-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; margin-bottom: 0; }
+.tag {
+  font-size: 0.75rem; font-weight: 600; padding: 0.2rem 0.65rem;
+  background: var(--light, #e8eef7); color: var(--navy); border-radius: 999px;
+}
+.doc-dl-btn { white-space: nowrap; align-self: center; flex-shrink: 0; }
+@media (max-width: 640px) {
+  .doc-card { flex-direction: column; }
+  .doc-dl-btn { width: 100%; text-align: center; }
+}
 
 /* ── GUIDE ── */
 .guide-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: var(--sp-xl); }

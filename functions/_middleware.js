@@ -5,7 +5,7 @@
  */
 
 const SESSION_COOKIE  = '__portfolio_session';
-const PROTECTED_PATHS = ['/experience', '/projects', '/achievements', '/resumes', '/resume'];
+const PROTECTED_PATHS = ['/experience', '/projects', '/achievements', '/resumes', '/resume', '/references'];
 
 export async function onRequest(context) {
   const { request, env, next } = context;
