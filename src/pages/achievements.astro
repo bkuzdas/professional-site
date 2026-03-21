@@ -228,6 +228,118 @@ import Layout from '../layouts/Layout.astro';
   </div>
 </section>
 
+<!-- ══ LICENSES & CERTIFICATIONS ════════════════════════ -->
+<section class="section section--white">
+  <div class="container">
+    <p class="section-label">Verified Credentials</p>
+    <h2 class="section-title">Licenses &amp; Certifications</h2>
+    <div class="section-divider"></div>
+
+    <div class="certs-grid">
+
+      <div class="cert-card cert-card--aws">
+        <div class="cert-badge">
+          <div class="cert-logo cert-logo--aws">AWS</div>
+          <div class="cert-status cert-status--active">Active · Expires Sep 2028</div>
+        </div>
+        <div class="cert-body">
+          <h3 class="cert-title">AWS Certified Cloud Practitioner</h3>
+          <p class="cert-issuer">Amazon Web Services (AWS)</p>
+          <p class="cert-date">Issued September 2025</p>
+          <p class="cert-id">Credential ID: 9256ff04f230447ba97bf871119544e7</p>
+        </div>
+        <div class="cert-footer">
+          <a href="https://www.credly.com/badges/9256ff04-f230-447b-a97b-f871119544e7" target="_blank" rel="noopener" class="cert-verify-btn">Verify Credential ↗</a>
+          <span class="cert-tag cert-tag--cloud">Cloud</span>
+        </div>
+      </div>
+
+      <div class="cert-card cert-card--azure">
+        <div class="cert-badge">
+          <div class="cert-logo cert-logo--ms">AZ</div>
+          <div class="cert-status cert-status--active">Active</div>
+        </div>
+        <div class="cert-body">
+          <h3 class="cert-title">Microsoft Certified: Azure Fundamentals</h3>
+          <p class="cert-issuer">Microsoft</p>
+          <p class="cert-date">Issued February 2026</p>
+          <p class="cert-id">Credential ID: 13580C-03BL23</p>
+        </div>
+        <div class="cert-footer">
+          <a href="https://learn.microsoft.com/en-us/users/BrianKuzdas/credentials/13580C03BL23" target="_blank" rel="noopener" class="cert-verify-btn">Verify Credential ↗</a>
+          <span class="cert-tag cert-tag--cloud">Cloud</span>
+        </div>
+      </div>
+
+      <div class="cert-card cert-card--suny">
+        <div class="cert-badge">
+          <div class="cert-logo cert-logo--edu">☀️</div>
+          <div class="cert-status cert-status--active">Active</div>
+        </div>
+        <div class="cert-body">
+          <h3 class="cert-title">Solar Energy Basics</h3>
+          <p class="cert-issuer">The State University of New York (via Coursera)</p>
+          <p class="cert-date">Issued March 2026</p>
+          <p class="cert-id">Credential ID: P0BZORKOJ9P6</p>
+        </div>
+        <div class="cert-footer">
+          <a href="https://www.coursera.org/account/accomplishments/records/P0BZORKOJ9P6" target="_blank" rel="noopener" class="cert-verify-btn">Verify Credential ↗</a>
+          <span class="cert-tag cert-tag--tech">Energy</span>
+        </div>
+      </div>
+
+      <div class="cert-card cert-card--databricks">
+        <div class="cert-badge">
+          <div class="cert-logo cert-logo--db">DB</div>
+          <div class="cert-status cert-status--active">Active</div>
+        </div>
+        <div class="cert-body">
+          <h3 class="cert-title">Databricks Certification</h3>
+          <p class="cert-issuer">Databricks</p>
+          <p class="cert-date">See LinkedIn for details</p>
+        </div>
+        <div class="cert-footer">
+          <a href="https://www.linkedin.com/in/brian-kuzdas-a176b945/details/certifications/" target="_blank" rel="noopener" class="cert-verify-btn">View on LinkedIn ↗</a>
+          <span class="cert-tag cert-tag--data">Data</span>
+        </div>
+      </div>
+
+      <div class="cert-card cert-card--google">
+        <div class="cert-badge">
+          <div class="cert-logo cert-logo--gcp">G</div>
+          <div class="cert-status cert-status--active">Active</div>
+        </div>
+        <div class="cert-body">
+          <h3 class="cert-title">Google Certification</h3>
+          <p class="cert-issuer">Google</p>
+          <p class="cert-date">See LinkedIn for details</p>
+        </div>
+        <div class="cert-footer">
+          <a href="https://www.linkedin.com/in/brian-kuzdas-a176b945/details/certifications/" target="_blank" rel="noopener" class="cert-verify-btn">View on LinkedIn ↗</a>
+          <span class="cert-tag cert-tag--cloud">Cloud</span>
+        </div>
+      </div>
+
+      <div class="cert-card cert-card--okta">
+        <div class="cert-badge">
+          <div class="cert-logo cert-logo--okta">OK</div>
+          <div class="cert-status cert-status--active">Active</div>
+        </div>
+        <div class="cert-body">
+          <h3 class="cert-title">Okta Certification</h3>
+          <p class="cert-issuer">Okta</p>
+          <p class="cert-date">See LinkedIn for details</p>
+        </div>
+        <div class="cert-footer">
+          <a href="https://www.linkedin.com/in/brian-kuzdas-a176b945/details/certifications/" target="_blank" rel="noopener" class="cert-verify-btn">View on LinkedIn ↗</a>
+          <span class="cert-tag cert-tag--security">Identity</span>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
 <section class="cta-section">
   <div class="container cta-inner">
     <div>
@@ -291,6 +403,90 @@ import Layout from '../layouts/Layout.astro';
 .str-icon { font-size: 2rem; margin-bottom: var(--sp-md); }
 .str-title { font-size: 1rem; font-weight: 700; color: var(--navy); margin-bottom: var(--sp-sm); }
 .strength-card p { font-size: 0.875rem; color: var(--sub); line-height: 1.7; }
+
+/* ── CERTIFICATIONS ── */
+.certs-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(320px, 1fr));
+  gap: var(--sp-xl);
+}
+.cert-card {
+  background: var(--white);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg);
+  padding: var(--sp-xl);
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: var(--sp-md);
+  transition: box-shadow var(--transition), transform var(--transition);
+  border-top: 3px solid var(--border);
+}
+.cert-card:hover { box-shadow: var(--shadow-md); transform: translateY(-2px); }
+.cert-card--aws   { border-top-color: #FF9900; }
+.cert-card--azure { border-top-color: #0078D4; }
+.cert-card--suny  { border-top-color: #e8b840; }
+.cert-card--databricks { border-top-color: #FF3621; }
+.cert-card--google     { border-top-color: #4285F4; }
+.cert-card--okta       { border-top-color: #007DC1; }
+
+.cert-badge {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+.cert-logo {
+  width: 44px; height: 44px;
+  border-radius: var(--r-md);
+  display: flex; align-items: center; justify-content: center;
+  font-weight: 900; font-size: 0.75rem; letter-spacing: 0.05em;
+  color: #fff;
+}
+.cert-logo--aws  { background: #FF9900; color: #111; }
+.cert-logo--ms   { background: #0078D4; }
+.cert-logo--edu  { background: var(--cream); border: 1px solid var(--border); font-size: 1.3rem; }
+.cert-logo--db   { background: #FF3621; }
+.cert-logo--gcp  { background: #4285F4; font-size: 1.2rem; }
+.cert-logo--okta { background: #007DC1; }
+
+.cert-status {
+  font-size: 0.7rem; font-weight: 700; letter-spacing: 0.08em;
+  text-transform: uppercase; padding: 3px 10px;
+  border-radius: 20px;
+}
+.cert-status--active {
+  background: rgba(34,197,94,0.12);
+  color: #16a34a;
+}
+
+.cert-body { flex: 1; }
+.cert-title  { font-size: 1rem; font-weight: 800; color: var(--navy); margin-bottom: 4px; line-height: 1.35; }
+.cert-issuer { font-size: 0.85rem; font-weight: 600; color: var(--sub); margin-bottom: 4px; }
+.cert-date   { font-size: 0.8rem; color: var(--muted); margin-bottom: 2px; }
+.cert-id     { font-size: 0.72rem; color: var(--muted); font-family: var(--font-mono); word-break: break-all; }
+
+.cert-footer {
+  display: flex; align-items: center; justify-content: space-between;
+  flex-wrap: wrap; gap: var(--sp-sm);
+  padding-top: var(--sp-md);
+  border-top: 1px solid var(--border-soft);
+}
+.cert-verify-btn {
+  font-size: 0.78rem; font-weight: 700; color: var(--navy);
+  text-decoration: none; letter-spacing: 0.03em;
+  transition: color var(--transition);
+}
+.cert-verify-btn:hover { color: var(--gold); }
+
+.cert-tag {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; padding: 2px 8px;
+  border-radius: 20px; border: 1px solid;
+}
+.cert-tag--cloud    { background: rgba(0,120,212,.08); color: #0078D4; border-color: rgba(0,120,212,.2); }
+.cert-tag--security { background: rgba(0,125,193,.08); color: #007DC1; border-color: rgba(0,125,193,.2); }
+.cert-tag--data     { background: rgba(255,54,33,.08); color: #FF3621; border-color: rgba(255,54,33,.2); }
+.cert-tag--tech     { background: var(--gold-muted); color: var(--gold); border-color: rgba(200,150,30,.3); }
 
 /* ── CTA ── */
 .cta-section { background: linear-gradient(135deg, var(--navy-dark), var(--navy)); padding-block: var(--sp-4xl); }
