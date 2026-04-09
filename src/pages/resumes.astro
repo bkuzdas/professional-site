@@ -85,6 +85,7 @@ const resumes = [
             </ul>
             <div class="rc-actions">
               <a href={r.href} class="btn btn-primary">View Resume</a>
+              <a href={r.docx} download class="btn btn-outline doc-dl-btn">⬇ Download .docx</a>
             </div>
           </div>
         </div>
@@ -120,9 +121,14 @@ const resumes = [
             <span class="tag">+5 more</span>
           </div>
         </div>
-        <a href="/docs/Brian_Kuzdas_Credentials.pdf" download class="btn btn-gold doc-dl-btn">
-          ⬇ Download PDF
-        </a>
+        <div class="doc-dl-btns">
+          <a href="/docs/Brian_Kuzdas_Credentials.pdf" download class="btn btn-gold doc-dl-btn">
+            ⬇ Download PDF
+          </a>
+          <a href="/docs/Brian_Kuzdas_Credentials.docx" download class="btn btn-outline doc-dl-btn">
+            ⬇ Download .docx
+          </a>
+        </div>
       </div>
 
     </div>
@@ -236,6 +242,8 @@ const resumes = [
 .rc-actions { display: flex; flex-wrap: wrap; gap: var(--sp-md); }
 
 /* ── SUPPORTING DOCS ── */
+.doc-dl-btns { display: flex; flex-direction: column; gap: var(--sp-sm); align-self: center; flex-shrink: 0; }
+@media (max-width: 640px) { .doc-dl-btns { flex-direction: row; flex-wrap: wrap; } }
 .doc-cards { display: flex; flex-direction: column; gap: var(--sp-lg); }
 .doc-card {
   display: flex; align-items: flex-start; gap: var(--sp-2xl);
