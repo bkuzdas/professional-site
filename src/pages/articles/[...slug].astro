@@ -1,0 +1,410 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection, getEntry } from 'astro:content';
+
+export async function getStaticPaths() {
+  const articles = await getCollection('articles');
+  return articles.map(article => ({
+    params: { slug: article.slug },
+    props: { article },
+  }));
+}
+
+const { article } = Astro.props;
+const { Content } = await article.render();
+
+const allArticles = await getCollection('articles');
+const related = allArticles
+  .filter(a => a.slug !== article.slug && a.data.category === article.data.category)
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf())
+  .slice(0, 3);
+---
+
+<Layout
+  title={`${article.data.title} — Brian Kuzdas`}
+  description={article.data.description}
+  page="articles"
+>
+
+<!-- ── ARTICLE HEADER ── -->
+<header class="article-header">
+  <div class="container">
+    <nav class="breadcrumb">
+      <a href="/">Home</a>
+      <span>/</span>
+      <a href="/articles">Articles</a>
+      <span>/</span>
+      <span class="crumb-current">{article.data.category}</span>
+    </nav>
+
+    <div class="header-meta">
+      <span class="cat-badge">{article.data.category}</span>
+      {article.data.published && (
+        <span class="published-badge">Published on LinkedIn</span>
+      )}
+    </div>
+
+    <h1 class="article-title">{article.data.title}</h1>
+    <p class="article-description">{article.data.description}</p>
+
+    <div class="header-bottom">
+      <div class="author-block">
+        <div class="author-avatar">BK</div>
+        <div class="author-info">
+          <span class="author-name">Brian Kuzdas</span>
+          <span class="author-role">Enterprise IT Architect · Madison, WI</span>
+        </div>
+      </div>
+      <div class="article-date">
+        {article.data.pubDate.toLocaleDateString('en-US', {
+          year: 'numeric', month: 'long', day: 'numeric'
+        })}
+      </div>
+    </div>
+
+    <div class="article-tags">
+      {article.data.tags.map(tag => (
+        <span class="tag">#{tag}</span>
+      ))}
+    </div>
+  </div>
+</header>
+
+<!-- ── COVER IMAGE ── -->
+{article.data.coverImage && (
+  <div class="cover-wrap">
+    <div class="container">
+      <img
+        src={article.data.coverImage}
+        alt={article.data.title}
+        class="cover-img"
+        loading="eager"
+      />
+    </div>
+  </div>
+)}
+
+<!-- ── ARTICLE BODY ── -->
+<div class="article-layout">
+  <div class="container">
+    <div class="article-grid">
+
+      <!-- Main Content -->
+      <main class="article-body prose">
+        <Content />
+      </main>
+
+      <!-- Sidebar -->
+      <aside class="article-sidebar">
+        <div class="sidebar-sticky">
+
+          <!-- About the Author -->
+          <div class="sidebar-card">
+            <div class="sidebar-author">
+              <div class="sidebar-avatar">BK</div>
+              <div>
+                <p class="sidebar-name">Brian Kuzdas</p>
+                <p class="sidebar-title">Enterprise IT Architect</p>
+              </div>
+            </div>
+            <p class="sidebar-bio">
+              25+ years building enterprise infrastructure, validated systems, and security architecture for FDA-regulated, healthcare, and financial environments.
+            </p>
+            <div class="sidebar-links">
+              <a href="https://www.linkedin.com/in/brian-kuzdas-a176b945/" target="_blank" rel="noopener" class="btn btn-primary sidebar-btn">
+                Connect on LinkedIn ↗
+              </a>
+              <a href="/articles" class="btn btn-ghost sidebar-btn">
+                ← All Articles
+              </a>
+            </div>
+          </div>
+
+          <!-- LinkedIn CTA -->
+          {article.data.linkedinUrl && (
+            <div class="sidebar-card sidebar-linkedin">
+              <p class="sidebar-linkedin-label">Also on LinkedIn</p>
+              <a href={article.data.linkedinUrl} target="_blank" rel="noopener" class="linkedin-cta-link">
+                Read &amp; comment on LinkedIn ↗
+              </a>
+            </div>
+          )}
+
+          <!-- Tags -->
+          <div class="sidebar-card">
+            <p class="sidebar-section-label">Tags</p>
+            <div class="sidebar-tags">
+              {article.data.tags.map(tag => (
+                <span class="sidebar-tag">#{tag}</span>
+              ))}
+            </div>
+          </div>
+
+        </div>
+      </aside>
+    </div>
+  </div>
+</div>
+
+<!-- ── RELATED ARTICLES ── -->
+{related.length > 0 && (
+  <section class="section section--alt related-section">
+    <div class="container">
+      <p class="section-label">More in {article.data.category}</p>
+      <div class="related-grid">
+        {related.map(rel => (
+          <article class="related-card">
+            <a href={`/articles/${rel.slug}`}>
+              {rel.data.coverImage && (
+                <div class="related-img">
+                  <img src={rel.data.coverImage} alt={rel.data.title} loading="lazy" />
+                </div>
+              )}
+              <div class="related-content">
+                <span class="cat-badge">{rel.data.category}</span>
+                <h4 class="related-title">{rel.data.title}</h4>
+                <p class="related-desc">{rel.data.description.slice(0, 120)}…</p>
+                <span class="read-more">Read Article →</span>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- ── BOTTOM CTA ── -->
+<section class="section bottom-cta">
+  <div class="container">
+    <div class="cta-inner">
+      <div>
+        <h2 class="cta-title">Want to work together?</h2>
+        <p class="cta-sub">Available for vCTO engagements, architecture reviews, and security consulting in regulated environments.</p>
+      </div>
+      <div class="cta-actions">
+        <a href="mailto:contact@technicalriskarchitect.com" class="btn btn-primary">Get In Touch</a>
+        <a href="/articles" class="btn btn-ghost">← Back to Articles</a>
+      </div>
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<style>
+/* ── HEADER ── */
+.article-header {
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 100%);
+  padding: calc(var(--nav-height) + var(--sp-3xl)) 0 var(--sp-3xl);
+  color: var(--white);
+}
+.breadcrumb {
+  display: flex; align-items: center; gap: 0.5rem;
+  font-size: 0.82rem; color: rgba(255,255,255,.5);
+  margin-bottom: var(--sp-lg);
+}
+.breadcrumb a { color: rgba(255,255,255,.6); transition: color var(--transition); }
+.breadcrumb a:hover { color: var(--gold-light); }
+.breadcrumb span { color: rgba(255,255,255,.3); }
+.crumb-current { color: var(--gold-light); }
+
+.header-meta { display: flex; align-items: center; gap: 0.6rem; margin-bottom: var(--sp-lg); flex-wrap: wrap; }
+.article-title {
+  font-size: clamp(1.6rem, 4vw, 2.8rem);
+  font-weight: 800; line-height: 1.2; letter-spacing: -0.02em;
+  margin-bottom: var(--sp-lg); max-width: 70ch;
+}
+.article-description {
+  font-size: 1.1rem; color: rgba(255,255,255,.75);
+  max-width: 65ch; line-height: 1.7; margin-bottom: var(--sp-xl);
+}
+.header-bottom {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--sp-lg); flex-wrap: wrap; margin-bottom: var(--sp-lg);
+}
+.author-block { display: flex; align-items: center; gap: var(--sp-md); }
+.author-avatar {
+  width: 44px; height: 44px; border-radius: 50%;
+  background: var(--gold); color: var(--navy-dark);
+  font-weight: 800; font-size: 0.8rem;
+  display: flex; align-items: center; justify-content: center;
+  flex-shrink: 0;
+}
+.author-info { display: flex; flex-direction: column; gap: 0.15rem; }
+.author-name { font-size: 0.95rem; font-weight: 600; color: var(--white); }
+.author-role { font-size: 0.78rem; color: rgba(255,255,255,.55); }
+.article-date { font-size: 0.85rem; color: rgba(255,255,255,.5); }
+.article-tags { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.tag {
+  font-size: 0.75rem; color: rgba(255,255,255,.55);
+  background: rgba(255,255,255,.08); padding: 0.2rem 0.6rem;
+  border-radius: var(--r-sm); border: 1px solid rgba(255,255,255,.1);
+}
+
+/* ── COVER IMAGE ── */
+.cover-wrap { background: var(--navy-dark); padding-bottom: 0; }
+.cover-img {
+  width: 100%; max-height: 480px; object-fit: cover;
+  border-radius: var(--r-lg) var(--r-lg) 0 0; display: block;
+}
+
+/* ── ARTICLE LAYOUT ── */
+.article-layout { padding: var(--sp-3xl) 0; background: var(--cream); }
+.article-grid {
+  display: grid;
+  grid-template-columns: 1fr 300px;
+  gap: var(--sp-4xl);
+  align-items: start;
+}
+
+/* ── PROSE ── */
+.prose {
+  font-size: 1.05rem; line-height: 1.85; color: var(--ink);
+}
+.prose :global(h2) {
+  font-size: 1.55rem; font-weight: 700; color: var(--navy);
+  margin: 2.5rem 0 1rem; letter-spacing: -0.01em; line-height: 1.3;
+  border-bottom: 2px solid var(--gold-muted); padding-bottom: 0.5rem;
+}
+.prose :global(h3) {
+  font-size: 1.2rem; font-weight: 700; color: var(--navy);
+  margin: 2rem 0 0.75rem; letter-spacing: -0.01em;
+}
+.prose :global(h4) {
+  font-size: 1.05rem; font-weight: 600; color: var(--navy-mid);
+  margin: 1.5rem 0 0.5rem;
+}
+.prose :global(p) { margin-bottom: 1.4rem; }
+.prose :global(ul), .prose :global(ol) {
+  margin: 1rem 0 1.4rem 1.5rem;
+}
+.prose :global(ul) { list-style: disc; }
+.prose :global(ol) { list-style: decimal; }
+.prose :global(li) { margin-bottom: 0.5rem; line-height: 1.7; }
+.prose :global(strong) { font-weight: 700; color: var(--navy); }
+.prose :global(em) { font-style: italic; color: var(--sub); }
+.prose :global(a) { color: var(--navy); text-decoration: underline; text-underline-offset: 3px; }
+.prose :global(a):hover { color: var(--gold); }
+.prose :global(hr) { border: none; border-top: 1px solid var(--border); margin: 2.5rem 0; }
+.prose :global(blockquote) {
+  border-left: 4px solid var(--gold);
+  padding: 0.75rem 1.25rem; margin: 1.5rem 0;
+  background: var(--gold-muted); border-radius: 0 var(--r-md) var(--r-md) 0;
+  font-style: italic; color: var(--sub);
+}
+.prose :global(code) {
+  font-family: var(--font-mono); font-size: 0.88em;
+  background: var(--light); padding: 0.15em 0.4em;
+  border-radius: var(--r-sm); color: var(--navy);
+  border: 1px solid var(--border-soft);
+}
+.prose :global(pre) {
+  background: var(--navy-dark); padding: 1.25rem; border-radius: var(--r-lg);
+  overflow-x: auto; margin: 1.5rem 0;
+}
+.prose :global(pre code) {
+  background: none; border: none; color: #e8eaf2; padding: 0;
+}
+.prose :global(table) { width: 100%; border-collapse: collapse; margin: 1.5rem 0; font-size: 0.9rem; }
+.prose :global(th) { background: var(--navy); color: var(--white); padding: 0.65rem 1rem; text-align: left; font-weight: 600; }
+.prose :global(td) { padding: 0.65rem 1rem; border-bottom: 1px solid var(--border-soft); }
+.prose :global(tr:hover td) { background: var(--light); }
+
+/* ── SIDEBAR ── */
+.article-sidebar {}
+.sidebar-sticky { position: sticky; top: calc(var(--nav-height) + 2rem); display: flex; flex-direction: column; gap: var(--sp-lg); }
+.sidebar-card {
+  background: var(--white); border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg); padding: var(--sp-lg);
+  box-shadow: var(--shadow-sm);
+}
+.sidebar-author { display: flex; align-items: center; gap: var(--sp-md); margin-bottom: var(--sp-md); }
+.sidebar-avatar {
+  width: 48px; height: 48px; border-radius: 50%;
+  background: var(--navy); color: var(--white);
+  font-weight: 800; font-size: 0.85rem;
+  display: flex; align-items: center; justify-content: center; flex-shrink: 0;
+}
+.sidebar-name { font-weight: 700; font-size: 0.95rem; color: var(--navy); }
+.sidebar-title { font-size: 0.78rem; color: var(--muted); }
+.sidebar-bio { font-size: 0.85rem; color: var(--sub); line-height: 1.6; margin-bottom: var(--sp-md); }
+.sidebar-links { display: flex; flex-direction: column; gap: var(--sp-sm); }
+.sidebar-btn { width: 100%; text-align: center; font-size: 0.85rem; }
+.sidebar-linkedin-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: var(--sp-sm); }
+.sidebar-linkedin { border-left: 3px solid #0077b5; }
+.linkedin-cta-link { font-size: 0.9rem; font-weight: 600; color: #0077b5; transition: opacity var(--transition); }
+.linkedin-cta-link:hover { opacity: 0.75; }
+.sidebar-section-label { font-size: 0.72rem; font-weight: 700; text-transform: uppercase; letter-spacing: 0.1em; color: var(--muted); margin-bottom: var(--sp-sm); }
+.sidebar-tags { display: flex; flex-wrap: wrap; gap: 0.4rem; }
+.sidebar-tag { font-size: 0.72rem; color: var(--sub); background: var(--light); padding: 0.2rem 0.5rem; border-radius: var(--r-sm); }
+
+/* ── RELATED ── */
+.related-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(280px, 1fr)); gap: var(--sp-xl); }
+.related-card {
+  background: var(--white); border-radius: var(--r-lg);
+  border: 1px solid var(--border-soft); overflow: hidden;
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.related-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.related-card a { display: flex; flex-direction: column; height: 100%; color: inherit; }
+.related-img { aspect-ratio: 16/9; overflow: hidden; background: var(--light); }
+.related-img img { width: 100%; height: 100%; object-fit: cover; }
+.related-content { padding: var(--sp-lg); flex: 1; display: flex; flex-direction: column; gap: 0.5rem; }
+.related-title { font-size: 1rem; font-weight: 700; color: var(--navy); line-height: 1.35; }
+.related-desc { font-size: 0.85rem; color: var(--sub); line-height: 1.6; flex: 1; }
+.read-more { font-size: 0.85rem; font-weight: 600; color: var(--navy); margin-top: auto; transition: color var(--transition); }
+.related-card:hover .read-more { color: var(--gold); }
+
+/* ── BOTTOM CTA ── */
+.bottom-cta { background: var(--navy-dark); }
+.cta-inner {
+  display: flex; align-items: center; justify-content: space-between;
+  gap: var(--sp-2xl); flex-wrap: wrap;
+}
+.cta-title { font-size: 1.75rem; font-weight: 700; color: var(--white); margin-bottom: var(--sp-sm); }
+.cta-sub { font-size: 1rem; color: rgba(255,255,255,.65); max-width: 50ch; }
+.cta-actions { display: flex; gap: var(--sp-md); flex-wrap: wrap; }
+
+/* ── BADGES (shared) ── */
+.cat-badge {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold);
+  background: var(--gold-muted); padding: 0.2rem 0.6rem;
+  border-radius: 100px; border: 1px solid rgba(200,150,30,.2);
+}
+.published-badge {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: #1a7f4f;
+  background: rgba(26,127,79,.1); padding: 0.2rem 0.6rem;
+  border-radius: 100px; border: 1px solid rgba(26,127,79,.2);
+}
+
+/* ── BTN GHOST ── */
+:global(.btn-ghost) {
+  background: transparent;
+  border: 1px solid rgba(255,255,255,.25);
+  color: rgba(255,255,255,.8);
+  padding: 0.55rem 1.4rem;
+  border-radius: var(--r-md);
+  font-weight: 600; font-size: 0.9rem;
+  transition: all var(--transition);
+  display: inline-block;
+}
+:global(.btn-ghost):hover {
+  background: rgba(255,255,255,.1);
+  border-color: rgba(255,255,255,.4);
+  color: var(--white);
+}
+
+/* ── RESPONSIVE ── */
+@media (max-width: 900px) {
+  .article-grid { grid-template-columns: 1fr; }
+  .article-sidebar { display: none; }
+}
+@media (max-width: 640px) {
+  .header-bottom { flex-direction: column; align-items: flex-start; }
+  .cta-inner { flex-direction: column; }
+  .related-grid { grid-template-columns: 1fr; }
+}
+</style>

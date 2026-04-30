@@ -1,168 +1,128 @@
-/**
- * POST /api/request-access
- * 1. Validates form fields
- * 2. Generates a time-limited HMAC-signed magic link
- * 3. Sends magic link to user via Resend
- * 4. Logs submission to GitHub Gist
- * 5. Emails Brian a notification
- * 6. Redirects to "check your email" page
- *
- * Env vars:
- *   SESSION_SECRET  — HMAC secret for signing tokens
- *   RESEND_API_KEY  — Resend.com API key
- *   GITHUB_TOKEN    — GitHub PAT with gist scope
- *   GITHUB_GIST_ID  — Private gist ID (auto-created if blank)
- */
+import {
+  HttpError,
+  ensureMaxLength,
+  isValidEmail,
+  normalizeEmail,
+  requireEmptyHoneypot,
+  signMagicLink,
+} from '../_lib/auth.js';
+import { sendZeptoEmail } from '../_lib/mail.js';
+import { assertNotRateLimited, recordMagicLinkIssued, recordSubmission } from '../_lib/security-events.js';
+import { verifyTurnstileToken } from '../_lib/turnstile.js';
 
-const PROTECTED_REDIRECT = '/experience';
 const TOKEN_TTL_SECONDS  = 900; // 15 minutes to click the link
+const REQUEST_ACCESS_RATE_LIMIT = {
+  perIp: { limit: 5, windowMs: 60 * 60 * 1000 },
+  perEmail: { limit: 3, windowMs: 24 * 60 * 60 * 1000 },
+};
 
 export async function onRequestPost(context) {
   const { request, env } = context;
+  try {
+    const formData  = await request.formData();
+    const firstName = String(formData.get('first_name') || '').trim();
+    const lastName  = String(formData.get('last_name')  || '').trim();
+    const phone     = String(formData.get('phone')      || '').trim();
+    const email     = normalizeEmail(formData.get('email'));
+    const website   = String(formData.get('website')    || '');
+    const turnstileToken = String(formData.get('cf-turnstile-response') || '');
 
-  const formData  = await request.formData();
-  const firstName = (formData.get('first_name') || '').trim();
-  const lastName  = (formData.get('last_name')  || '').trim();
-  const phone     = (formData.get('phone')      || '').trim();
-  const email     = (formData.get('email')      || '').trim().toLowerCase();
+    requireEmptyHoneypot(website);
+    ensureMaxLength(firstName, 80, 'First name');
+    ensureMaxLength(lastName, 80, 'Last name');
+    ensureMaxLength(phone, 40, 'Phone');
+    ensureMaxLength(email, 254, 'Email');
 
-  if (!firstName || !lastName || !email || !email.includes('@')) {
-    return new Response('Missing or invalid fields', { status: 400 });
+    if (!firstName || !lastName || !isValidEmail(email)) {
+      throw new HttpError(400, 'Missing or invalid fields');
+    }
+
+    await verifyTurnstileToken(env, request, turnstileToken);
+    await assertNotRateLimited(env, request, 'request_access', email, REQUEST_ACCESS_RATE_LIMIT);
+
+    const timestamp  = new Date().toISOString();
+    const entry      = { firstName, lastName, phone, email, requestedAt: timestamp };
+    const origin     = new URL(request.url).origin;
+    const exp        = Math.floor(Date.now() / 1000) + TOKEN_TTL_SECONDS;
+    const nonce      = crypto.randomUUID();
+    const sig        = await signMagicLink(email, String(exp), nonce, env);
+    const magicLink  = `${origin}/api/verify?email=${encodeURIComponent(email)}&exp=${exp}&nonce=${encodeURIComponent(nonce)}&sig=${encodeURIComponent(sig)}`;
+
+    await sendMagicLink(env, entry, magicLink);
+    await recordSubmission(env, request, 'request_access', email);
+    await recordMagicLinkIssued(env, request, email, nonce);
+
+    notifyContact(env, entry).catch(err => console.error('Access request notify error:', err));
+
+    return Response.redirect(`${origin}/request-access-success`, 303);
+  } catch (error) {
+    if (error instanceof HttpError) {
+      return new Response(error.message, { status: error.status });
+    }
+
+    console.error('request-access error:', error);
+    return new Response('Unable to process request access', { status: 500 });
   }
-
-  const timestamp  = new Date().toISOString();
-  const entry      = { firstName, lastName, phone, email, requestedAt: timestamp };
-  const origin     = new URL(request.url).origin;
-
-  // Build magic link
-  const exp   = Math.floor(Date.now() / 1000) + TOKEN_TTL_SECONDS;
-  const payload = `${email}|${exp}`;
-  const sig   = await hmacSign(payload, env.SESSION_SECRET);
-  const magicLink = `${origin}/api/verify?email=${encodeURIComponent(email)}&exp=${exp}&sig=${encodeURIComponent(sig)}`;
-
-  // 1 — Send magic link to user
-  await sendMagicLink(env, entry, magicLink);
-
-  // 2 — Log to GitHub Gist (non-blocking)
-  logToGist(env, entry).catch(err => console.error('Gist log error:', err));
-
-  // 3 — Notify Brian (non-blocking)
-  notifyBrian(env, entry).catch(err => console.error('Email notify error:', err));
-
-  // 4 — Redirect to "check your email" page
-  return Response.redirect(`${origin}/request-access-success`, 303);
 }
-
-// ── Crypto helpers ──────────────────────────────────────────────────────────
-
-async function hmacSign(data, secret) {
-  const key = await crypto.subtle.importKey(
-    'raw', new TextEncoder().encode(secret),
-    { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']
-  );
-  const buf = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(data));
-  return btoa(String.fromCharCode(...new Uint8Array(buf)))
-    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
-}
-
-// ── Email: magic link to user ────────────────────────────────────────────────
 
 async function sendMagicLink(env, entry, magicLink) {
-  const { RESEND_API_KEY } = env;
-  if (!RESEND_API_KEY) throw new Error('RESEND_API_KEY not set');
-
-  await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      from: 'Brian Kuzdas Portfolio <portfolio@brianboruma.com>',
-      to: [entry.email],
-      subject: 'Your access link — Brian Kuzdas Portfolio',
-      html: `
-        <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:2rem;">
-          <h2 style="color:#0a0f1e;margin:0 0 0.5rem;">Hi ${entry.firstName},</h2>
-          <p style="color:#444;line-height:1.6;">
-            Click the button below to access Brian's private professional portfolio.
-            This link expires in <strong>15 minutes</strong>.
-          </p>
-          <a href="${magicLink}"
-             style="display:inline-block;margin:1.5rem 0;background:#d4af37;color:#0a0f1e;
-                    padding:0.85rem 2rem;border-radius:6px;font-weight:700;text-decoration:none;
-                    font-size:1rem;">
-            Enter Portfolio →
-          </a>
-          <p style="color:#888;font-size:0.82rem;line-height:1.5;">
-            If you didn't request this, you can safely ignore this email.<br>
-            This link can only be used once and expires in 15 minutes.
-          </p>
-        </div>
-      `,
-    }),
+  await sendZeptoEmail(env, {
+    to: [{ address: entry.email, name: `${entry.firstName} ${entry.lastName}`.trim() }],
+    subject: 'Your verified guest access link — Brian Kuzdas',
+    htmlbody: `
+      <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:2rem;">
+        <h2 style="color:#0a0f1e;margin:0 0 0.5rem;">Hi ${escapeHtml(entry.firstName)},</h2>
+        <p style="color:#444;line-height:1.6;">
+          Click the button below to access Brian's professional portfolio. This link expires in
+          <strong>15 minutes</strong> and can only be used once.
+        </p>
+        <a href="${magicLink}"
+           style="display:inline-block;margin:1.5rem 0;background:#d4af37;color:#0a0f1e;
+                  padding:0.85rem 2rem;border-radius:6px;font-weight:700;text-decoration:none;
+                  font-size:1rem;">
+          Enter Portfolio →
+        </a>
+        <p style="color:#888;font-size:0.82rem;line-height:1.5;">
+          If you didn't request this, you can safely ignore this email.
+        </p>
+      </div>
+    `,
   });
 }
 
-// ── Email: notify Brian ──────────────────────────────────────────────────────
-
-async function notifyBrian(env, entry) {
-  const { RESEND_API_KEY } = env;
-  if (!RESEND_API_KEY) return;
-
+async function notifyContact(env, entry) {
   const { firstName, lastName, phone, email, requestedAt } = entry;
   const date = new Date(requestedAt).toLocaleString('en-US', { timeZone: 'America/Chicago' });
 
-  await fetch('https://api.resend.com/emails', {
-    method: 'POST',
-    headers: { 'Authorization': `Bearer ${RESEND_API_KEY}`, 'Content-Type': 'application/json' },
-    body: JSON.stringify({
-      from: 'Portfolio Access <portfolio@brianboruma.com>',
-      to: ['brian.kuzdas@gmail.com'],
-      subject: `Portfolio Access Request — ${firstName} ${lastName}`,
-      html: `
-        <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:2rem;">
-          <h2 style="margin:0 0 1rem;color:#0a0f1e;">New Portfolio Access Request</h2>
-          <table style="width:100%;border-collapse:collapse;">
-            <tr><td style="padding:0.5rem 0;color:#666;width:130px;">Name</td>
-                <td style="padding:0.5rem 0;font-weight:600;">${firstName} ${lastName}</td></tr>
-            <tr><td style="padding:0.5rem 0;color:#666;">Email</td>
-                <td style="padding:0.5rem 0;font-weight:600;">${email}</td></tr>
-            <tr><td style="padding:0.5rem 0;color:#666;">Phone</td>
-                <td style="padding:0.5rem 0;">${phone || '—'}</td></tr>
-            <tr><td style="padding:0.5rem 0;color:#666;">Submitted</td>
-                <td style="padding:0.5rem 0;">${date} CT</td></tr>
-          </table>
-          <p style="margin-top:1.5rem;color:#666;font-size:0.85rem;">
-            A magic link was sent to their email automatically.
-          </p>
-        </div>
-      `,
-    }),
+  await sendZeptoEmail(env, {
+    to: [{ address: 'contact@technicalriskarchitect.com', name: 'Technical Risk Architect' }],
+    subject: `Portfolio Access Request — ${firstName} ${lastName}`,
+    htmlbody: `
+      <div style="font-family:sans-serif;max-width:480px;margin:0 auto;padding:2rem;">
+        <h2 style="margin:0 0 1rem;color:#0a0f1e;">New Portfolio Access Request</h2>
+        <table style="width:100%;border-collapse:collapse;">
+          <tr><td style="padding:0.5rem 0;color:#666;width:130px;">Name</td>
+              <td style="padding:0.5rem 0;font-weight:600;">${escapeHtml(firstName)} ${escapeHtml(lastName)}</td></tr>
+          <tr><td style="padding:0.5rem 0;color:#666;">Email</td>
+              <td style="padding:0.5rem 0;font-weight:600;">${escapeHtml(email)}</td></tr>
+          <tr><td style="padding:0.5rem 0;color:#666;">Phone</td>
+              <td style="padding:0.5rem 0;">${escapeHtml(phone || '—')}</td></tr>
+          <tr><td style="padding:0.5rem 0;color:#666;">Submitted</td>
+              <td style="padding:0.5rem 0;">${escapeHtml(date)} CT</td></tr>
+        </table>
+        <p style="margin-top:1.5rem;color:#666;font-size:0.85rem;">
+          A one-time guest access link was sent automatically.
+        </p>
+      </div>
+    `,
   });
 }
 
-// ── Log to GitHub Gist ───────────────────────────────────────────────────────
-
-async function logToGist(env, entry) {
-  const { GITHUB_TOKEN, GITHUB_GIST_ID } = env;
-  if (!GITHUB_TOKEN) return;
-
-  const line = JSON.stringify(entry);
-
-  if (GITHUB_GIST_ID) {
-    const getRes  = await fetch(`https://api.github.com/gists/${GITHUB_GIST_ID}`, {
-      headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json', 'User-Agent': 'professional-portfolio' }
-    });
-    const gistData = await getRes.json();
-    const existing = gistData.files?.['access_requests.jsonl']?.content || '';
-    await fetch(`https://api.github.com/gists/${GITHUB_GIST_ID}`, {
-      method: 'PATCH',
-      headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json', 'User-Agent': 'professional-portfolio' },
-      body: JSON.stringify({ files: { 'access_requests.jsonl': { content: existing + line + '\n' } } })
-    });
-  } else {
-    await fetch('https://api.github.com/gists', {
-      method: 'POST',
-      headers: { 'Authorization': `Bearer ${GITHUB_TOKEN}`, 'Accept': 'application/vnd.github+json', 'Content-Type': 'application/json', 'User-Agent': 'professional-portfolio' },
-      body: JSON.stringify({ description: 'Portfolio Access Requests', public: false, files: { 'access_requests.jsonl': { content: line + '\n' } } })
-    });
-  }
+function escapeHtml(value) {
+  return String(value || '')
+    .replaceAll('&', '&amp;')
+    .replaceAll('<', '&lt;')
+    .replaceAll('>', '&gt;')
+    .replaceAll('"', '&quot;')
+    .replaceAll("'", '&#39;');
 }

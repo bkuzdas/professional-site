@@ -1,0 +1,286 @@
+---
+import Layout from '../../layouts/Layout.astro';
+import { getCollection } from 'astro:content';
+
+const allArticles = await getCollection('articles');
+const articles = allArticles
+  .sort((a, b) => b.data.pubDate.valueOf() - a.data.pubDate.valueOf());
+
+const categories = [...new Set(articles.map(a => a.data.category))].sort();
+---
+
+<Layout
+  title="Articles — Brian Kuzdas | Enterprise IT Architect"
+  description="Insights on enterprise security architecture, FDA/CGMP compliance, cloud infrastructure, and healthcare IT from 25+ years in the field."
+  page="articles"
+>
+
+<!-- ── PAGE HERO ── -->
+<section class="articles-hero">
+  <div class="container">
+    <div class="hero-eyebrow">
+      <span class="eyebrow-badge">Writing</span>
+    </div>
+    <h1 class="hero-title">Articles &amp; Insights</h1>
+    <p class="hero-sub">
+      Practical perspectives on enterprise security architecture, FDA-regulated systems, cloud infrastructure, and healthcare IT — drawn from 25+ years in the field.
+    </p>
+    <div class="hero-stats">
+      <span class="stat"><strong>{articles.length}</strong> Articles</span>
+      <span class="stat-div">·</span>
+      <span class="stat"><strong>{categories.length}</strong> Topics</span>
+      <span class="stat-div">·</span>
+      <span class="stat">Enterprise IT · Healthcare · Life Sciences</span>
+    </div>
+  </div>
+</section>
+
+<!-- ── CATEGORY FILTER ── -->
+<section class="filter-bar">
+  <div class="container">
+    <div class="filter-inner">
+      <span class="filter-label">Filter by topic:</span>
+      <div class="filter-chips" id="filterChips">
+        <button class="chip chip--active" data-cat="all">All</button>
+        {categories.map(cat => (
+          <button class="chip" data-cat={cat}>{cat}</button>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- ── FEATURED ARTICLES ── -->
+{articles.filter(a => a.data.featured).length > 0 && (
+  <section class="section featured-section" id="featured">
+    <div class="container">
+      <p class="section-label">Featured</p>
+      <div class="featured-grid" id="featuredGrid">
+        {articles.filter(a => a.data.featured).map(article => (
+          <article class="featured-card card-item" data-cat={article.data.category}>
+            <a href={`/articles/${article.slug}`} class="featured-card-inner">
+              {article.data.coverImage && (
+                <div class="featured-img-wrap">
+                  <img
+                    src={article.data.coverImage}
+                    alt={article.data.title}
+                    loading="lazy"
+                  />
+                </div>
+              )}
+              <div class="featured-content">
+                <div class="card-meta">
+                  <span class="cat-badge">{article.data.category}</span>
+                  <span class="card-date">
+                    {article.data.pubDate.toLocaleDateString('en-US', { year: 'numeric', month: 'long', day: 'numeric' })}
+                  </span>
+                  {article.data.published && <span class="published-badge">Published on LinkedIn</span>}
+                </div>
+                <h2 class="featured-title">{article.data.title}</h2>
+                <p class="featured-desc">{article.data.description}</p>
+                <div class="card-tags">
+                  {article.data.tags.slice(0, 4).map(tag => (
+                    <span class="tag">#{tag}</span>
+                  ))}
+                </div>
+                <span class="read-link">Read Article →</span>
+              </div>
+            </a>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+)}
+
+<!-- ── ALL ARTICLES GRID ── -->
+<section class="section section--alt articles-section" id="allArticles">
+  <div class="container">
+    <p class="section-label">All Articles</p>
+    <p class="no-results" id="noResults" style="display:none;">No articles in this category yet.</p>
+    <div class="articles-grid" id="articlesGrid">
+      {articles.map(article => (
+        <article class="article-card card-item" data-cat={article.data.category}>
+          <a href={`/articles/${article.slug}`} class="article-card-inner">
+            {article.data.coverImage && (
+              <div class="article-img-wrap">
+                <img
+                  src={article.data.coverImage}
+                  alt={article.data.title}
+                  loading="lazy"
+                />
+              </div>
+            )}
+            <div class="article-content">
+              <div class="card-meta">
+                <span class="cat-badge">{article.data.category}</span>
+                {article.data.published && <span class="published-badge">LinkedIn</span>}
+              </div>
+              <h3 class="article-title">{article.data.title}</h3>
+              <p class="article-desc">{article.data.description}</p>
+              <div class="card-footer">
+                <span class="card-date">
+                  {article.data.pubDate.toLocaleDateString('en-US', { month: 'short', day: 'numeric', year: 'numeric' })}
+                </span>
+                <span class="read-more">Read →</span>
+              </div>
+            </div>
+          </a>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<style>
+/* ── HERO ── */
+.articles-hero {
+  background: linear-gradient(135deg, var(--navy-dark) 0%, var(--navy) 60%, var(--navy-mid) 100%);
+  padding: calc(var(--nav-height) + var(--sp-3xl)) 0 var(--sp-3xl);
+  color: var(--white);
+}
+.hero-eyebrow { margin-bottom: var(--sp-md); }
+.eyebrow-badge {
+  background: var(--gold-muted);
+  border: 1px solid rgba(200,150,30,.3);
+  color: var(--gold-light);
+  font-size: 0.72rem; font-weight: 700; letter-spacing: 0.15em;
+  text-transform: uppercase; padding: 0.3rem 0.9rem;
+  border-radius: 100px;
+}
+.hero-title {
+  font-size: clamp(2rem, 5vw, 3.2rem);
+  font-weight: 800; line-height: 1.15;
+  letter-spacing: -0.02em; margin-bottom: var(--sp-lg);
+}
+.hero-sub {
+  font-size: 1.1rem; color: rgba(255,255,255,.75);
+  max-width: 60ch; line-height: 1.7; margin-bottom: var(--sp-xl);
+}
+.hero-stats { display: flex; align-items: center; gap: 0.75rem; flex-wrap: wrap; }
+.stat { font-size: 0.9rem; color: rgba(255,255,255,.65); }
+.stat strong { color: var(--gold-light); }
+.stat-div { color: rgba(255,255,255,.3); }
+
+/* ── FILTER BAR ── */
+.filter-bar {
+  background: var(--white);
+  border-bottom: 1px solid var(--border-soft);
+  padding: var(--sp-md) 0;
+  position: sticky; top: var(--nav-height); z-index: 50;
+  box-shadow: var(--shadow-sm);
+}
+.filter-inner { display: flex; align-items: center; gap: var(--sp-lg); flex-wrap: wrap; }
+.filter-label { font-size: 0.8rem; font-weight: 600; color: var(--muted); white-space: nowrap; text-transform: uppercase; letter-spacing: 0.08em; }
+.filter-chips { display: flex; gap: 0.5rem; flex-wrap: wrap; }
+.chip {
+  background: var(--light); border: 1px solid var(--border);
+  color: var(--sub); font-size: 0.8rem; font-weight: 500;
+  padding: 0.3rem 0.85rem; border-radius: 100px;
+  cursor: pointer; transition: all var(--transition);
+}
+.chip:hover { background: var(--gold-muted); border-color: var(--gold); color: var(--navy); }
+.chip--active { background: var(--navy); border-color: var(--navy); color: var(--white); }
+
+/* ── FEATURED SECTION ── */
+.featured-section { background: var(--cream); }
+.featured-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(500px, 1fr)); gap: var(--sp-xl); }
+.featured-card {
+  border-radius: var(--r-lg); overflow: hidden;
+  background: var(--white); box-shadow: var(--shadow-md);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.featured-card:hover { transform: translateY(-4px); box-shadow: var(--shadow-lg); }
+.featured-card-inner { display: flex; flex-direction: column; height: 100%; color: inherit; }
+.featured-img-wrap { width: 100%; aspect-ratio: 16/7; overflow: hidden; }
+.featured-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.featured-card:hover .featured-img-wrap img { transform: scale(1.03); }
+.featured-content { padding: var(--sp-xl); flex: 1; display: flex; flex-direction: column; gap: var(--sp-md); }
+.featured-title { font-size: 1.35rem; font-weight: 700; color: var(--navy); line-height: 1.3; }
+.featured-desc { font-size: 0.95rem; color: var(--sub); line-height: 1.65; flex: 1; }
+
+/* ── ARTICLES GRID ── */
+.articles-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(320px, 1fr)); gap: var(--sp-xl); }
+.article-card {
+  border-radius: var(--r-lg); overflow: hidden;
+  background: var(--white); box-shadow: var(--shadow-sm);
+  border: 1px solid var(--border-soft);
+  transition: transform var(--transition), box-shadow var(--transition);
+}
+.article-card:hover { transform: translateY(-3px); box-shadow: var(--shadow-md); }
+.article-card-inner { display: flex; flex-direction: column; height: 100%; color: inherit; }
+.article-img-wrap { width: 100%; aspect-ratio: 16/9; overflow: hidden; background: var(--light); }
+.article-img-wrap img { width: 100%; height: 100%; object-fit: cover; transition: transform 0.4s ease; }
+.article-card:hover .article-img-wrap img { transform: scale(1.04); }
+.article-content { padding: var(--sp-lg); flex: 1; display: flex; flex-direction: column; gap: 0.6rem; }
+.article-title { font-size: 1.05rem; font-weight: 700; color: var(--navy); line-height: 1.35; }
+.article-desc { font-size: 0.875rem; color: var(--sub); line-height: 1.6; flex: 1; }
+
+/* ── SHARED META ── */
+.card-meta { display: flex; align-items: center; gap: 0.5rem; flex-wrap: wrap; }
+.cat-badge {
+  font-size: 0.68rem; font-weight: 700; letter-spacing: 0.1em;
+  text-transform: uppercase; color: var(--gold);
+  background: var(--gold-muted); padding: 0.2rem 0.6rem;
+  border-radius: 100px; border: 1px solid rgba(200,150,30,.2);
+}
+.published-badge {
+  font-size: 0.65rem; font-weight: 600; letter-spacing: 0.08em;
+  text-transform: uppercase; color: #1a7f4f;
+  background: rgba(26,127,79,.1); padding: 0.2rem 0.6rem;
+  border-radius: 100px; border: 1px solid rgba(26,127,79,.2);
+}
+.card-date { font-size: 0.78rem; color: var(--muted); }
+.card-tags { display: flex; gap: 0.4rem; flex-wrap: wrap; }
+.tag { font-size: 0.72rem; color: var(--muted); background: var(--light); padding: 0.15rem 0.5rem; border-radius: var(--r-sm); }
+.card-footer { display: flex; align-items: center; justify-content: space-between; margin-top: auto; padding-top: var(--sp-sm); border-top: 1px solid var(--border-soft); }
+.read-more, .read-link {
+  font-size: 0.85rem; font-weight: 600; color: var(--navy);
+  transition: color var(--transition);
+}
+.article-card:hover .read-more,
+.featured-card:hover .read-link { color: var(--gold); }
+
+.no-results { font-size: 1rem; color: var(--muted); padding: var(--sp-xl) 0; }
+
+/* ── HIDDEN CARD ── */
+.card-item.hidden { display: none; }
+
+/* ── RESPONSIVE ── */
+@media (max-width: 640px) {
+  .featured-grid { grid-template-columns: 1fr; }
+  .articles-grid { grid-template-columns: 1fr; }
+  .filter-bar { position: static; }
+}
+</style>
+
+<script>
+const chips = document.querySelectorAll<HTMLButtonElement>('.chip');
+const cards = document.querySelectorAll<HTMLElement>('.card-item');
+const noResults = document.getElementById('noResults');
+const featuredSection = document.getElementById('featured');
+
+chips.forEach(chip => {
+  chip.addEventListener('click', () => {
+    const cat = chip.dataset.cat!;
+    chips.forEach(c => c.classList.remove('chip--active'));
+    chip.classList.add('chip--active');
+
+    let visible = 0;
+    cards.forEach(card => {
+      const show = cat === 'all' || card.dataset.cat === cat;
+      card.classList.toggle('hidden', !show);
+      if (show) visible++;
+    });
+
+    if (noResults) noResults.style.display = visible === 0 ? 'block' : 'none';
+    if (featuredSection) {
+      const featuredVisible = [...featuredSection.querySelectorAll<HTMLElement>('.card-item')]
+        .some(c => !c.classList.contains('hidden'));
+      (featuredSection as HTMLElement).style.display = featuredVisible ? '' : 'none';
+    }
+  });
+});
+</script>

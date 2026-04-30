@@ -1,7 +1,8 @@
-# Cloudflare Pages configuration
-[build]
-  command = "npm run build"
-  output_directory = "dist"
+name = "professional-site"
+pages_build_output_dir = "dist"
+compatibility_date = "2026-04-13"
 
-[build.environment]
-  NODE_VERSION = "22"
+[[kv_namespaces]]
+binding = "SECURITY_EVENTS"
+id = "12ae2f89972440cd9021c2573eb6ec18"
+preview_id = "f8d38ddc0ca74d099324d825e05b527b"

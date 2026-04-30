@@ -1,0 +1,207 @@
+---
+import DoorLayout from '../layouts/DoorLayout.astro';
+const TURNSTILE_SITE_KEY = '0x4AAAAAAC87rY45ADWoK6an';
+---
+<DoorLayout title="Discuss a vCTO Engagement — Brian Kuzdas">
+  <style>
+    .inquiry-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background: #0a0f1e;
+    }
+    .inquiry-card {
+      width: 100%;
+      max-width: 760px;
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 12px;
+      padding: 2.5rem 2rem;
+    }
+    .back-link {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.4rem;
+      color: rgba(255,255,255,0.4);
+      font-size: 0.85rem;
+      margin-bottom: 1.5rem;
+      transition: color 0.2s;
+    }
+    .back-link:hover { color: #d4af37; }
+    .card-title {
+      font-size: 1.8rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 0.6rem;
+    }
+    .card-sub {
+      font-size: 0.95rem;
+      color: rgba(255,255,255,0.58);
+      margin: 0 0 2rem;
+      line-height: 1.6;
+      max-width: 64ch;
+    }
+    .form-row {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1rem;
+    }
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.45rem;
+      margin-bottom: 1.2rem;
+    }
+    label {
+      font-size: 0.8rem;
+      font-weight: 600;
+      color: rgba(255,255,255,0.6);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+    input, select, textarea {
+      background: rgba(255,255,255,0.06);
+      border: 1px solid rgba(255,255,255,0.12);
+      border-radius: 6px;
+      padding: 0.7rem 0.85rem;
+      color: #fff;
+      font-size: 0.95rem;
+      width: 100%;
+      box-sizing: border-box;
+      transition: border-color 0.2s;
+      outline: none;
+      font-family: inherit;
+    }
+    textarea { min-height: 140px; resize: vertical; }
+    input::placeholder, textarea::placeholder { color: rgba(255,255,255,0.25); }
+    input:focus, select:focus, textarea:focus { border-color: #d4af37; }
+    .btn-submit {
+      width: 100%;
+      background: #d4af37;
+      color: #0a0f1e;
+      border: none;
+      border-radius: 6px;
+      padding: 0.9rem;
+      font-size: 1rem;
+      font-weight: 700;
+      cursor: pointer;
+      margin-top: 0.4rem;
+      transition: background 0.2s, transform 0.1s;
+    }
+    .btn-submit:hover { background: #e8c84a; transform: translateY(-1px); }
+    .btn-submit:active { transform: translateY(0); }
+    .privacy-note {
+      margin-top: 1.1rem;
+      font-size: 0.8rem;
+      color: rgba(255,255,255,0.34);
+      line-height: 1.5;
+      text-align: center;
+    }
+    .hp-field {
+      position: absolute;
+      left: -9999px;
+      width: 1px;
+      height: 1px;
+      opacity: 0;
+      pointer-events: none;
+    }
+    .turnstile-wrap {
+      margin-top: 0.4rem;
+      display: flex;
+      justify-content: center;
+    }
+    @media (max-width: 640px) {
+      .form-row { grid-template-columns: 1fr; }
+    }
+  </style>
+
+  <script src="https://challenges.cloudflare.com/turnstile/v0/api.js" async defer></script>
+
+  <div class="inquiry-wrap">
+    <div class="inquiry-card">
+      <a href="/vcto" class="back-link">← Back to vCTO Services</a>
+      <h1 class="card-title">Discuss a vCTO Engagement</h1>
+      <p class="card-sub">
+        Share a bit about your organization, the type of engagement you're considering,
+        and the primary challenge you want solved. This route is intentionally separate
+        from personal email and uses the secure portfolio workflow through
+        <strong>contact@technicalriskarchitect.com</strong>.
+      </p>
+
+      <form method="POST" action="/api/vcto-inquiry">
+        <div class="form-row">
+          <div class="form-group">
+            <label for="first_name">First Name</label>
+            <input type="text" id="first_name" name="first_name" placeholder="Jane" required autocomplete="given-name" maxlength="80" />
+          </div>
+          <div class="form-group">
+            <label for="last_name">Last Name</label>
+            <input type="text" id="last_name" name="last_name" placeholder="Smith" required autocomplete="family-name" maxlength="80" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="company">Company</label>
+            <input type="text" id="company" name="company" placeholder="Acme Biopharma" required autocomplete="organization" maxlength="120" />
+          </div>
+          <div class="form-group">
+            <label for="email">Work Email</label>
+            <input type="email" id="email" name="email" placeholder="jane@company.com" required autocomplete="email" maxlength="254" />
+          </div>
+        </div>
+
+        <div class="form-row">
+          <div class="form-group">
+            <label for="phone">Business Phone</label>
+            <input type="tel" id="phone" name="phone" placeholder="+1 (555) 000-0000" autocomplete="tel" maxlength="40" />
+          </div>
+          <div class="form-group">
+            <label for="engagement_type">Engagement Type</label>
+            <select id="engagement_type" name="engagement_type" required>
+              <option value="">Select one</option>
+              <option value="advisory">Advisory retainer</option>
+              <option value="standard">Standard retainer</option>
+              <option value="premium">Premium retainer</option>
+              <option value="project">Project-based engagement</option>
+              <option value="hourly">Hourly advisory</option>
+            </select>
+          </div>
+        </div>
+
+        <div class="form-group">
+          <label for="service_focus">Primary Focus</label>
+          <select id="service_focus" name="service_focus" required>
+            <option value="">Select one</option>
+            <option value="compliance">Regulatory compliance</option>
+            <option value="security">Security architecture</option>
+            <option value="ai">Sovereign AI</option>
+            <option value="hardware">Specialized hardware</option>
+            <option value="transformation">Transformation program</option>
+          </select>
+        </div>
+
+        <div class="form-group">
+          <label for="message">What do you need help with?</label>
+          <textarea id="message" name="message" placeholder="Describe the current situation, risk, compliance pressure, or initiative you're evaluating." required maxlength="4000"></textarea>
+        </div>
+
+        <input type="text" name="company_website" tabindex="-1" autocomplete="off" class="hp-field" aria-hidden="true" />
+
+        <div class="turnstile-wrap">
+          <div class="cf-turnstile" data-sitekey={TURNSTILE_SITE_KEY} data-theme="dark"></div>
+        </div>
+
+        <button type="submit" class="btn-submit">Submit vCTO Inquiry</button>
+      </form>
+
+      <p class="privacy-note">
+        This inquiry is submitted through the portfolio workflow and logged securely.
+        Your personal email address is not exposed as the contact path for this engagement form.
+        Follow-up is handled through contact@technicalriskarchitect.com.
+      </p>
+    </div>
+  </div>
+</DoorLayout>

@@ -1,0 +1,77 @@
+---
+import DoorLayout from '../layouts/DoorLayout.astro';
+---
+<DoorLayout title="vCTO Inquiry Received — Brian Kuzdas">
+  <style>
+    .success-wrap {
+      min-height: 100vh;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      padding: 2rem 1rem;
+      background: #0a0f1e;
+      text-align: center;
+    }
+    .success-card {
+      max-width: 520px;
+    }
+    .success-icon {
+      font-size: 3.5rem;
+      margin-bottom: 1.5rem;
+    }
+    h1 {
+      font-size: 1.9rem;
+      font-weight: 700;
+      color: #fff;
+      margin: 0 0 1rem;
+    }
+    .message {
+      color: rgba(255,255,255,0.72);
+      font-size: 0.98rem;
+      line-height: 1.7;
+      margin-bottom: 1.5rem;
+    }
+    .steps {
+      background: rgba(255,255,255,0.04);
+      border: 1px solid rgba(212,175,55,0.2);
+      border-radius: 12px;
+      padding: 1.5rem;
+      text-align: left;
+    }
+    .step {
+      color: rgba(255,255,255,0.75);
+      font-size: 0.92rem;
+      line-height: 1.5;
+      margin-bottom: 0.9rem;
+    }
+    .step:last-child { margin-bottom: 0; }
+    .btn-back {
+      display: inline-block;
+      margin-top: 1.5rem;
+      color: rgba(255,255,255,0.45);
+      font-size: 0.85rem;
+      transition: color 0.2s;
+    }
+    .btn-back:hover { color: #d4af37; }
+  </style>
+
+  <div class="success-wrap">
+    <div class="success-card">
+      <div class="success-icon">✅</div>
+      <h1>Inquiry Received</h1>
+      <p class="message">
+        Your vCTO engagement inquiry has been submitted through the secure portfolio workflow.
+        If confirmation email delivery is enabled, you'll receive a note from
+        <strong>contact@technicalriskarchitect.com</strong> rather than a personal address.
+      </p>
+
+      <div class="steps">
+        <div class="step"><strong>1.</strong> Your submission has been logged to the portfolio intake workflow.</div>
+        <div class="step"><strong>2.</strong> The engagement details are available for follow-up without relying on a direct personal email path.</div>
+        <div class="step"><strong>3.</strong> You can return to the services page to review retainers, project work, or hourly options.</div>
+      </div>
+
+      <a href="/vcto" class="btn-back">← Back to vCTO Services</a>
+    </div>
+  </div>
+</DoorLayout>

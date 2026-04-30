@@ -16,7 +16,8 @@ const resumes = [
       'Tone: Precise, technical, results-driven',
     ],
     href: '/resume/engineer',
-    docx: '/docs/Brian_Kuzdas_IT_Infrastructure_Engineer.docx',
+    pdf: '/api/document?name=Brian_Kuzdas_IT_Infrastructure_Engineer.pdf',
+    docx: '/api/document?name=Brian_Kuzdas_IT_Infrastructure_Engineer.docx',
   },
   {
     id: 'manager',
@@ -32,7 +33,8 @@ const resumes = [
       'Tone: Leadership-forward, process-oriented, stakeholder-aware',
     ],
     href: '/resume/manager',
-    docx: '/docs/Brian_Kuzdas_IT_Infrastructure_Manager.docx',
+    pdf: '/api/document?name=Brian_Kuzdas_IT_Infrastructure_Manager.pdf',
+    docx: '/api/document?name=Brian_Kuzdas_IT_Infrastructure_Manager.docx',
   },
   {
     id: 'executive',
@@ -48,7 +50,8 @@ const resumes = [
       'Tone: Executive, strategic, transformation-focused',
     ],
     href: '/resume/executive',
-    docx: '/docs/Brian_Kuzdas_Head_of_IT.docx',
+    pdf: '/api/document?name=Brian_Kuzdas_Head_of_IT.pdf',
+    docx: '/api/document?name=Brian_Kuzdas_Head_of_IT.docx',
   },
 ];
 ---
@@ -85,7 +88,8 @@ const resumes = [
             </ul>
             <div class="rc-actions">
               <a href={r.href} class="btn btn-primary">View Resume</a>
-              <a href={r.docx} download class="btn btn-outline doc-dl-btn">⬇ Download .docx</a>
+              <a href={r.pdf} download class="btn btn-gold doc-dl-btn">⬇ Download PDF</a>
+              <a href={r.docx} download class="btn btn-outline doc-dl-btn">⬇ Download Word</a>
             </div>
           </div>
         </div>
@@ -122,11 +126,11 @@ const resumes = [
           </div>
         </div>
         <div class="doc-dl-btns">
-          <a href="/docs/Brian_Kuzdas_Credentials.pdf" download class="btn btn-gold doc-dl-btn">
+          <a href="/api/document?name=Brian_Kuzdas_Credentials.pdf" download class="btn btn-gold doc-dl-btn">
             ⬇ Download PDF
           </a>
-          <a href="/docs/Brian_Kuzdas_Credentials.docx" download class="btn btn-outline doc-dl-btn">
-            ⬇ Download .docx
+          <a href="/api/document?name=Brian_Kuzdas_Credentials.docx" download class="btn btn-outline doc-dl-btn">
+            ⬇ Download Word
           </a>
         </div>
       </div>
@@ -202,7 +206,7 @@ const resumes = [
       <p class="cta-sub">I'm happy to jump on a call, answer questions by email, or provide references. Let's connect.</p>
     </div>
     <div class="cta-actions">
-      <a href="mailto:brian.kuzdas@gmail.com" class="btn btn-gold">Email Brian</a>
+      <a href="mailto:contact@technicalriskarchitect.com" class="btn btn-gold">Contact Brian</a>
       <a href="https://www.linkedin.com/in/brian-kuzdas-a176b945/" target="_blank" class="btn btn-outline-white">LinkedIn ↗</a>
     </div>
   </div>

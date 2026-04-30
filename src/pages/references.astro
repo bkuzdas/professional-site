@@ -87,6 +87,10 @@ const references = [
     <p class="section-label">Contact List</p>
     <h2 class="section-title">References</h2>
     <div class="section-divider"></div>
+    <div class="ref-actions">
+      <a href="/api/document?name=Brian_Kuzdas_References.pdf" download class="btn btn-gold">⬇ Download PDF</a>
+      <a href="/api/document?name=Brian_Kuzdas_References.docx" download class="btn btn-outline">⬇ Download Word</a>
+    </div>
 
     <div class="ref-table-wrap">
       <table class="ref-table">
@@ -137,7 +141,9 @@ const references = [
       <p class="cta-sub">References available upon request. I'm happy to coordinate introductions.</p>
     </div>
     <div class="cta-actions">
-      <a href="mailto:brian.kuzdas@gmail.com" class="btn btn-gold">Email Brian</a>
+      <a href="mailto:contact@technicalriskarchitect.com" class="btn btn-gold">Contact Brian</a>
+      <a href="/api/document?name=Brian_Kuzdas_References.pdf" download class="btn btn-outline-white">⬇ References PDF</a>
+      <a href="/api/document?name=Brian_Kuzdas_References.docx" download class="btn btn-outline-white">⬇ References Word</a>
       <a href="/resumes" class="btn btn-outline-white">View Resumes ↗</a>
     </div>
   </div>
@@ -152,6 +158,12 @@ const references = [
   border-radius: var(--r-lg);
   box-shadow: var(--shadow-sm);
   border: 1px solid var(--border-soft);
+}
+.ref-actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: var(--sp-md);
+  margin-bottom: var(--sp-xl);
 }
 .ref-table {
   width: 100%; border-collapse: collapse; background: var(--white);

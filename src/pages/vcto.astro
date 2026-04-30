@@ -1,0 +1,459 @@
+---
+import Layout from '../layouts/Layout.astro';
+
+const principles = [
+  {
+    title: 'Regulatory Compliance by Design',
+    description:
+      'Technology decisions are framed around auditability, validation, evidence retention, segregation of duties, and operational control from day one.',
+  },
+  {
+    title: 'Security Over Convenience',
+    description:
+      'Identity, access, remote connectivity, endpoint posture, and data handling are designed to reduce risk first — not to maximize shortcuts.',
+  },
+  {
+    title: 'Sovereign AI & Specialized Hardware',
+    description:
+      'AI adoption is approached with data sovereignty, model governance, on-prem or controlled deployment patterns, and fit-for-purpose compute architecture.',
+  },
+];
+
+const services = [
+  {
+    icon: '📋',
+    title: 'Fractional vCTO Leadership',
+    points: [
+      'Executive-level technology roadmap aligned to business goals and risk tolerance',
+      'Quarterly planning, leadership reporting, and board-ready technology updates',
+      'Vendor, budget, and investment guidance for regulated growth environments',
+    ],
+  },
+  {
+    icon: '🛡️',
+    title: 'Compliance & Risk Governance',
+    points: [
+      'Regulatory readiness for FDA 21 CFR Part 11, cGMP, HIPAA, SOC 2, and financial-sector controls',
+      'Policy, evidence, audit trail, validation, and control framework design',
+      'Gap assessments and remediation planning tied to business-critical systems',
+    ],
+  },
+  {
+    icon: '🔐',
+    title: 'Security Architecture',
+    points: [
+      'Zero Trust roadmap, identity hardening, privileged access control, and secure remote access',
+      'Network segmentation, endpoint standards, logging, monitoring, and incident readiness',
+      'Security decision-making that prioritizes resilience over user convenience',
+    ],
+  },
+  {
+    icon: '🤖',
+    title: 'Sovereign AI Strategy',
+    points: [
+      'Private AI adoption strategy for sensitive data, regulated workflows, and internal operations',
+      'Model governance, acceptable-use controls, data boundary design, and deployment guardrails',
+      'On-premise, hybrid, and controlled-cloud AI patterns matched to compliance obligations',
+    ],
+  },
+  {
+    icon: '🖥️',
+    title: 'Specialized Hardware & Infrastructure',
+    points: [
+      'GPU and accelerated-compute planning for AI, lab, and performance-sensitive workloads',
+      'Storage, networking, endpoint, and data-center architecture for high-assurance environments',
+      'Vendor selection and implementation oversight for specialized platforms and appliances',
+    ],
+  },
+  {
+    icon: '🚀',
+    title: 'Transformation Programs',
+    points: [
+      'Cloud migrations, UEM modernization, infrastructure refreshes, and compliance remediation',
+      'Project governance, technical leadership, stakeholder communication, and delivery oversight',
+      'Practical execution support from strategy through rollout and operational handoff',
+    ],
+  },
+];
+
+const tiers = [
+  {
+    name: 'Advisory',
+    accent: '#0d3b6e',
+    hours: '6 hours / month',
+    price: '$2,500 / month',
+    ideal: 'Ideal for founders, small regulated teams, or organizations needing senior guidance without daily execution.',
+    includes: [
+      'Monthly strategy session and leadership advisory',
+      'Risk, compliance, and architecture review',
+      'Priority email support',
+      'Light vendor and roadmap input',
+    ],
+  },
+  {
+    name: 'Standard',
+    accent: '#1a5c38',
+    hours: '12 hours / month',
+    price: '$4,900 / month',
+    ideal: 'Ideal for growing organizations that need recurring vCTO participation in planning, governance, and key decisions.',
+    includes: [
+      'Biweekly strategic working sessions',
+      'Compliance and security program guidance',
+      'Project review and implementation oversight',
+      'Leadership and vendor coordination',
+    ],
+  },
+  {
+    name: 'Premium',
+    accent: '#5a1a00',
+    hours: '24 hours / month',
+    price: '$8,900 / month',
+    ideal: 'Ideal for high-stakes environments needing an embedded vCTO partner for transformation, compliance, and security leadership.',
+    includes: [
+      'Weekly leadership and delivery cadence',
+      'Executive reporting and board-ready materials',
+      'Hands-on architecture and program leadership',
+      'Priority response for urgent strategic issues',
+    ],
+  },
+];
+---
+<Layout title="vCTO Services — Brian Kuzdas" page="vcto">
+
+<section class="page-hero">
+  <div class="container">
+    <p class="section-label">Fractional Technology Leadership</p>
+    <h1 class="page-hero-title">vCTO Services</h1>
+    <p class="page-hero-sub">
+      Strategic technology leadership for organizations where compliance, security,
+      and infrastructure decisions carry real regulatory and operational consequences.
+      Built for environments that need discipline over shortcuts.
+    </p>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <div class="intro-grid">
+      <div>
+        <p class="section-label">Operating Model</p>
+        <h2 class="section-title">Technology leadership with a control-minded lens</h2>
+        <div class="section-divider"></div>
+        <p class="section-sub">
+          My vCTO approach is designed for organizations that cannot treat IT as a generic
+          utility function. Whether the pressure comes from FDA validation, banking scrutiny,
+          internal security requirements, or the realities of AI infrastructure, the goal is
+          the same: build a technology posture that is defensible, durable, and practical.
+        </p>
+      </div>
+      <div class="focus-card">
+        <div class="focus-title">Primary Focus Areas</div>
+        <ul class="focus-list">
+          <li>Regulatory compliance and audit readiness</li>
+          <li>Security-first architecture and governance</li>
+          <li>Sovereign AI strategy and specialized hardware planning</li>
+          <li>Executive decision support and technology roadmap leadership</li>
+        </ul>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <p class="section-label">Core Principles</p>
+    <h2 class="section-title">What differentiates this service</h2>
+    <div class="section-divider"></div>
+    <div class="principles-grid">
+      {principles.map(principle => (
+        <article class="principle-card">
+          <h3>{principle.title}</h3>
+          <p>{principle.description}</p>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="section-label">Service Scope</p>
+    <h2 class="section-title">What I provide as your vCTO</h2>
+    <div class="section-divider"></div>
+    <div class="services-grid">
+      {services.map(service => (
+        <article class="service-card">
+          <div class="service-icon">{service.icon}</div>
+          <h3>{service.title}</h3>
+          <ul>
+            {service.points.map(point => <li>{point}</li>)}
+          </ul>
+        </article>
+      ))}
+    </div>
+  </div>
+</section>
+
+<section class="section section--alt">
+  <div class="container">
+    <p class="section-label">Retainer Tiers</p>
+    <h2 class="section-title">Monthly engagement options</h2>
+    <div class="section-divider"></div>
+    <p class="pricing-note">
+      Placeholder pricing shown below is designed to provide a clear starting point for discussion.
+      Final engagement structure can be tailored to scope, regulatory burden, and execution depth.
+    </p>
+    <div class="tiers-grid">
+      {tiers.map(tier => (
+        <article class="tier-card" style={`--tier-accent: ${tier.accent};`}>
+          <div class="tier-bar"></div>
+          <div class="tier-body">
+            <div class="tier-name">{tier.name}</div>
+            <div class="tier-hours">{tier.hours}</div>
+            <div class="tier-price">{tier.price}</div>
+            <p class="tier-ideal">{tier.ideal}</p>
+            <ul class="tier-list">
+              {tier.includes.map(item => <li>{item}</li>)}
+            </ul>
+          </div>
+        </article>
+      ))}
+    </div>
+
+    <div class="engagement-grid">
+      <article class="engagement-card">
+        <div class="engagement-label">Project-Based Engagements</div>
+        <div class="engagement-price">Starting at $7,500</div>
+        <p>
+          Best for scoped initiatives such as compliance remediation, security architecture review,
+          AI strategy, hardware planning, or technology roadmap development.
+        </p>
+      </article>
+      <article class="engagement-card">
+        <div class="engagement-label">Hourly Advisory Rate</div>
+        <div class="engagement-price">$275 / hour</div>
+        <p>
+          Best for targeted executive consultation, architecture review, audit preparation, or
+          second-opinion support on high-risk technology decisions.
+        </p>
+      </article>
+    </div>
+  </div>
+</section>
+
+<section class="section">
+  <div class="container">
+    <p class="section-label">Best Fit</p>
+    <h2 class="section-title">Organizations I can help most</h2>
+    <div class="section-divider"></div>
+    <div class="fit-grid">
+      <div class="fit-card">
+        <h3>Regulated Operations</h3>
+        <p>Biopharma, healthcare, financial services, and other environments where controls, validation, and evidence matter.</p>
+      </div>
+      <div class="fit-card">
+        <h3>Security-Sensitive Teams</h3>
+        <p>Organizations that need security posture improvement without handing critical architecture to convenience-driven defaults.</p>
+      </div>
+      <div class="fit-card">
+        <h3>AI & Infrastructure Transitions</h3>
+        <p>Teams exploring private AI, GPU-backed workloads, or infrastructure modernization with data sovereignty concerns.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<section class="cta-section">
+  <div class="container cta-inner">
+    <div>
+      <h2 class="cta-title">Need a vCTO who understands regulated technology environments?</h2>
+      <p class="cta-sub">I’m available for retained advisory, targeted projects, and executive-level architecture support.</p>
+    </div>
+    <div class="cta-actions">
+      <a href="/vcto-inquiry" class="btn btn-gold">Discuss an Engagement</a>
+      <a href="/projects" class="btn btn-outline-white">Relevant Projects</a>
+      <a href="/experience" class="btn btn-outline-white">Experience</a>
+    </div>
+  </div>
+</section>
+
+</Layout>
+
+<style>
+.intro-grid {
+  display: grid;
+  grid-template-columns: minmax(0, 1.4fr) minmax(300px, 0.9fr);
+  gap: var(--sp-2xl);
+  align-items: start;
+}
+
+.focus-card,
+.principle-card,
+.service-card,
+.tier-card,
+.engagement-card,
+.fit-card {
+  background: var(--white);
+  border: 1px solid var(--border-soft);
+  border-radius: var(--r-lg);
+  box-shadow: var(--shadow-sm);
+}
+
+.focus-card {
+  padding: var(--sp-xl);
+  background: linear-gradient(180deg, rgba(13,43,94,.03), rgba(200,150,30,.08));
+}
+
+.focus-title,
+.engagement-label {
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--navy);
+  margin-bottom: var(--sp-md);
+}
+
+.focus-list {
+  display: grid;
+  gap: 0.85rem;
+  padding-left: 1.2rem;
+  list-style: disc;
+}
+
+.focus-list li,
+.service-card li,
+.tier-list li {
+  color: var(--sub);
+}
+
+.principles-grid,
+.fit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: var(--sp-xl);
+}
+
+.principle-card,
+.fit-card {
+  padding: var(--sp-xl);
+}
+
+.principle-card h3,
+.service-card h3,
+.fit-card h3 {
+  font-size: 1.05rem;
+  font-weight: 800;
+  color: var(--navy);
+  margin-bottom: var(--sp-sm);
+}
+
+.principle-card p,
+.fit-card p,
+.engagement-card p,
+.tier-ideal {
+  color: var(--sub);
+  font-size: 0.92rem;
+  line-height: 1.75;
+}
+
+.services-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+  gap: var(--sp-xl);
+}
+
+.service-card {
+  padding: var(--sp-xl);
+}
+
+.service-icon {
+  font-size: 2rem;
+  margin-bottom: var(--sp-md);
+}
+
+.service-card ul,
+.tier-list {
+  padding-left: 1.2rem;
+  list-style: disc;
+}
+
+.service-card li,
+.tier-list li {
+  margin-bottom: 0.65rem;
+  font-size: 0.9rem;
+  line-height: 1.65;
+}
+
+.pricing-note {
+  font-size: 0.95rem;
+  color: var(--sub);
+  max-width: 72ch;
+  margin-bottom: var(--sp-xl);
+}
+
+.tiers-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--sp-xl);
+}
+
+.tier-card {
+  overflow: hidden;
+}
+
+.tier-bar {
+  height: 5px;
+  background: var(--tier-accent, var(--navy));
+}
+
+.tier-body {
+  padding: var(--sp-xl);
+}
+
+.tier-name {
+  font-size: 1.15rem;
+  font-weight: 800;
+  color: var(--tier-accent, var(--navy));
+}
+
+.tier-hours {
+  margin-top: 0.35rem;
+  font-size: 0.82rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--muted);
+}
+
+.tier-price,
+.engagement-price {
+  font-size: 1.9rem;
+  font-weight: 900;
+  line-height: 1.1;
+  color: var(--navy);
+  margin: var(--sp-md) 0;
+  letter-spacing: -0.03em;
+}
+
+.tier-list {
+  margin-top: var(--sp-lg);
+}
+
+.engagement-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+  gap: var(--sp-xl);
+  margin-top: var(--sp-2xl);
+}
+
+.engagement-card {
+  padding: var(--sp-xl);
+}
+
+@media (max-width: 860px) {
+  .intro-grid {
+    grid-template-columns: 1fr;
+  }
+}
+</style>

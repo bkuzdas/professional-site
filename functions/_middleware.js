@@ -4,8 +4,9 @@
  * by verifying a signed session cookie set by /api/verify.
  */
 
-const SESSION_COOKIE  = '__portfolio_session';
-const PROTECTED_PATHS = ['/experience', '/projects', '/achievements', '/resumes', '/resume', '/references'];
+import { SESSION_COOKIE, HttpError, isValidSessionCookie, parseCookie } from './_lib/auth.js';
+
+const PROTECTED_PATHS = ['/experience', '/projects', '/achievements', '/resumes', '/resume', '/references', '/vcto'];
 
 export async function onRequest(context) {
   const { request, env, next } = context;
@@ -20,40 +21,17 @@ export async function onRequest(context) {
   const cookieHeader = request.headers.get('Cookie') || '';
   const cookieVal    = parseCookie(cookieHeader, SESSION_COOKIE);
 
-  if (cookieVal && await isValidSession(cookieVal, env.SESSION_SECRET)) {
-    return next(); // valid session — allow through
+  try {
+    if (cookieVal && await isValidSessionCookie(cookieVal, env)) {
+      return next(); // valid session — allow through
+    }
+  } catch (error) {
+    if (error instanceof HttpError) {
+      return new Response(error.message, { status: error.status });
+    }
+    return new Response('Portfolio security configuration error', { status: 503 });
   }
 
   // No valid session → redirect to front door
   return Response.redirect(new URL('/', request.url).toString(), 302);
-}
-
-function parseCookie(header, name) {
-  const match = header.match(new RegExp(`(?:^|;\\s*)${name}=([^;]*)`));
-  return match ? match[1] : null;
-}
-
-async function isValidSession(cookieVal, secret) {
-  try {
-    const parts = cookieVal.split('|');
-    if (parts.length !== 3) return false;
-    const [encodedEmail, exp, sig] = parts;
-    if (Date.now() / 1000 > parseInt(exp)) return false;
-    const email   = decodeURIComponent(encodedEmail);
-    const payload = `${email}|${exp}`;
-    const expected = await hmacSign(payload, secret);
-    return expected === sig;
-  } catch {
-    return false;
-  }
-}
-
-async function hmacSign(data, secret) {
-  const key = await crypto.subtle.importKey(
-    'raw', new TextEncoder().encode(secret),
-    { name: 'HMAC', hash: 'SHA-256' }, false, ['sign']
-  );
-  const buf = await crypto.subtle.sign('HMAC', key, new TextEncoder().encode(data));
-  return btoa(String.fromCharCode(...new Uint8Array(buf)))
-    .replace(/\+/g, '-').replace(/\//g, '_').replace(/=/g, '');
 }
